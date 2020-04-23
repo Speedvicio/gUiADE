@@ -41,6 +41,7 @@ Partial Class Form1
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -228,6 +229,10 @@ Partial Class Form1
         Me.Label2.TabIndex = 18
         Me.Label2.Text = "Custom Parameters:"
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 10
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -274,4 +279,5 @@ Partial Class Form1
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Timer1 As Timer
 End Class

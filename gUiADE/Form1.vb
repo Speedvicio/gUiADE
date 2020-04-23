@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing.Text
+Imports System.Globalization
 Imports System.IO
 
 Public Class Form1
@@ -8,6 +9,7 @@ Public Class Form1
 
     Dim imgPlay As Image = My.Resources.play
     Dim imgStop As Image = My.Resources._stop
+    Private SW As New Stopwatch
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|All Files|*.*"
@@ -88,8 +90,10 @@ Public Class Form1
 
         If Button2.BackgroundImage Is imgStop Then
             Button2.BackgroundImage = imgPlay
+            Timer1.Start()
         Else
             Button2.BackgroundImage = imgStop
+            Timer1.Stop()
         End If
     End Sub
 
@@ -127,9 +131,11 @@ Public Class Form1
         If oProcess.HasExited Then UseThread("stop") : Exit Sub
 
         Try
-            Do
-                Invoke(MethodDelegateAddText, oProcess.StandardOutput.ReadLine())
-            Loop Until oProcess.StandardOutput.ReadLine() Is Nothing
+            'If CheckBox1.Checked = False Then
+            'Do
+            'Invoke(MethodDelegateAddText, oProcess.StandardOutput.ReadLine())
+            'Loop Until oProcess.StandardOutput.ReadLine() Is Nothing
+            'End If
         Catch
         End Try
 
@@ -141,25 +147,30 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Delegate Sub DelegateAddText(ByVal str As String)
+    'Private Delegate Sub DelegateAddText(ByVal str As String)
 
-    Private MethodDelegateAddText As New DelegateAddText(AddressOf AddText)
+    'Private MethodDelegateAddText As New DelegateAddText(AddressOf AddText)
 
-    Private Sub AddText(ByVal str As String)
-        labelMin.Text = str.Trim
-    End Sub
+    'Private Sub AddText(ByVal str As String)
+    '   labelMin.Text = str.Trim
+    'End Sub
 
     Sub UseThread(action As String)
-
-        If CheckBox1.Checked = False Then
-            CheckBox1.Enabled = False
-        End If
 
         Dim t As New Threading.Thread(AddressOf UADE_start)
         If action = "start" Then
             t.Start()
+            Timer1.Start()
+            SW.Start()
+            CheckBox1.Enabled = False
+            Button2.BackgroundImage = imgPlay
         ElseIf action = "stop" Then
             t.Abort()
+            SW.Reset()
+            Timer1.Stop()
+            CheckBox1.Enabled = True
+            labelMin.Text = "- A Crappy Frontend for UADE -"
+            Button2.BackgroundImage = imgStop
         End If
     End Sub
 
@@ -224,6 +235,7 @@ Public Class Form1
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         CheckBox1.Enabled = True
         Control_UADE("n")
+        UseThread("stop")
         Action_UADE("kill")
     End Sub
 
@@ -405,6 +417,25 @@ Public Class Form1
             pModule = Path.Combine(TreeView1.Nodes(0).Tag, TreeView1.SelectedNode.FullPath)
             If Path.GetExtension(pModule) <> "" Then PlayModule()
         End If
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If SW.IsRunning Then
+            UpdateStopwatch()
+        End If
+    End Sub
+
+    Private Sub UpdateStopwatch()
+        Dim subsong As String
+        If ListBox1.Items.Count < 1 Then
+            subsong = "(0)"
+        Else
+            subsong = "(" & ListBox1.SelectedIndex & ")"
+        End If
+
+        Dim ts As TimeSpan = SW.Elapsed
+        labelMin.Text = "Playing time " & String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10) &
+                " in subsong " & subsong
     End Sub
 
     Private Sub ListBox1_KeyUp(sender As Object, e As KeyEventArgs) Handles ListBox1.KeyUp
