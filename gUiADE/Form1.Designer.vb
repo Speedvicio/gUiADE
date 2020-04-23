@@ -53,7 +53,7 @@ Partial Class Form1
         PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         PictureBox1.Location = New System.Drawing.Point(318, 281)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New System.Drawing.Size(85, 95)
+        PictureBox1.Size = New System.Drawing.Size(85, 100)
         PictureBox1.TabIndex = 13
         PictureBox1.TabStop = False
         '

@@ -15,6 +15,7 @@ Public Class Form1
         OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|All Files|*.*"
         OpenFileDialog1.FilterIndex = 2
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+            ListBox1.Items.Clear()
             DeleteTemp()
             pModule = OpenFileDialog1.FileName
             Select Case Path.GetExtension(pModule)
@@ -46,7 +47,6 @@ Public Class Form1
 
     Private Sub Retrieve_Info()
         Label1.Text = ""
-        ListBox1.Items.Clear()
         Dim pfile = Path.Combine(Application.StartupPath, "err.txt")
         Dim reader As New StreamReader(pfile)
         Dim a, mn As String
@@ -164,6 +164,7 @@ Public Class Form1
             SW.Start()
             CheckBox1.Enabled = False
             Button2.BackgroundImage = imgPlay
+            If Label1.Text = "" Then Retrieve_Info()
         ElseIf action = "stop" Then
             t.Abort()
             SW.Reset()
@@ -271,6 +272,7 @@ Public Class Form1
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         Dim txt As StreamWriter
         If FolderBrowserDialog1.ShowDialog = DialogResult.OK Then
+            ListBox1.Items.Clear()
             DeleteTemp()
             pModule = FolderBrowserDialog1.SelectedPath
             'Action_UADE("kill")
