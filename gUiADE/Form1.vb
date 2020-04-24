@@ -386,7 +386,11 @@ Public Class Form1
 
     Private Sub SetFont()
         Try
-            pfc.AddFontFile(Path.Combine(Application.StartupPath, "Topaz_a500_v1.0.ttf"))
+
+            Dim tempFilePath = Path.GetTempFileName()
+            File.WriteAllBytes(tempFilePath, My.Resources.Topaz_a500_v1_0)
+
+            pfc.AddFontFile(tempFilePath)
             Dim allCtrl As New List(Of Control)
             For Each ctrl As Control In FindALLControlRecursive(allCtrl, Me)
                 If TypeOf ctrl Is Label Or TypeOf ctrl Is TextBox Or TypeOf ctrl Is Button Or TypeOf ctrl Is CheckBox Or TypeOf ctrl Is RadioButton Or TypeOf ctrl Is ProgressBar _

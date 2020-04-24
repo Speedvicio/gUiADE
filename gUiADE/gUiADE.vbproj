@@ -126,6 +126,7 @@
     <None Include="Resources\Guru_meditation.gif" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Topaz_a500_v1.0.ttf" />
     <None Include="Resources\uade.ico" />
   </ItemGroup>
   <ItemGroup>

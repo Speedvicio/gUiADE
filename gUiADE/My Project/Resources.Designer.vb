@@ -141,6 +141,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Byte[].
+        '''</summary>
+        Friend ReadOnly Property Topaz_a500_v1_0() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Topaz_a500_v1_0", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Icon simile a (Icona).
         '''</summary>
         Friend ReadOnly Property uade() As System.Drawing.Icon

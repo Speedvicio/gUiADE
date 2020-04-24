@@ -145,4 +145,7 @@
   <data name="amiga_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\amiga_arrow.cur;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Topaz_a500_v1_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Topaz_a500_v1.0.ttf;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
