@@ -74,6 +74,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NativeMethods.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -122,7 +123,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Resources\Guru_meditation.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\g_empty.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\amiga_arrow.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

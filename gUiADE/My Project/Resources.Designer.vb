@@ -81,6 +81,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Byte[].
+        '''</summary>
+        Friend ReadOnly Property amiga_arrow() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("amiga_arrow", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property bounce() As System.Drawing.Bitmap

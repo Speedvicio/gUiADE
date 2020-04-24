@@ -1,5 +1,4 @@
 ﻿Imports System.Drawing.Text
-Imports System.Globalization
 Imports System.IO
 
 Public Class Form1
@@ -246,6 +245,7 @@ Public Class Form1
         Button2.BackgroundImage = imgStop
         Button4.BackgroundImage.RotateFlip(RotateFlipType.Rotate180FlipY)
         SetFont()
+        SetCursor()
     End Sub
 
     Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -448,6 +448,17 @@ Public Class Form1
             arg = "-n -s " & ListBox1.SelectedIndex & " "
             UseThread("start")
         End If
+    End Sub
+
+    Private Sub SetCursor()
+        Dim tempFilePath = Path.GetTempFileName()
+
+        'scrivo la risorsa su un file temporaneo e ne prelievo il percorso
+        File.WriteAllBytes(tempFilePath, My.Resources.amiga_arrow)
+        Me.Cursor = NativeMethods.LoadCustomCursor(tempFilePath)
+
+        'Delete file when done.
+        File.Delete(tempFilePath)
     End Sub
 
 End Class
