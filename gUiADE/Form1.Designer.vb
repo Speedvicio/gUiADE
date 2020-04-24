@@ -57,9 +57,9 @@ Partial Class Form1
         '
         PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
         PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        PictureBox1.Location = New System.Drawing.Point(337, 317)
+        PictureBox1.Location = New System.Drawing.Point(337, 332)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New System.Drawing.Size(85, 100)
+        PictureBox1.Size = New System.Drawing.Size(85, 85)
         PictureBox1.TabIndex = 13
         PictureBox1.TabStop = False
         '
@@ -116,7 +116,7 @@ Partial Class Form1
         Me.CheckBox1.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.CheckBox1.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.HotTrack
         Me.CheckBox1.ForeColor = System.Drawing.Color.White
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 99)
+        Me.CheckBox1.Location = New System.Drawing.Point(6, 113)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(64, 17)
         Me.CheckBox1.TabIndex = 21
@@ -132,9 +132,9 @@ Partial Class Form1
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(6, 46)
+        Me.Button7.Location = New System.Drawing.Point(6, 51)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(85, 23)
+        Me.Button7.Size = New System.Drawing.Size(85, 29)
         Me.Button7.TabIndex = 19
         Me.Button7.Text = "&Directory"
         Me.ToolTip1.SetToolTip(Me.Button7, "Load a folder recursively")
@@ -148,9 +148,9 @@ Partial Class Form1
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(6, 72)
+        Me.Button6.Location = New System.Drawing.Point(6, 82)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(85, 23)
+        Me.Button6.Size = New System.Drawing.Size(85, 29)
         Me.Button6.TabIndex = 20
         Me.Button6.Text = "&Stop"
         Me.ToolTip1.SetToolTip(Me.Button6, "Stop music play")
@@ -166,7 +166,7 @@ Partial Class Form1
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(6, 20)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(85, 23)
+        Me.Button1.Size = New System.Drawing.Size(85, 29)
         Me.Button1.TabIndex = 18
         Me.Button1.Text = "&File"
         Me.ToolTip1.SetToolTip(Me.Button1, "Load Single File")
@@ -241,7 +241,7 @@ Partial Class Form1
         Me.GroupBox1.ForeColor = System.Drawing.Color.DarkOrange
         Me.GroupBox1.Location = New System.Drawing.Point(330, 154)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(98, 152)
+        Me.GroupBox1.Size = New System.Drawing.Size(98, 172)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controls"
@@ -252,7 +252,7 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Enabled = False
-        Me.Panel1.Location = New System.Drawing.Point(3, 118)
+        Me.Panel1.Location = New System.Drawing.Point(3, 132)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(94, 32)
         Me.Panel1.TabIndex = 22
