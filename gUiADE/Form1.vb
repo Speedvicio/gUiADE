@@ -8,6 +8,7 @@ Public Class Form1
 
     Dim imgPlay As Image = My.Resources.play
     Dim imgStop As Image = My.Resources._stop
+
     Private SW As New Stopwatch
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -32,6 +33,7 @@ Public Class Form1
     Private Sub PlayModule()
         Dim txt As StreamWriter
         If pModule.Trim <> "" Then
+            UseThread("stop")
             Action_UADE("kill")
             'arg = "--detect-format-by-content -g"
             'UADE_start("hide")
@@ -155,17 +157,20 @@ Public Class Form1
     'End Sub
 
     Sub UseThread(action As String)
-
         Dim t As New Threading.Thread(AddressOf UADE_start)
         If action = "start" Then
+            SW.Reset()
             t.Start()
+            Threading.Thread.Sleep(500)
             Timer1.Start()
             SW.Start()
             CheckBox1.Enabled = False
             Button2.BackgroundImage = imgPlay
             If Label1.Text = "" Then Retrieve_Info()
+
         ElseIf action = "stop" Then
             t.Abort()
+            Threading.Thread.Sleep(500)
             SW.Reset()
             Timer1.Stop()
             CheckBox1.Enabled = True
@@ -240,6 +245,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Action_UADE("kill")
         Me.Icon = My.Resources.uade
         Label1.Image = My.Resources.guiade
         Button2.BackgroundImage = imgStop
@@ -426,6 +432,7 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+
         If SW.IsRunning Then
             UpdateStopwatch()
         End If
