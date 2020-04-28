@@ -103,6 +103,16 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property ff() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ff", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property g_empty() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("g_empty", resourceCulture)
@@ -126,6 +136,16 @@ Namespace My.Resources
         Friend ReadOnly Property Guru_meditation() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Guru_meditation", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property headset() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("headset", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing.Text
 Imports System.IO
+Imports System.Runtime.InteropServices
 
 Public Class Form1
     Dim IdUADE As Integer()
@@ -9,6 +10,7 @@ Public Class Form1
     Dim imgPlay As Image = My.Resources.play
     Dim imgStop As Image = My.Resources._stop
 
+    Dim pUADE() As Process
     Private SW As New Stopwatch
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -41,7 +43,7 @@ Public Class Form1
             Retrieve_Info()
             Threading.Thread.Sleep(1000)
 
-            arg = "-n --normalise -w -1 -y -1 "
+            arg = "-n -w -1 -y -1 "
             UseThread("start")
         End If
     End Sub
@@ -159,6 +161,7 @@ Public Class Form1
     Sub UseThread(action As String)
         Dim t As New Threading.Thread(AddressOf UADE_start)
         If action = "start" Then
+            SetPar()
             SW.Reset()
             t.Start()
             Threading.Thread.Sleep(500)
@@ -204,6 +207,14 @@ Public Class Form1
         For i = 0 To IdUADE.Length - 1
             Try
                 AppActivate(IdUADE(i))
+                If Control.IsKeyLocked(Keys.CapsLock) Then
+                    Select Case btn
+                        Case "N", "H"
+                        Case Else
+                            My.Computer.Keyboard.SendKeys("+(" & btn & ")", True)
+                            Exit Function
+                    End Select
+                End If
                 My.Computer.Keyboard.SendKeys(btn, True)
             Catch
             End Try
@@ -400,10 +411,12 @@ Public Class Form1
             Dim allCtrl As New List(Of Control)
             For Each ctrl As Control In FindALLControlRecursive(allCtrl, Me)
                 If TypeOf ctrl Is Label Or TypeOf ctrl Is TextBox Or TypeOf ctrl Is Button Or TypeOf ctrl Is CheckBox Or TypeOf ctrl Is RadioButton Or TypeOf ctrl Is ProgressBar _
-                Or TypeOf ctrl Is GroupBox Or TypeOf ctrl Is ListBox Or TypeOf ctrl Is TreeView Then
+                Or TypeOf ctrl Is GroupBox Or TypeOf ctrl Is ListBox Or TypeOf ctrl Is TreeView Or TypeOf ctrl Is ComboBox Or TypeOf ctrl Is Form Then
                     If ctrl.Tag = "menot" Then Continue For
                     Dim CurrentCtrlFontSize = 11
                     ctrl.Font = New Font(pfc.Families(0), CurrentCtrlFontSize, FontStyle.Regular)
+                    If ctrl.BackColor = Color.DarkOrange Then ctrl.BackColor = ColorTranslator.FromHtml("#ff8800")
+                    If ctrl.BackColor = Color.FromKnownColor(KnownColor.HotTrack) Then ctrl.BackColor = ColorTranslator.FromHtml("#0055aa")
                 End If
             Next
             allCtrl.Clear()
@@ -433,10 +446,54 @@ Public Class Form1
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
+        IsProcessRunning("uade123")
+
         If SW.IsRunning Then
             UpdateStopwatch()
         End If
     End Sub
+
+    Public Function IsProcessRunning(name As String) As Boolean
+
+        For Each clsProcess As Process In Process.GetProcesses()
+            If clsProcess.ProcessName.StartsWith(name) Then
+
+                'process found so it's running so return true
+                If CheckBox1.Checked = True Then
+                    Dim hWnd As Long = clsProcess.MainWindowHandle
+                    ShowWindow(hWnd, ShowWindowCommands.ForceMinimize)
+                    clsProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
+                End If
+
+            End If
+
+        Next
+
+        'process not found, return false
+
+        Return False
+
+    End Function
+
+    <DllImport("user32.dll", SetLastError:=True, CharSet:=CharSet.Auto)>
+    Private Shared Function ShowWindow(ByVal hwnd As IntPtr, ByVal nCmdShow As ShowWindowCommands) As Boolean
+    End Function
+
+    Enum ShowWindowCommands As Integer
+        Hide = 0
+        Normal = 1
+        ShowMinimized = 2
+        Maximize = 3
+        ShowMaximized = 3
+        ShowNoActivate = 4
+        Show = 5
+        Minimize = 6
+        ShowMinNoActive = 7
+        ShowNA = 8
+        Restore = 9
+        ShowDefault = 10
+        ForceMinimize = 11
+    End Enum
 
     Private Sub UpdateStopwatch()
         Dim subsong As String
@@ -449,6 +506,50 @@ Public Class Form1
         Dim ts As TimeSpan = SW.Elapsed
         labelMin.Text = "Playing time " & String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10) &
                 " in subsong " & subsong
+    End Sub
+
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
+        Control_UADE("f")
+    End Sub
+
+    Private Sub CheckBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox3.CheckedChanged
+        Control_UADE("g")
+    End Sub
+
+    Private Sub CheckBox4_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox4.CheckedChanged
+        Control_UADE("N")
+    End Sub
+
+    Private Sub CheckBox5_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox5.CheckedChanged
+        Control_UADE("p")
+        If CheckBox5.Checked = True Then
+            CheckBox4.Enabled = True
+            ButtonHEAFSET.Enabled = True
+        Else
+            CheckBox4.Enabled = False
+            ButtonHEAFSET.Enabled = False
+        End If
+    End Sub
+
+    Private Sub CheckBox6_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox6.CheckedChanged
+        Control_UADE("P")
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonHEAFSET.Click
+        Control_UADE("H")
+
+        If CheckBox1.Checked = True And ButtonHEAFSET.Text = 1 Then
+            ButtonHEAFSET.Text = 0
+            Exit Sub
+        End If
+
+        Select Case ButtonHEAFSET.Text
+            Case 2
+                ButtonHEAFSET.Text = 0
+                Exit Sub
+        End Select
+
+        ButtonHEAFSET.Text += 1
     End Sub
 
     Private Sub ListBox1_KeyUp(sender As Object, e As KeyEventArgs) Handles ListBox1.KeyUp
@@ -470,6 +571,38 @@ Public Class Form1
 
         'Delete file when done.
         File.Delete(tempFilePath)
+    End Sub
+
+    Private Sub SetPar()
+
+        If CheckBox2.Checked Then
+            arg += "--filter "
+            arg += "--force-led=1 "
+            arg += "--filter=" & ComboFILTER.Text & " "
+        Else
+            arg += "--force-led=0 "
+        End If
+
+        If CheckBox2.Checked Then
+            Select Case ButtonHEAFSET.Text
+                Case 1
+                    arg += "--headphones "
+                Case 2
+                    arg += "--headphones2 "
+            End Select
+
+            If CheckBox4.Checked Then
+                arg += "--normalise "
+            End If
+        End If
+
+        If CheckBox6.Checked Then
+            arg += "-p " & NumericPANNING.Value & " "
+        End If
+
+        If CheckBox3.Checked Then
+            arg += "-G " & NumericGAIN.Value & " "
+        End If
     End Sub
 
 End Class

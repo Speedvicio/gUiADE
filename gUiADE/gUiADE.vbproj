@@ -150,5 +150,11 @@
   <ItemGroup>
     <None Include="Resources\amiga_arrow.cur" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\headset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ff.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

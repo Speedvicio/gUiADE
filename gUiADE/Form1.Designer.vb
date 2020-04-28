@@ -23,7 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim PictureBox1 As System.Windows.Forms.PictureBox
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -41,27 +40,28 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.labelMin = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.NumericGAIN = New System.Windows.Forms.NumericUpDown()
+        Me.NumericPANNING = New System.Windows.Forms.NumericUpDown()
+        Me.ComboFILTER = New System.Windows.Forms.ComboBox()
+        Me.ButtonHEAFSET = New System.Windows.Forms.Button()
+        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        PictureBox1 = New System.Windows.Forms.PictureBox()
-        CType(PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'PictureBox1
-        '
-        PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
-        PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        PictureBox1.Location = New System.Drawing.Point(337, 332)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New System.Drawing.Size(85, 85)
-        PictureBox1.TabIndex = 13
-        PictureBox1.TabStop = False
         '
         'OpenFileDialog1
         '
@@ -77,9 +77,9 @@ Partial Class Form1
         '
         Me.TextBox1.BackColor = System.Drawing.SystemColors.HotTrack
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(159, 428)
+        Me.TextBox1.Location = New System.Drawing.Point(149, 416)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(269, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(221, 20)
         Me.TextBox1.TabIndex = 19
         Me.TextBox1.Tag = ""
         Me.ToolTip1.SetToolTip(Me.TextBox1, "Input any custom parameters described onto UADE readme." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Example:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "--filter=A1200" &
@@ -93,7 +93,7 @@ Partial Class Form1
         Me.TreeView1.LineColor = System.Drawing.Color.White
         Me.TreeView1.Location = New System.Drawing.Point(6, 23)
         Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(300, 132)
+        Me.TreeView1.Size = New System.Drawing.Size(346, 122)
         Me.TreeView1.TabIndex = 4
         Me.ToolTip1.SetToolTip(Me.TreeView1, "Double left mouse click to load a tune")
         '
@@ -103,9 +103,9 @@ Partial Class Form1
         Me.ListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBox1.ForeColor = System.Drawing.Color.DarkOrange
         Me.ListBox1.ItemHeight = 16
-        Me.ListBox1.Location = New System.Drawing.Point(6, 161)
+        Me.ListBox1.Location = New System.Drawing.Point(6, 151)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(300, 100)
+        Me.ListBox1.Size = New System.Drawing.Size(346, 100)
         Me.ListBox1.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.ListBox1, "Double left mouse click to load a subtune")
         '
@@ -116,7 +116,7 @@ Partial Class Form1
         Me.CheckBox1.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.CheckBox1.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.HotTrack
         Me.CheckBox1.ForeColor = System.Drawing.Color.White
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 113)
+        Me.CheckBox1.Location = New System.Drawing.Point(7, 100)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(64, 17)
         Me.CheckBox1.TabIndex = 21
@@ -132,9 +132,9 @@ Partial Class Form1
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(6, 51)
+        Me.Button7.Location = New System.Drawing.Point(7, 23)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(85, 29)
+        Me.Button7.Size = New System.Drawing.Size(137, 29)
         Me.Button7.TabIndex = 19
         Me.Button7.Text = "&Directory"
         Me.ToolTip1.SetToolTip(Me.Button7, "Load a folder recursively")
@@ -148,9 +148,9 @@ Partial Class Form1
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(6, 82)
+        Me.Button6.Location = New System.Drawing.Point(80, 57)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(85, 29)
+        Me.Button6.Size = New System.Drawing.Size(64, 29)
         Me.Button6.TabIndex = 20
         Me.Button6.Text = "&Stop"
         Me.ToolTip1.SetToolTip(Me.Button6, "Stop music play")
@@ -164,9 +164,9 @@ Partial Class Form1
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(6, 20)
+        Me.Button1.Location = New System.Drawing.Point(7, 57)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(85, 29)
+        Me.Button1.Size = New System.Drawing.Size(67, 29)
         Me.Button1.TabIndex = 18
         Me.Button1.Text = "&File"
         Me.ToolTip1.SetToolTip(Me.Button1, "Load Single File")
@@ -176,7 +176,7 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(13, 432)
+        Me.Label2.Location = New System.Drawing.Point(16, 419)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(101, 13)
         Me.Label2.TabIndex = 18
@@ -193,7 +193,7 @@ Partial Class Form1
         Me.GroupBox2.ForeColor = System.Drawing.Color.DarkOrange
         Me.GroupBox2.Location = New System.Drawing.Point(12, 154)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(312, 269)
+        Me.GroupBox2.Size = New System.Drawing.Size(358, 255)
         Me.GroupBox2.TabIndex = 20
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Songs && Subsongs"
@@ -233,18 +233,140 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.NumericGAIN)
+        Me.GroupBox1.Controls.Add(Me.NumericPANNING)
+        Me.GroupBox1.Controls.Add(Me.ComboFILTER)
+        Me.GroupBox1.Controls.Add(Me.ButtonHEAFSET)
+        Me.GroupBox1.Controls.Add(Me.CheckBox6)
+        Me.GroupBox1.Controls.Add(Me.CheckBox5)
+        Me.GroupBox1.Controls.Add(Me.CheckBox4)
+        Me.GroupBox1.Controls.Add(Me.CheckBox3)
+        Me.GroupBox1.Controls.Add(Me.CheckBox2)
         Me.GroupBox1.Controls.Add(Me.Panel1)
         Me.GroupBox1.Controls.Add(Me.CheckBox1)
         Me.GroupBox1.Controls.Add(Me.Button7)
         Me.GroupBox1.Controls.Add(Me.Button6)
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.ForeColor = System.Drawing.Color.DarkOrange
-        Me.GroupBox1.Location = New System.Drawing.Point(330, 154)
+        Me.GroupBox1.Location = New System.Drawing.Point(376, 154)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(98, 172)
+        Me.GroupBox1.Size = New System.Drawing.Size(196, 282)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controls"
+        '
+        'NumericGAIN
+        '
+        Me.NumericGAIN.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.NumericGAIN.DecimalPlaces = 1
+        Me.NumericGAIN.ForeColor = System.Drawing.Color.White
+        Me.NumericGAIN.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumericGAIN.Location = New System.Drawing.Point(132, 229)
+        Me.NumericGAIN.Maximum = New Decimal(New Integer() {128, 0, 0, 0})
+        Me.NumericGAIN.Name = "NumericGAIN"
+        Me.NumericGAIN.ReadOnly = True
+        Me.NumericGAIN.Size = New System.Drawing.Size(56, 20)
+        Me.NumericGAIN.TabIndex = 31
+        Me.NumericGAIN.Value = New Decimal(New Integer() {10, 0, 0, 65536})
+        '
+        'NumericPANNING
+        '
+        Me.NumericPANNING.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.NumericPANNING.DecimalPlaces = 1
+        Me.NumericPANNING.ForeColor = System.Drawing.Color.White
+        Me.NumericPANNING.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumericPANNING.Location = New System.Drawing.Point(132, 206)
+        Me.NumericPANNING.Maximum = New Decimal(New Integer() {2, 0, 0, 0})
+        Me.NumericPANNING.Name = "NumericPANNING"
+        Me.NumericPANNING.ReadOnly = True
+        Me.NumericPANNING.Size = New System.Drawing.Size(56, 20)
+        Me.NumericPANNING.TabIndex = 30
+        Me.NumericPANNING.Value = New Decimal(New Integer() {7, 0, 0, 65536})
+        '
+        'ComboFILTER
+        '
+        Me.ComboFILTER.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.ComboFILTER.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboFILTER.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ComboFILTER.FormattingEnabled = True
+        Me.ComboFILTER.Items.AddRange(New Object() {"NONE", "A500", "A1200"})
+        Me.ComboFILTER.Location = New System.Drawing.Point(101, 130)
+        Me.ComboFILTER.Name = "ComboFILTER"
+        Me.ComboFILTER.Size = New System.Drawing.Size(89, 21)
+        Me.ComboFILTER.TabIndex = 29
+        Me.ComboFILTER.Text = "NONE"
+        '
+        'ButtonHEAFSET
+        '
+        Me.ButtonHEAFSET.BackColor = System.Drawing.Color.White
+        Me.ButtonHEAFSET.BackgroundImage = Global.gUiADE.My.Resources.Resources.headset
+        Me.ButtonHEAFSET.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonHEAFSET.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonHEAFSET.ForeColor = System.Drawing.Color.Black
+        Me.ButtonHEAFSET.Location = New System.Drawing.Point(163, 175)
+        Me.ButtonHEAFSET.Name = "ButtonHEAFSET"
+        Me.ButtonHEAFSET.Size = New System.Drawing.Size(25, 25)
+        Me.ButtonHEAFSET.TabIndex = 28
+        Me.ButtonHEAFSET.Tag = "menot"
+        Me.ButtonHEAFSET.Text = "0"
+        Me.ButtonHEAFSET.UseVisualStyleBackColor = False
+        '
+        'CheckBox6
+        '
+        Me.CheckBox6.AutoSize = True
+        Me.CheckBox6.ForeColor = System.Drawing.Color.White
+        Me.CheckBox6.Location = New System.Drawing.Point(7, 207)
+        Me.CheckBox6.Name = "CheckBox6"
+        Me.CheckBox6.Size = New System.Drawing.Size(96, 17)
+        Me.CheckBox6.TabIndex = 27
+        Me.CheckBox6.Text = "Panning &Effect"
+        Me.CheckBox6.UseVisualStyleBackColor = True
+        '
+        'CheckBox5
+        '
+        Me.CheckBox5.AutoSize = True
+        Me.CheckBox5.Checked = True
+        Me.CheckBox5.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox5.ForeColor = System.Drawing.Color.White
+        Me.CheckBox5.Location = New System.Drawing.Point(7, 180)
+        Me.CheckBox5.Name = "CheckBox5"
+        Me.CheckBox5.Size = New System.Drawing.Size(102, 17)
+        Me.CheckBox5.TabIndex = 26
+        Me.CheckBox5.Text = "&Post-Processing"
+        Me.CheckBox5.UseVisualStyleBackColor = True
+        '
+        'CheckBox4
+        '
+        Me.CheckBox4.AutoSize = True
+        Me.CheckBox4.ForeColor = System.Drawing.Color.White
+        Me.CheckBox4.Location = New System.Drawing.Point(7, 157)
+        Me.CheckBox4.Name = "CheckBox4"
+        Me.CheckBox4.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox4.TabIndex = 25
+        Me.CheckBox4.Text = "No&rmalise"
+        Me.CheckBox4.UseVisualStyleBackColor = True
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.ForeColor = System.Drawing.Color.White
+        Me.CheckBox3.Location = New System.Drawing.Point(7, 230)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(48, 17)
+        Me.CheckBox3.TabIndex = 24
+        Me.CheckBox3.Text = "&Gain"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.ForeColor = System.Drawing.Color.White
+        Me.CheckBox2.Location = New System.Drawing.Point(7, 132)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(48, 17)
+        Me.CheckBox2.TabIndex = 23
+        Me.CheckBox2.Text = "&Filter"
+        Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'Panel1
         '
@@ -252,9 +374,9 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Enabled = False
-        Me.Panel1.Location = New System.Drawing.Point(3, 132)
+        Me.Panel1.Location = New System.Drawing.Point(98, 92)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(94, 32)
+        Me.Panel1.Size = New System.Drawing.Size(92, 32)
         Me.Panel1.TabIndex = 22
         '
         'Button4
@@ -275,7 +397,7 @@ Partial Class Form1
         Me.Button3.BackgroundImage = Global.gUiADE.My.Resources.Resources._next
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(63, 3)
+        Me.Button3.Location = New System.Drawing.Point(65, 3)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(25, 25)
         Me.Button3.TabIndex = 7
@@ -287,34 +409,46 @@ Partial Class Form1
         Me.Button2.BackgroundImage = Global.gUiADE.My.Resources.Resources._stop
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(33, 3)
+        Me.Button2.Location = New System.Drawing.Point(34, 3)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(25, 25)
         Me.Button2.TabIndex = 6
         Me.Button2.UseVisualStyleBackColor = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Location = New System.Drawing.Point(434, 11)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(130, 130)
+        Me.PictureBox1.TabIndex = 22
+        Me.PictureBox1.TabStop = False
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.ClientSize = New System.Drawing.Size(434, 458)
+        Me.ClientSize = New System.Drawing.Size(584, 441)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(PictureBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "gUiADE"
-        CType(PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -340,4 +474,14 @@ Partial Class Form1
     Friend WithEvents Button7 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents CheckBox5 As CheckBox
+    Friend WithEvents CheckBox4 As CheckBox
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox6 As CheckBox
+    Friend WithEvents ButtonHEAFSET As Button
+    Friend WithEvents ComboFILTER As ComboBox
+    Friend WithEvents NumericGAIN As NumericUpDown
+    Friend WithEvents NumericPANNING As NumericUpDown
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
