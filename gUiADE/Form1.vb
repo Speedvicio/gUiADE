@@ -37,13 +37,11 @@ Public Class Form1
         If pModule.Trim <> "" Then
             UseThread("stop")
             Action_UADE("kill")
-            'arg = "--detect-format-by-content -g"
-            'UADE_start("hide")
             MakeBat(txt, "info", "--detect-format-by-content -g ", "err")
             Retrieve_Info()
             Threading.Thread.Sleep(1000)
 
-            arg = "-n -w -1 -y -1 "
+            'arg = "-w -1 -y -1 "
             UseThread("start")
         End If
     End Sub
@@ -112,7 +110,7 @@ Public Class Form1
         oStartInfo.WorkingDirectory = wdir
         oStartInfo.FileName = Path.Combine(wdir, "uade123")
         'oStartInfo.WindowStyle = ProcessWindowStyle.Minimized
-        If CheckBox1.Checked = False Then
+        If CheckConsole.Checked = False Then
             oStartInfo.CreateNoWindow = True
             oStartInfo.UseShellExecute = False
             oStartInfo.RedirectStandardOutput = True
@@ -126,6 +124,7 @@ Public Class Form1
         If cPar <> "" Then
             If cPar.EndsWith(" ") = False Then cPar += " "
         End If
+
         oStartInfo.Arguments = "--cygwin --speed-hack " & arg & cPar & Chr(34) & Replace(pModule, "\", "/") & Chr(34)
 
         oProcess.StartInfo = oStartInfo
@@ -134,29 +133,40 @@ Public Class Form1
         If oProcess.HasExited Then UseThread("stop") : Exit Sub
 
         Try
-            'If CheckBox1.Checked = False Then
-            'Do
-            'Invoke(MethodDelegateAddText, oProcess.StandardOutput.ReadLine())
-            'Loop Until oProcess.StandardOutput.ReadLine() Is Nothing
-            'End If
+            If CheckConsole.Checked = False And CheckLoop.Checked = False Then
+                Do
+                    Invoke(MethodDelegateAddText, oProcess.StandardOutput.ReadLine())
+                Loop Until oProcess.StandardOutput.ReadLine() Is Nothing
+            End If
         Catch
+            SW.Reset()
+            Timer1.Stop()
+            If CheckWAV.Checked = True Then MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
         End Try
 
         Try
-            File.WriteAllText(Path.Combine(Application.StartupPath, "out.txt"), oProcess.StandardOutput.ReadToEnd())
-            File.WriteAllText(Path.Combine(Application.StartupPath, "err.txt"), oProcess.StandardError.ReadToEnd())
-            File.WriteAllText(Path.Combine(Application.StartupPath, "inp.txt"), oProcess.StandardError.ReadToEnd())
+            If CheckConsole.Checked = False Then
+                File.WriteAllText(Path.Combine(Application.StartupPath, "out.txt"), oProcess.StandardOutput.ReadToEnd())
+                File.WriteAllText(Path.Combine(Application.StartupPath, "err.txt"), oProcess.StandardError.ReadToEnd())
+                File.WriteAllText(Path.Combine(Application.StartupPath, "inp.txt"), oProcess.StandardError.ReadToEnd())
+            End If
         Catch
         End Try
     End Sub
 
-    'Private Delegate Sub DelegateAddText(ByVal str As String)
+    Private Delegate Sub DelegateAddText(ByVal str As String)
 
-    'Private MethodDelegateAddText As New DelegateAddText(AddressOf AddText)
+    Private MethodDelegateAddText As New DelegateAddText(AddressOf AddText)
 
-    'Private Sub AddText(ByVal str As String)
-    '   labelMin.Text = str.Trim
-    'End Sub
+    Private Sub AddText(ByVal str As String)
+        'labelMin.Text = str.Trim
+        Dim splitsong() As String
+        splitsong = str.Trim.Split(" ")
+        If ListBox1.SelectedIndex <> splitsong(6).Trim() Then
+            ListBox1.SelectedIndex = splitsong(6).Trim()
+        End If
+
+    End Sub
 
     Sub UseThread(action As String)
         Dim t As New Threading.Thread(AddressOf UADE_start)
@@ -167,7 +177,7 @@ Public Class Form1
             Threading.Thread.Sleep(500)
             Timer1.Start()
             SW.Start()
-            CheckBox1.Enabled = False
+            CheckConsole.Enabled = False
             Button2.BackgroundImage = imgPlay
             If Label1.Text = "" Then Retrieve_Info()
 
@@ -176,7 +186,7 @@ Public Class Form1
             Threading.Thread.Sleep(500)
             SW.Reset()
             Timer1.Stop()
-            CheckBox1.Enabled = True
+            CheckConsole.Enabled = True
             labelMin.Text = "- A Crappy Frontend for UADE -"
             Button2.BackgroundImage = imgStop
         End If
@@ -249,7 +259,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        CheckBox1.Enabled = True
+        CheckConsole.Enabled = True
         Control_UADE("n")
         UseThread("stop")
         Action_UADE("kill")
@@ -384,7 +394,7 @@ Public Class Form1
     Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
         If ListBox1.Items.Count < 1 Then Exit Sub
         Action_UADE("killMantain")
-        arg = "-n -s " & ListBox1.SelectedIndex & " "
+        arg = "-s " & ListBox1.SelectedIndex & " "
         UseThread("start")
     End Sub
 
@@ -393,8 +403,8 @@ Public Class Form1
         If Path.GetExtension(pModule) <> "" Then PlayModule()
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked = True Then
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckConsole.CheckedChanged
+        If CheckConsole.Checked = True Then
             Panel1.Enabled = True
         Else
             Panel1.Enabled = False
@@ -459,7 +469,7 @@ Public Class Form1
             If clsProcess.ProcessName.StartsWith(name) Then
 
                 'process found so it's running so return true
-                If CheckBox1.Checked = True Then
+                If CheckConsole.Checked = True Then
                     Dim hWnd As Long = clsProcess.MainWindowHandle
                     ShowWindow(hWnd, ShowWindowCommands.ForceMinimize)
                     clsProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
@@ -514,10 +524,16 @@ Public Class Form1
 
     Private Sub CheckBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox3.CheckedChanged
         Control_UADE("g")
+        If CheckBox3.Checked = True Then
+            CheckBox4.Checked = False
+        End If
     End Sub
 
     Private Sub CheckBox4_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox4.CheckedChanged
         Control_UADE("N")
+        If CheckBox4.Checked = True Then
+            CheckBox3.Checked = False
+        End If
     End Sub
 
     Private Sub CheckBox5_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox5.CheckedChanged
@@ -538,7 +554,7 @@ Public Class Form1
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonHEAFSET.Click
         Control_UADE("H")
 
-        If CheckBox1.Checked = True And ButtonHEAFSET.Text = 1 Then
+        If CheckConsole.Checked = True And ButtonHEAFSET.Text = 1 Then
             ButtonHEAFSET.Text = 0
             Exit Sub
         End If
@@ -557,9 +573,13 @@ Public Class Form1
         If ListBox1.Items.Count < 1 Then Exit Sub
         If e.KeyCode = Keys.Return Or e.KeyCode = Keys.Enter Then
             Action_UADE("killMantain")
-            arg = "-n -s " & ListBox1.SelectedIndex & " "
+            arg = "-s " & ListBox1.SelectedIndex & " "
             UseThread("start")
         End If
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        MsgBox("gUiADE by Speedvicio", vbOKOnly + vbInformation, "About")
     End Sub
 
     Private Sub SetCursor()
@@ -574,6 +594,32 @@ Public Class Form1
     End Sub
 
     Private Sub SetPar()
+
+        If CheckWAV.Checked = True Then
+            Dim saveFileDialog1 As New SaveFileDialog()
+            saveFileDialog1.Filter = "Wave File|*.wav"
+            saveFileDialog1.Title = "Save in WAV audio format"
+            saveFileDialog1.DefaultExt = ".wav"
+            Dim wfile As String = TreeView1.SelectedNode.FullPath & " - "
+
+            If wfile.Contains("\") Then
+                Dim wsfile() As String = wfile.Split("\")
+                wfile = ""
+                For i = wsfile.Length - 2 To wsfile.Length - 1
+                    wfile += wsfile(i) & " - "
+                Next i
+            End If
+
+            saveFileDialog1.FileName = wfile & "subsong " & ListBox1.SelectedIndex.ToString
+            saveFileDialog1.ShowDialog()
+            If saveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+                arg += "--one -f " & Chr(34) & saveFileDialog1.FileName & Chr(34) & " "
+            End If
+        End If
+
+        If CheckLoop.Checked Then
+            arg += "-n "
+        End If
 
         If CheckBox2.Checked Then
             arg += "--filter "
