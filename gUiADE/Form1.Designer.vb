@@ -40,6 +40,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.labelMin = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.CheckLoop = New System.Windows.Forms.CheckBox()
         Me.NumericGAIN = New System.Windows.Forms.NumericUpDown()
         Me.NumericPANNING = New System.Windows.Forms.NumericUpDown()
@@ -55,14 +56,14 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CheckQuad = New System.Windows.Forms.CheckBox()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -79,9 +80,9 @@ Partial Class Form1
         '
         Me.TextBox1.BackColor = System.Drawing.SystemColors.HotTrack
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(149, 416)
+        Me.TextBox1.Location = New System.Drawing.Point(123, 416)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(306, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(247, 20)
         Me.TextBox1.TabIndex = 19
         Me.TextBox1.Tag = ""
         Me.ToolTip1.SetToolTip(Me.TextBox1, "Input any custom parameters described onto UADE readme." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Example:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "--filter=A1200" &
@@ -259,9 +260,21 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controls"
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Location = New System.Drawing.Point(139, 157)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(42, 42)
+        Me.PictureBox1.TabIndex = 33
+        Me.PictureBox1.TabStop = False
+        '
         'CheckLoop
         '
         Me.CheckLoop.AutoSize = True
+        Me.CheckLoop.Checked = True
+        Me.CheckLoop.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckLoop.ForeColor = System.Drawing.Color.White
         Me.CheckLoop.Location = New System.Drawing.Point(103, 65)
         Me.CheckLoop.Name = "CheckLoop"
@@ -434,7 +447,7 @@ Partial Class Form1
         '
         Me.CheckWAV.AutoSize = True
         Me.CheckWAV.ForeColor = System.Drawing.Color.White
-        Me.CheckWAV.Location = New System.Drawing.Point(479, 418)
+        Me.CheckWAV.Location = New System.Drawing.Point(376, 418)
         Me.CheckWAV.Name = "CheckWAV"
         Me.CheckWAV.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckWAV.Size = New System.Drawing.Size(91, 17)
@@ -442,15 +455,19 @@ Partial Class Form1
         Me.CheckWAV.Text = "Write to WAV"
         Me.CheckWAV.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'CheckQuad
         '
-        Me.PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(139, 157)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(42, 42)
-        Me.PictureBox1.TabIndex = 33
-        Me.PictureBox1.TabStop = False
+        Me.CheckQuad.AutoSize = True
+        Me.CheckQuad.Enabled = False
+        Me.CheckQuad.ForeColor = System.Drawing.Color.White
+        Me.CheckQuad.Location = New System.Drawing.Point(481, 418)
+        Me.CheckQuad.Name = "CheckQuad"
+        Me.CheckQuad.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CheckQuad.Size = New System.Drawing.Size(85, 17)
+        Me.CheckQuad.TabIndex = 29
+        Me.CheckQuad.Text = "Quad Export"
+        Me.ToolTip1.SetToolTip(Me.CheckQuad, "Export a wave in quad channells")
+        Me.CheckQuad.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -458,6 +475,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
         Me.ClientSize = New System.Drawing.Size(584, 441)
+        Me.Controls.Add(Me.CheckQuad)
         Me.Controls.Add(Me.CheckWAV)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel2)
@@ -472,10 +490,10 @@ Partial Class Form1
         Me.Panel2.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -513,4 +531,5 @@ Partial Class Form1
     Friend WithEvents CheckLoop As CheckBox
     Friend WithEvents CheckWAV As CheckBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents CheckQuad As CheckBox
 End Class

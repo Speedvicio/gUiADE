@@ -178,6 +178,8 @@ Public Class Form1
             Timer1.Start()
             SW.Start()
             CheckConsole.Enabled = False
+            CheckWAV.Enabled = False
+            CheckQuad.Enabled = False
             Button2.BackgroundImage = imgPlay
             If Label1.Text = "" Then Retrieve_Info()
 
@@ -187,6 +189,7 @@ Public Class Form1
             SW.Reset()
             Timer1.Stop()
             CheckConsole.Enabled = True
+            CheckWAV.Enabled = True
             labelMin.Text = "- A Crappy Frontend for UADE -"
             Button2.BackgroundImage = imgStop
         End If
@@ -582,6 +585,14 @@ Public Class Form1
         MsgBox("gUiADE by Speedvicio", vbOKOnly + vbInformation, "About")
     End Sub
 
+    Private Sub CheckWAV_CheckedChanged(sender As Object, e As EventArgs) Handles CheckWAV.CheckedChanged
+        If CheckWAV.Checked = True Then
+            CheckQuad.Enabled = True
+        Else
+            CheckQuad.Enabled = False
+        End If
+    End Sub
+
     Private Sub SetCursor()
         Dim tempFilePath = Path.GetTempFileName()
 
@@ -600,17 +611,23 @@ Public Class Form1
             saveFileDialog1.Filter = "Wave File|*.wav"
             saveFileDialog1.Title = "Save in WAV audio format"
             saveFileDialog1.DefaultExt = ".wav"
-            Dim wfile As String = TreeView1.SelectedNode.FullPath & " - "
 
-            If wfile.Contains("\") Then
-                Dim wsfile() As String = wfile.Split("\")
-                wfile = ""
-                For i = wsfile.Length - 2 To wsfile.Length - 1
-                    wfile += wsfile(i) & " - "
-                Next i
+            If TreeView1.Nodes.Count > 0 Then
+                Dim wfile As String = TreeView1.SelectedNode.FullPath & " - "
+
+                If wfile.Contains("\") Then
+                    Dim wsfile() As String = wfile.Split("\")
+                    wfile = ""
+                    For i = wsfile.Length - 2 To wsfile.Length - 1
+                        wfile += wsfile(i) & " - "
+                    Next i
+                End If
+
+                saveFileDialog1.FileName = wfile & "subsong " & ListBox1.SelectedIndex.ToString
+            Else
+                saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(pModule)
             End If
 
-            saveFileDialog1.FileName = wfile & "subsong " & ListBox1.SelectedIndex.ToString
             saveFileDialog1.ShowDialog()
             If saveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
                 arg += "--one -f " & Chr(34) & saveFileDialog1.FileName & Chr(34) & " "
@@ -619,6 +636,10 @@ Public Class Form1
 
         If CheckLoop.Checked Then
             arg += "-n "
+        End If
+
+        If CheckQuad.Checked Then
+            arg += "--quadmode "
         End If
 
         If CheckBox2.Checked Then
