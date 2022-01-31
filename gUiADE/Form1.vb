@@ -184,12 +184,14 @@ Public Class Form1
             If Label1.Text = "" Then Retrieve_Info()
 
         ElseIf action = "stop" Then
+            arg = Nothing
             t.Abort()
             Threading.Thread.Sleep(500)
             SW.Reset()
             Timer1.Stop()
             CheckConsole.Enabled = True
             CheckWAV.Enabled = True
+            wavstate()
             labelMin.Text = "- A Crappy Frontend for UADE -"
             Button2.BackgroundImage = imgStop
         End If
@@ -586,9 +588,14 @@ Public Class Form1
     End Sub
 
     Private Sub CheckWAV_CheckedChanged(sender As Object, e As EventArgs) Handles CheckWAV.CheckedChanged
+        wavstate()
+    End Sub
+
+    Private Sub wavstate()
         If CheckWAV.Checked = True Then
             CheckQuad.Enabled = True
         Else
+            CheckQuad.Checked = False
             CheckQuad.Enabled = False
         End If
     End Sub
@@ -628,47 +635,52 @@ Public Class Form1
                 saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(pModule)
             End If
 
-            saveFileDialog1.ShowDialog()
             If saveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
-                arg += "--one -f " & Chr(34) & saveFileDialog1.FileName & Chr(34) & " "
+                If saveFileDialog1.OpenFile() IsNot Nothing Then
+                    arg += "--one -f " & Chr(34) & saveFileDialog1.FileName & Chr(34) & " "
+                End If
+            Else
+                CheckWAV.Checked = False
+                wavstate()
             End If
-        End If
 
-        If CheckLoop.Checked Then
-            arg += "-n "
-        End If
-
-        If CheckQuad.Checked Then
-            arg += "--quadmode "
-        End If
-
-        If CheckBox2.Checked Then
-            arg += "--filter "
-            arg += "--force-led=1 "
-            arg += "--filter=" & ComboFILTER.Text & " "
-        Else
-            arg += "--force-led=0 "
-        End If
-
-        If CheckBox2.Checked Then
-            Select Case ButtonHEAFSET.Text
-                Case 1
-                    arg += "--headphones "
-                Case 2
-                    arg += "--headphones2 "
-            End Select
-
-            If CheckBox4.Checked Then
-                arg += "--normalise "
+            If CheckLoop.Checked Then
+                arg += "-n "
             End If
-        End If
 
-        If CheckBox6.Checked Then
-            arg += "-p " & NumericPANNING.Value & " "
-        End If
+            If CheckQuad.Checked Then
+                arg += "--quadmode "
+            End If
 
-        If CheckBox3.Checked Then
-            arg += "-G " & NumericGAIN.Value & " "
+            If CheckBox2.Checked Then
+                arg += "--filter "
+                arg += "--force-led=1 "
+                arg += "--filter=" & ComboFILTER.Text & " "
+            Else
+                arg += "--force-led=0 "
+            End If
+
+            If CheckBox2.Checked Then
+                Select Case ButtonHEAFSET.Text
+                    Case 1
+                        arg += "--headphones "
+                    Case 2
+                        arg += "--headphones2 "
+                End Select
+
+                If CheckBox4.Checked Then
+                    arg += "--normalise "
+                End If
+            End If
+
+            If CheckBox6.Checked Then
+                arg += "-p " & NumericPANNING.Value & " "
+            End If
+
+            If CheckBox3.Checked Then
+                arg += "-G " & NumericGAIN.Value & " "
+            End If
+
         End If
     End Sub
 
