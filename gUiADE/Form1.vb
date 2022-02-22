@@ -643,45 +643,45 @@ Public Class Form1
                 CheckWAV.Checked = False
                 wavstate()
             End If
-
-            If CheckLoop.Checked Then
-                arg += "-n "
-            End If
-
-            If CheckQuad.Checked Then
-                arg += "--quadmode "
-            End If
-
-            If CheckBox2.Checked Then
-                arg += "--filter "
-                arg += "--force-led=1 "
-                arg += "--filter=" & ComboFILTER.Text & " "
-            Else
-                arg += "--force-led=0 "
-            End If
-
-            If CheckBox2.Checked Then
-                Select Case ButtonHEAFSET.Text
-                    Case 1
-                        arg += "--headphones "
-                    Case 2
-                        arg += "--headphones2 "
-                End Select
-
-                If CheckBox4.Checked Then
-                    arg += "--normalise "
-                End If
-            End If
-
-            If CheckBox6.Checked Then
-                arg += "-p " & NumericPANNING.Value & " "
-            End If
-
-            If CheckBox3.Checked Then
-                arg += "-G " & NumericGAIN.Value & " "
-            End If
-
         End If
+
+        If CheckLoop.Checked Then
+            arg += "-n "
+        End If
+
+        If CheckQuad.Checked Then
+            arg += "--quadmode "
+        End If
+
+        If CheckBox2.Checked Then
+            arg += "--filter "
+            arg += "--force-led=1 "
+            arg += "--filter=" & ComboFILTER.Text & " "
+        Else
+            arg += "--force-led=0 "
+        End If
+
+        If CheckBox2.Checked Then
+            Select Case ButtonHEAFSET.Text
+                Case 1
+                    arg += "--headphones "
+                Case 2
+                    arg += "--headphones2 "
+            End Select
+
+            If CheckBox4.Checked Then
+                arg += "--normalise "
+            End If
+        End If
+
+        If CheckBox6.Checked Then
+            arg += "-p " & NumericPANNING.Value & " "
+        End If
+
+        If CheckBox3.Checked Then
+            arg += "-G " & NumericGAIN.Value & " "
+        End If
+
     End Sub
 
 End Class
