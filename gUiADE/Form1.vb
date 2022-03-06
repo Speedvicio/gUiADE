@@ -10,6 +10,8 @@ Public Class Form1
     Dim imgPlay As Image = My.Resources.play
     Dim imgStop As Image = My.Resources._stop
 
+    Dim uade As Boolean
+
     Dim pUADE() As Process
     Private SW As New Stopwatch
 
@@ -33,6 +35,7 @@ Public Class Form1
     End Sub
 
     Private Sub PlayModule()
+        uade = True
         Dim txt As StreamWriter
         If pModule.Trim <> "" Then
             UseThread("stop")
@@ -42,48 +45,57 @@ Public Class Form1
             Threading.Thread.Sleep(1000)
 
             'arg = "-w -1 -y -1 "
-            UseThread("start")
+            If uade = True Then UseThread("start")
         End If
     End Sub
 
     Private Sub Retrieve_Info()
         Label1.Text = ""
         Dim pfile = Path.Combine(Application.StartupPath, "err.txt")
-        Dim reader As New StreamReader(pfile)
-        Dim a, mn As String
-        Dim asp As String()
+        If FileNotUsed(pfile) = True Then
+            Dim reader As New StreamReader(pfile)
+            Dim a, mn As String
+            Dim asp As String()
 
-        mn = Path.GetFileName(pModule)
+            mn = Path.GetFileName(pModule)
 
-        Do While reader.Peek() <> -1
-            a = reader.ReadLine()
+            If reader.Peek() = -1 Then
+                reader.Close()
+                MsgBox("This file is not supported by UADE", MsgBoxStyle.Critical + vbOKOnly, "Unknown format...")
+                uade = False
+                Exit Sub
+            End If
 
-            If a.Contains(":") Then asp = a.Trim.Split(":")
+            Do While reader.Peek() <> -1
+                a = reader.ReadLine()
 
-            If a.Trim <> "" Then
-                If a.Contains("playername:") Then
-                    Label1.Text = "Player Name: " & asp(1) & vbCrLf & vbCrLf
-                ElseIf a.Contains("modulename:") Then
-                    Label1.Text = "Module Name: " & asp(1) & vbCrLf & vbCrLf
-                ElseIf a.Contains("formatname: type:") Then
-                    Label1.Text = "Format Type: " & asp(2)
-                    If Label1.Text.Contains("Module Name:") = False Then Label1.Text += vbCrLf & vbCrLf
-                ElseIf a.Contains("subsong_info:") Then
-                    Dim b As String()
-                    b = a.Split(" ")
-                    ListBox1.Items.Clear()
-                    If Val(b(3)) > 0 Then
-                        For i = 0 To Val(b(3))
-                            ListBox1.Items.Add("- Subsong (" & i & ")")
-                        Next
-                        If ListBox1.Items.Count > 1 Then ListBox1.SelectedIndex = b(1)
+                If a.Contains(":") Then asp = a.Trim.Split(":")
+
+                If a.Trim <> "" Then
+                    If a.Contains("playername:") Then
+                        Label1.Text = "Player Name: " & asp(1) & vbCrLf & vbCrLf
+                    ElseIf a.Contains("modulename:") Then
+                        Label1.Text = "Module Name: " & asp(1) & vbCrLf & vbCrLf
+                    ElseIf a.Contains("formatname: type:") Then
+                        Label1.Text = "Format Type: " & asp(2)
+                        If Label1.Text.Contains("Module Name:") = False Then Label1.Text += vbCrLf & vbCrLf
+                    ElseIf a.Contains("subsong_info:") Then
+                        Dim b As String()
+                        b = a.Split(" ")
+                        ListBox1.Items.Clear()
+                        If Val(b(3)) > 0 Then
+                            For i = 0 To Val(b(3))
+                                ListBox1.Items.Add("- Subsong (" & i & ")")
+                            Next
+                            If ListBox1.Items.Count > 1 Then ListBox1.SelectedIndex = b(1)
+                        End If
                     End If
                 End If
-            End If
-        Loop
+            Loop
 
-        reader.Close()
-        If Label1.Text.Contains("modulename:") = False Then Label1.Text += "File Name: " & mn
+            reader.Close()
+            If Label1.Text.Contains("modulename:") = False Then Label1.Text += "File Name: " & mn
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -130,7 +142,13 @@ Public Class Form1
         oProcess.StartInfo = oStartInfo
         oProcess.Start()
         IdUADE(0) = oProcess.Id
-        If oProcess.HasExited Then UseThread("stop") : Exit Sub
+        If oProcess.HasExited Then
+            UseThread("stop")
+            SW.Reset()
+            Timer1.Stop()
+            If CheckWAV.Checked = True Then MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
+            Exit Sub
+        End If
 
         Try
             If CheckConsole.Checked = False And CheckLoop.Checked = False Then
@@ -139,9 +157,6 @@ Public Class Form1
                 Loop Until oProcess.StandardOutput.ReadLine() Is Nothing
             End If
         Catch
-            SW.Reset()
-            Timer1.Stop()
-            If CheckWAV.Checked = True Then MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
         End Try
 
         Try
@@ -177,11 +192,11 @@ Public Class Form1
             Threading.Thread.Sleep(500)
             Timer1.Start()
             SW.Start()
+            Button2.BackgroundImage = imgPlay
+            'If Label1.Text = "" Then Retrieve_Info()
             CheckConsole.Enabled = False
             CheckWAV.Enabled = False
             CheckQuad.Enabled = False
-            Button2.BackgroundImage = imgPlay
-            If Label1.Text = "" Then Retrieve_Info()
 
         ElseIf action = "stop" Then
             arg = Nothing
@@ -189,11 +204,11 @@ Public Class Form1
             Threading.Thread.Sleep(500)
             SW.Reset()
             Timer1.Stop()
-            CheckConsole.Enabled = True
-            CheckWAV.Enabled = True
             wavstate()
             labelMin.Text = "- A Crappy Frontend for UADE -"
             Button2.BackgroundImage = imgStop
+            CheckConsole.Enabled = True
+            CheckWAV.Enabled = True
         End If
     End Sub
 
@@ -249,7 +264,7 @@ Public Class Form1
                         p.Kill()
                         Label1.Text = ""
                         labelMin.Text = "- A Crappy Frontend for UADE -"
-                        Label1.Image = My.Resources.Guru_meditation
+                        Label1.Image = My.Resources.guiade
                     Case "killMantain"
                         p.Kill()
                     Case Else
@@ -466,6 +481,7 @@ Public Class Form1
         If SW.IsRunning Then
             UpdateStopwatch()
         End If
+
     End Sub
 
     Public Function IsProcessRunning(name As String) As Boolean
@@ -521,6 +537,17 @@ Public Class Form1
         Dim ts As TimeSpan = SW.Elapsed
         labelMin.Text = "Playing time " & String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10) &
                 " in subsong " & subsong
+
+        If ts.Seconds > 10 Then
+            If CheckWAV.Checked = True Then
+                CheckConsole.Enabled = True
+                Control_UADE("n")
+                UseThread("stop")
+                Action_UADE("kill")
+                MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
+            End If
+        End If
+
     End Sub
 
     Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
@@ -592,13 +619,46 @@ Public Class Form1
     End Sub
 
     Private Sub wavstate()
-        If CheckWAV.Checked = True Then
-            CheckQuad.Enabled = True
-        Else
-            CheckQuad.Checked = False
-            CheckQuad.Enabled = False
-        End If
+        Try
+            If CheckWAV.Checked = True Then
+                CheckQuad.Enabled = True
+            Else
+                CheckQuad.Checked = False
+                CheckQuad.Enabled = False
+            End If
+        Catch
+        End Try
     End Sub
+
+    Protected Function FileNotUsed(ByVal sPathFile As String) As Boolean
+        Dim bRet As Boolean = False
+        Try
+            Dim bNotUsed As Boolean = False
+            Dim dtStart As DateTime = DateTime.Now
+            Dim fsFile As IO.FileStream = Nothing
+
+            While Not bNotUsed
+                Try
+                    fsFile = IO.File.Open(sPathFile, IO.FileMode.Open, IO.FileAccess.Read, IO.FileShare.None)
+                    bNotUsed = True
+                Catch ex As Exception
+                Finally
+                    If Not IsNothing(fsFile) Then fsFile.Close()
+                    If Not IsNothing(fsFile) Then fsFile.Dispose()
+                    fsFile = Nothing
+                End Try
+
+                Dim tsDiff As TimeSpan = dtStart - DateTime.Now
+                If tsDiff.TotalMinutes > 1 Then Throw New Exception("File utilizzato da un altro processo")
+                Threading.Thread.Sleep(200)
+            End While
+
+            bRet = True
+        Catch ex As Exception
+
+        End Try
+        Return bRet
+    End Function
 
     Private Sub SetCursor()
         Dim tempFilePath = Path.GetTempFileName()

@@ -33,6 +33,7 @@ Partial Class Form1
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.CheckQuad = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -56,7 +57,6 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
-        Me.CheckQuad = New System.Windows.Forms.CheckBox()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -174,6 +174,20 @@ Partial Class Form1
         Me.Button1.Text = "&File"
         Me.ToolTip1.SetToolTip(Me.Button1, "Load Single File")
         Me.Button1.UseVisualStyleBackColor = False
+        '
+        'CheckQuad
+        '
+        Me.CheckQuad.AutoSize = True
+        Me.CheckQuad.Enabled = False
+        Me.CheckQuad.ForeColor = System.Drawing.Color.White
+        Me.CheckQuad.Location = New System.Drawing.Point(481, 418)
+        Me.CheckQuad.Name = "CheckQuad"
+        Me.CheckQuad.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CheckQuad.Size = New System.Drawing.Size(85, 17)
+        Me.CheckQuad.TabIndex = 29
+        Me.CheckQuad.Text = "Quad Export"
+        Me.ToolTip1.SetToolTip(Me.CheckQuad, "Export a wave in quad channells")
+        Me.CheckQuad.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -455,20 +469,6 @@ Partial Class Form1
         Me.CheckWAV.Text = "Write to WAV"
         Me.CheckWAV.UseVisualStyleBackColor = True
         '
-        'CheckQuad
-        '
-        Me.CheckQuad.AutoSize = True
-        Me.CheckQuad.Enabled = False
-        Me.CheckQuad.ForeColor = System.Drawing.Color.White
-        Me.CheckQuad.Location = New System.Drawing.Point(481, 418)
-        Me.CheckQuad.Name = "CheckQuad"
-        Me.CheckQuad.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.CheckQuad.Size = New System.Drawing.Size(85, 17)
-        Me.CheckQuad.TabIndex = 29
-        Me.CheckQuad.Text = "Quad Export"
-        Me.ToolTip1.SetToolTip(Me.CheckQuad, "Export a wave in quad channells")
-        Me.CheckQuad.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -483,6 +483,7 @@ Partial Class Form1
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "gUiADE"
