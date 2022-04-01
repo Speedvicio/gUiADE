@@ -441,7 +441,7 @@ Public Class Form1
             Dim allCtrl As New List(Of Control)
             For Each ctrl As Control In FindALLControlRecursive(allCtrl, Me)
                 If TypeOf ctrl Is Label Or TypeOf ctrl Is TextBox Or TypeOf ctrl Is Button Or TypeOf ctrl Is CheckBox Or TypeOf ctrl Is RadioButton Or TypeOf ctrl Is ProgressBar _
-                Or TypeOf ctrl Is GroupBox Or TypeOf ctrl Is ListBox Or TypeOf ctrl Is TreeView Or TypeOf ctrl Is ComboBox Or TypeOf ctrl Is Form Then
+                Or TypeOf ctrl Is GroupBox Or TypeOf ctrl Is ListBox Or TypeOf ctrl Is TreeView Or TypeOf ctrl Is ComboBox Or TypeOf ctrl Is Label Or TypeOf ctrl Is Form Then
                     If ctrl.Tag = "menot" Then Continue For
                     Dim CurrentCtrlFontSize = 11
                     ctrl.Font = New Font(pfc.Families(0), CurrentCtrlFontSize, FontStyle.Regular)
@@ -488,16 +488,14 @@ Public Class Form1
 
         For Each clsProcess As Process In Process.GetProcesses()
             If clsProcess.ProcessName.StartsWith(name) Then
-
+                Return True
                 'process found so it's running so return true
                 If CheckConsole.Checked = True Then
                     Dim hWnd As Long = clsProcess.MainWindowHandle
                     ShowWindow(hWnd, ShowWindowCommands.ForceMinimize)
                     clsProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
                 End If
-
             End If
-
         Next
 
         'process not found, return false
@@ -538,12 +536,14 @@ Public Class Form1
         labelMin.Text = "Playing time " & String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10) &
                 " in subsong " & subsong
 
-        If ts.Seconds > 10 Then
+        If IsProcessRunning("uade123") = False Then
+            Label1.Text = ""
+            Label1.Image = My.Resources.guiade
+            Control_UADE("n")
+            UseThread("stop")
+            Action_UADE("kill")
             If CheckWAV.Checked = True Then
                 CheckConsole.Enabled = True
-                Control_UADE("n")
-                UseThread("stop")
-                Action_UADE("kill")
                 MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
             End If
         End If
@@ -706,7 +706,14 @@ Public Class Form1
         End If
 
         If CheckLoop.Checked Then
-            arg += "-n "
+            arg += "-n -t -1 "
+        Else
+            arg += "-t 512 "
+
+        End If
+
+        If CheckNtsc.Checked Then
+            arg += "--ntsc "
         End If
 
         If CheckQuad.Checked Then
@@ -720,6 +727,8 @@ Public Class Form1
         Else
             arg += "--force-led=0 "
         End If
+
+        arg += "--resampler=" & LCase(ComboSampler.Text) & " "
 
         If CheckBox2.Checked Then
             Select Case ButtonHEAFSET.Text
@@ -736,6 +745,8 @@ Public Class Form1
 
         If CheckBox6.Checked Then
             arg += "-p " & NumericPANNING.Value & " "
+        Else
+            arg += "-p 0 "
         End If
 
         If CheckBox3.Checked Then

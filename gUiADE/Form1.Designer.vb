@@ -41,7 +41,8 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.labelMin = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ComboSampler = New System.Windows.Forms.ComboBox()
         Me.CheckLoop = New System.Windows.Forms.CheckBox()
         Me.NumericGAIN = New System.Windows.Forms.NumericUpDown()
         Me.NumericPANNING = New System.Windows.Forms.NumericUpDown()
@@ -57,13 +58,15 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CheckNtsc = New System.Windows.Forms.CheckBox()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -80,9 +83,9 @@ Partial Class Form1
         '
         Me.TextBox1.BackColor = System.Drawing.SystemColors.HotTrack
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(123, 416)
+        Me.TextBox1.Location = New System.Drawing.Point(158, 416)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(247, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(212, 20)
         Me.TextBox1.TabIndex = 19
         Me.TextBox1.Tag = ""
         Me.ToolTip1.SetToolTip(Me.TextBox1, "Input any custom parameters described onto UADE readme." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Example:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "--filter=A1200" &
@@ -193,7 +196,7 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(16, 419)
+        Me.Label2.Location = New System.Drawing.Point(42, 419)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(101, 13)
         Me.Label2.TabIndex = 18
@@ -250,7 +253,9 @@ Partial Class Form1
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.PictureBox1)
+        Me.GroupBox1.Controls.Add(Me.CheckNtsc)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.ComboSampler)
         Me.GroupBox1.Controls.Add(Me.CheckLoop)
         Me.GroupBox1.Controls.Add(Me.NumericGAIN)
         Me.GroupBox1.Controls.Add(Me.NumericPANNING)
@@ -274,15 +279,28 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controls"
         '
-        'PictureBox1
+        'Label3
         '
-        Me.PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(139, 157)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(42, 42)
-        Me.PictureBox1.TabIndex = 33
-        Me.PictureBox1.TabStop = False
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(6, 182)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(60, 13)
+        Me.Label3.TabIndex = 34
+        Me.Label3.Text = "Resampler:"
+        '
+        'ComboSampler
+        '
+        Me.ComboSampler.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.ComboSampler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboSampler.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ComboSampler.FormattingEnabled = True
+        Me.ComboSampler.Items.AddRange(New Object() {"NONE", "DEFAULT", "SINC"})
+        Me.ComboSampler.Location = New System.Drawing.Point(101, 179)
+        Me.ComboSampler.Name = "ComboSampler"
+        Me.ComboSampler.Size = New System.Drawing.Size(89, 21)
+        Me.ComboSampler.TabIndex = 33
+        Me.ComboSampler.Text = "default"
         '
         'CheckLoop
         '
@@ -359,9 +377,9 @@ Partial Class Form1
         Me.CheckBox6.ForeColor = System.Drawing.Color.White
         Me.CheckBox6.Location = New System.Drawing.Point(7, 207)
         Me.CheckBox6.Name = "CheckBox6"
-        Me.CheckBox6.Size = New System.Drawing.Size(96, 17)
+        Me.CheckBox6.Size = New System.Drawing.Size(99, 17)
         Me.CheckBox6.TabIndex = 27
-        Me.CheckBox6.Text = "Panning &Effect"
+        Me.CheckBox6.Text = "Panning &Effect:"
         Me.CheckBox6.UseVisualStyleBackColor = True
         '
         'CheckBox5
@@ -370,11 +388,11 @@ Partial Class Form1
         Me.CheckBox5.Checked = True
         Me.CheckBox5.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBox5.ForeColor = System.Drawing.Color.White
-        Me.CheckBox5.Location = New System.Drawing.Point(7, 180)
+        Me.CheckBox5.Location = New System.Drawing.Point(89, 157)
         Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(102, 17)
+        Me.CheckBox5.Size = New System.Drawing.Size(88, 17)
         Me.CheckBox5.TabIndex = 26
-        Me.CheckBox5.Text = "&Post-Processing"
+        Me.CheckBox5.Text = "&Post-Process"
         Me.CheckBox5.UseVisualStyleBackColor = True
         '
         'CheckBox4
@@ -392,11 +410,11 @@ Partial Class Form1
         '
         Me.CheckBox3.AutoSize = True
         Me.CheckBox3.ForeColor = System.Drawing.Color.White
-        Me.CheckBox3.Location = New System.Drawing.Point(7, 230)
+        Me.CheckBox3.Location = New System.Drawing.Point(70, 230)
         Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(48, 17)
+        Me.CheckBox3.Size = New System.Drawing.Size(51, 17)
         Me.CheckBox3.TabIndex = 24
-        Me.CheckBox3.Text = "&Gain"
+        Me.CheckBox3.Text = "&Gain:"
         Me.CheckBox3.UseVisualStyleBackColor = True
         '
         'CheckBox2
@@ -405,9 +423,9 @@ Partial Class Form1
         Me.CheckBox2.ForeColor = System.Drawing.Color.White
         Me.CheckBox2.Location = New System.Drawing.Point(7, 132)
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(48, 17)
+        Me.CheckBox2.Size = New System.Drawing.Size(51, 17)
         Me.CheckBox2.TabIndex = 23
-        Me.CheckBox2.Text = "&Filter"
+        Me.CheckBox2.Text = "&Filter:"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'Panel1
@@ -469,12 +487,34 @@ Partial Class Form1
         Me.CheckWAV.Text = "Write to WAV"
         Me.CheckWAV.UseVisualStyleBackColor = True
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 412)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(24, 24)
+        Me.PictureBox1.TabIndex = 34
+        Me.PictureBox1.TabStop = False
+        '
+        'CheckNtsc
+        '
+        Me.CheckNtsc.AutoSize = True
+        Me.CheckNtsc.ForeColor = System.Drawing.Color.White
+        Me.CheckNtsc.Location = New System.Drawing.Point(7, 230)
+        Me.CheckNtsc.Name = "CheckNtsc"
+        Me.CheckNtsc.Size = New System.Drawing.Size(48, 17)
+        Me.CheckNtsc.TabIndex = 35
+        Me.CheckNtsc.Text = "&Ntsc"
+        Me.CheckNtsc.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
         Me.ClientSize = New System.Drawing.Size(584, 441)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.CheckQuad)
         Me.Controls.Add(Me.CheckWAV)
         Me.Controls.Add(Me.GroupBox1)
@@ -491,10 +531,10 @@ Partial Class Form1
         Me.Panel2.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -531,6 +571,9 @@ Partial Class Form1
     Friend WithEvents NumericPANNING As NumericUpDown
     Friend WithEvents CheckLoop As CheckBox
     Friend WithEvents CheckWAV As CheckBox
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents CheckQuad As CheckBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ComboSampler As ComboBox
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents CheckNtsc As CheckBox
 End Class
