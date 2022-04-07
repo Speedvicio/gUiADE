@@ -41,6 +41,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.labelMin = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CheckNtsc = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ComboSampler = New System.Windows.Forms.ComboBox()
         Me.CheckLoop = New System.Windows.Forms.CheckBox()
@@ -59,7 +60,6 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.CheckNtsc = New System.Windows.Forms.CheckBox()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -279,6 +279,17 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controls"
         '
+        'CheckNtsc
+        '
+        Me.CheckNtsc.AutoSize = True
+        Me.CheckNtsc.ForeColor = System.Drawing.Color.White
+        Me.CheckNtsc.Location = New System.Drawing.Point(7, 230)
+        Me.CheckNtsc.Name = "CheckNtsc"
+        Me.CheckNtsc.Size = New System.Drawing.Size(48, 17)
+        Me.CheckNtsc.TabIndex = 35
+        Me.CheckNtsc.Text = "&Ntsc"
+        Me.CheckNtsc.UseVisualStyleBackColor = True
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -300,7 +311,7 @@ Partial Class Form1
         Me.ComboSampler.Name = "ComboSampler"
         Me.ComboSampler.Size = New System.Drawing.Size(89, 21)
         Me.ComboSampler.TabIndex = 33
-        Me.ComboSampler.Text = "default"
+        Me.ComboSampler.Text = "SINC"
         '
         'CheckLoop
         '
@@ -341,7 +352,7 @@ Partial Class Form1
         Me.NumericPANNING.ReadOnly = True
         Me.NumericPANNING.Size = New System.Drawing.Size(56, 20)
         Me.NumericPANNING.TabIndex = 30
-        Me.NumericPANNING.Value = New Decimal(New Integer() {7, 0, 0, 65536})
+        Me.NumericPANNING.Value = New Decimal(New Integer() {5, 0, 0, 65536})
         '
         'ComboFILTER
         '
@@ -496,17 +507,6 @@ Partial Class Form1
         Me.PictureBox1.Size = New System.Drawing.Size(24, 24)
         Me.PictureBox1.TabIndex = 34
         Me.PictureBox1.TabStop = False
-        '
-        'CheckNtsc
-        '
-        Me.CheckNtsc.AutoSize = True
-        Me.CheckNtsc.ForeColor = System.Drawing.Color.White
-        Me.CheckNtsc.Location = New System.Drawing.Point(7, 230)
-        Me.CheckNtsc.Name = "CheckNtsc"
-        Me.CheckNtsc.Size = New System.Drawing.Size(48, 17)
-        Me.CheckNtsc.TabIndex = 35
-        Me.CheckNtsc.Text = "&Ntsc"
-        Me.CheckNtsc.UseVisualStyleBackColor = True
         '
         'Form1
         '

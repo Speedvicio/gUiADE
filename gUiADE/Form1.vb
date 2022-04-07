@@ -706,9 +706,9 @@ Public Class Form1
         End If
 
         If CheckLoop.Checked Then
-            arg += "-n -t -1 "
+            arg += "-n -t -1 -w -1 "
         Else
-            arg += "-t 512 "
+            arg += "-t 512 -w 512 -y 20 "
 
         End If
 
