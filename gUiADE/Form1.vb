@@ -705,10 +705,12 @@ Public Class Form1
             End If
         End If
 
-        If CheckLoop.Checked Then
+        If CheckLoop.Checked = True And CheckWAV.Checked = True Then
+            arg += "-n -t " & NumericUpDown1.Value & " -w " & NumericUpDown1.Value & " "
+        ElseIf CheckLoop.Checked = True Then
             arg += "-n -t -1 -w -1 "
         Else
-            arg += "-t 512 -w 512 -y 20 "
+            arg += "-t " & NumericUpDown1.Value & " -w " & NumericUpDown1.Value & " -y 20 "
 
         End If
 

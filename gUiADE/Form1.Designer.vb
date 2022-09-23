@@ -60,6 +60,8 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -67,6 +69,7 @@ Partial Class Form1
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -138,9 +141,9 @@ Partial Class Form1
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(101, 23)
+        Me.Button7.Location = New System.Drawing.Point(61, 23)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(90, 29)
+        Me.Button7.Size = New System.Drawing.Size(75, 29)
         Me.Button7.TabIndex = 19
         Me.Button7.Text = "&Directory"
         Me.ToolTip1.SetToolTip(Me.Button7, "Load a folder recursively")
@@ -154,9 +157,9 @@ Partial Class Form1
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(7, 58)
+        Me.Button6.Location = New System.Drawing.Point(142, 23)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(90, 29)
+        Me.Button6.Size = New System.Drawing.Size(48, 29)
         Me.Button6.TabIndex = 20
         Me.Button6.Text = "&Stop"
         Me.ToolTip1.SetToolTip(Me.Button6, "Stop music play")
@@ -172,7 +175,7 @@ Partial Class Form1
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(7, 23)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(90, 29)
+        Me.Button1.Size = New System.Drawing.Size(48, 29)
         Me.Button1.TabIndex = 18
         Me.Button1.Text = "&File"
         Me.ToolTip1.SetToolTip(Me.Button1, "Load Single File")
@@ -253,6 +256,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.CheckNtsc)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.ComboSampler)
@@ -319,7 +324,7 @@ Partial Class Form1
         Me.CheckLoop.Checked = True
         Me.CheckLoop.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckLoop.ForeColor = System.Drawing.Color.White
-        Me.CheckLoop.Location = New System.Drawing.Point(103, 65)
+        Me.CheckLoop.Location = New System.Drawing.Point(107, 65)
         Me.CheckLoop.Name = "CheckLoop"
         Me.CheckLoop.Size = New System.Drawing.Size(78, 17)
         Me.CheckLoop.TabIndex = 32
@@ -508,6 +513,30 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 34
         Me.PictureBox1.TabStop = False
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(6, 66)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(33, 13)
+        Me.Label4.TabIndex = 37
+        Me.Label4.Text = "Time:"
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.NumericUpDown1.ForeColor = System.Drawing.Color.White
+        Me.NumericUpDown1.Location = New System.Drawing.Point(45, 64)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1, 0, 0, -2147483648})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(56, 20)
+        Me.NumericUpDown1.TabIndex = 38
+        Me.ToolTip1.SetToolTip(Me.NumericUpDown1, "Set song timeout in seconds. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "-1 is infinite" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PS: This parameter is valid only o" &
+        "n non force looped song and with wav export")
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {512, 0, 0, 0})
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -535,6 +564,7 @@ Partial Class Form1
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -576,4 +606,6 @@ Partial Class Form1
     Friend WithEvents ComboSampler As ComboBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents CheckNtsc As CheckBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents NumericUpDown1 As NumericUpDown
 End Class
