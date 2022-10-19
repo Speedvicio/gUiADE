@@ -53,6 +53,12 @@
     <ApplicationIcon>Resources\uade.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CoreAudioApi">
+      <HintPath>..\CoreAudioApi.dll</HintPath>
+    </Reference>
+    <Reference Include="PeakMeterCtrl">
+      <HintPath>..\PeakMeterCtrl.dll</HintPath>
+    </Reference>
     <Reference Include="SevenZipSharp">
       <HintPath>..\Risorse\SevenZipSharp.dll</HintPath>
     </Reference>
@@ -74,6 +80,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioCtrl.vb" />
     <Compile Include="NativeMethods.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>

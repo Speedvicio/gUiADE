@@ -46,6 +46,7 @@ Public Class Form1
 
             'arg = "-w -1 -y -1 "
             If uade = True Then UseThread("start")
+
         End If
     End Sub
 
@@ -61,6 +62,8 @@ Public Class Form1
 
             If reader.Peek() = -1 Then
                 reader.Close()
+                Label1.Image = My.Resources.Guru_meditation
+                labelMin.Text = "This file is not supported by UADE, select another file"
                 MsgBox("This file is not supported by UADE", MsgBoxStyle.Critical + vbOKOnly, "Unknown format...")
                 uade = False
                 Exit Sub
@@ -75,9 +78,9 @@ Public Class Form1
                     If a.Contains("playername:") Then
                         Label1.Text = "Player Name: " & asp(1) & vbCrLf & vbCrLf
                     ElseIf a.Contains("modulename:") Then
-                        Label1.Text = "Module Name: " & asp(1) & vbCrLf & vbCrLf
+                        Label1.Text += "Module Name: " & asp(1) & vbCrLf & vbCrLf
                     ElseIf a.Contains("formatname: type:") Then
-                        Label1.Text = "Format Type: " & asp(2)
+                        Label1.Text += "Format Type: " & asp(2)
                         If Label1.Text.Contains("Module Name:") = False Then Label1.Text += vbCrLf & vbCrLf
                     ElseIf a.Contains("subsong_info:") Then
                         Dim b As String()
@@ -94,7 +97,7 @@ Public Class Form1
             Loop
 
             reader.Close()
-            If Label1.Text.Contains("modulename:") = False Then Label1.Text += "File Name: " & mn
+            If Label1.Text.Contains("Module Name:") = False Then Label1.Text += "File Name: " & mn
         End If
     End Sub
 
@@ -111,8 +114,8 @@ Public Class Form1
     End Sub
 
     Private Sub UADE_start(mode As String)
-        Label1.Image = My.Resources.g_empty
-
+        'Label1.Image = My.Resources.g_empty
+        Label1.Image = Nothing
         Dim mDir = Path.GetDirectoryName(pModule)
         Dim mFile = Path.GetFileName(pModule)
 
@@ -189,7 +192,7 @@ Public Class Form1
             SetPar()
             SW.Reset()
             t.Start()
-            Threading.Thread.Sleep(500)
+            Threading.Thread.Sleep(2000)
             Timer1.Start()
             SW.Start()
             Button2.BackgroundImage = imgPlay
@@ -283,10 +286,12 @@ Public Class Form1
         Control_UADE("n")
         UseThread("stop")
         Action_UADE("kill")
+        Label1.Image = My.Resources.guiade
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Action_UADE("kill")
+        StartPeak()
         Me.Icon = My.Resources.uade
         Label1.Image = My.Resources.guiade
         Button2.BackgroundImage = imgStop
@@ -476,10 +481,11 @@ Public Class Form1
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
-        IsProcessRunning("uade123")
+        'IsProcessRunning("uade123")
 
         If SW.IsRunning Then
             UpdateStopwatch()
+            MovePeak()
         End If
 
     End Sub
@@ -488,19 +494,19 @@ Public Class Form1
 
         For Each clsProcess As Process In Process.GetProcesses()
             If clsProcess.ProcessName.StartsWith(name) Then
-                Return True
                 'process found so it's running so return true
                 If CheckConsole.Checked = True Then
                     Dim hWnd As Long = clsProcess.MainWindowHandle
                     ShowWindow(hWnd, ShowWindowCommands.ForceMinimize)
                     clsProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
                 End If
+                Return True
             End If
         Next
 
         'process not found, return false
 
-        Return False
+        'Return False
 
     End Function
 
@@ -622,6 +628,7 @@ Public Class Form1
         Try
             If CheckWAV.Checked = True Then
                 CheckQuad.Enabled = True
+                CheckConsole.Checked = False
             Else
                 CheckQuad.Checked = False
                 CheckQuad.Enabled = False
@@ -659,6 +666,10 @@ Public Class Form1
         End Try
         Return bRet
     End Function
+
+    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
+        VolumeScroll()
+    End Sub
 
     Private Sub SetCursor()
         Dim tempFilePath = Path.GetTempFileName()

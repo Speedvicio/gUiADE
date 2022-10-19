@@ -34,13 +34,17 @@ Partial Class Form1
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckQuad = New System.Windows.Forms.CheckBox()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PeakMeterCtrl2 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
+        Me.PeakMeterCtrl1 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.labelMin = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.CheckNtsc = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ComboSampler = New System.Windows.Forms.ComboBox()
@@ -60,8 +64,8 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -69,7 +73,7 @@ Partial Class Form1
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -195,6 +199,20 @@ Partial Class Form1
         Me.ToolTip1.SetToolTip(Me.CheckQuad, "Export a wave in quad channells")
         Me.CheckQuad.UseVisualStyleBackColor = True
         '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.NumericUpDown1.ForeColor = System.Drawing.Color.White
+        Me.NumericUpDown1.Location = New System.Drawing.Point(45, 64)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1, 0, 0, -2147483648})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(56, 20)
+        Me.NumericUpDown1.TabIndex = 38
+        Me.ToolTip1.SetToolTip(Me.NumericUpDown1, "Set song timeout in seconds. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "-1 is infinite" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PS: This parameter is valid only o" &
+        "n non force looped song and with wav export")
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {512, 0, 0, 0})
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -223,12 +241,55 @@ Partial Class Form1
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.TrackBar1)
+        Me.Panel2.Controls.Add(Me.PeakMeterCtrl2)
+        Me.Panel2.Controls.Add(Me.PeakMeterCtrl1)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.labelMin)
         Me.Panel2.Location = New System.Drawing.Point(18, 3)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(548, 145)
         Me.Panel2.TabIndex = 21
+        '
+        'PeakMeterCtrl2
+        '
+        Me.PeakMeterCtrl2.BackColor = System.Drawing.Color.Black
+        Me.PeakMeterCtrl2.BandsCount = 2
+        Me.PeakMeterCtrl2.ColorHigh = System.Drawing.Color.Red
+        Me.PeakMeterCtrl2.ColorHighBack = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.PeakMeterCtrl2.ColorMedium = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.PeakMeterCtrl2.ColorMediumBack = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.PeakMeterCtrl2.ColorNormal = System.Drawing.Color.Maroon
+        Me.PeakMeterCtrl2.ColorNormalBack = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.PeakMeterCtrl2.FalloffColor = System.Drawing.Color.Gray
+        Me.PeakMeterCtrl2.GridColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.PeakMeterCtrl2.LEDCount = 20
+        Me.PeakMeterCtrl2.Location = New System.Drawing.Point(8, 27)
+        Me.PeakMeterCtrl2.Name = "PeakMeterCtrl2"
+        Me.PeakMeterCtrl2.ShowGrid = False
+        Me.PeakMeterCtrl2.Size = New System.Drawing.Size(20, 90)
+        Me.PeakMeterCtrl2.TabIndex = 17
+        Me.PeakMeterCtrl2.Text = "PeakMeterCtrl2"
+        '
+        'PeakMeterCtrl1
+        '
+        Me.PeakMeterCtrl1.BackColor = System.Drawing.Color.Black
+        Me.PeakMeterCtrl1.BandsCount = 2
+        Me.PeakMeterCtrl1.ColorHigh = System.Drawing.Color.Red
+        Me.PeakMeterCtrl1.ColorHighBack = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.PeakMeterCtrl1.ColorMedium = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.PeakMeterCtrl1.ColorMediumBack = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.PeakMeterCtrl1.ColorNormal = System.Drawing.Color.Maroon
+        Me.PeakMeterCtrl1.ColorNormalBack = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.PeakMeterCtrl1.FalloffColor = System.Drawing.Color.Gray
+        Me.PeakMeterCtrl1.GridColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.PeakMeterCtrl1.LEDCount = 20
+        Me.PeakMeterCtrl1.Location = New System.Drawing.Point(521, 27)
+        Me.PeakMeterCtrl1.Name = "PeakMeterCtrl1"
+        Me.PeakMeterCtrl1.ShowGrid = False
+        Me.PeakMeterCtrl1.Size = New System.Drawing.Size(20, 90)
+        Me.PeakMeterCtrl1.TabIndex = 16
+        Me.PeakMeterCtrl1.Text = "PeakMeterCtrl1"
         '
         'Label1
         '
@@ -283,6 +344,16 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controls"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(6, 66)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(33, 13)
+        Me.Label4.TabIndex = 37
+        Me.Label4.Text = "Time:"
         '
         'CheckNtsc
         '
@@ -513,29 +584,15 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 34
         Me.PictureBox1.TabStop = False
         '
-        'Label4
+        'TrackBar1
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(6, 66)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 13)
-        Me.Label4.TabIndex = 37
-        Me.Label4.Text = "Time:"
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.NumericUpDown1.ForeColor = System.Drawing.Color.White
-        Me.NumericUpDown1.Location = New System.Drawing.Point(45, 64)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1, 0, 0, -2147483648})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(56, 20)
-        Me.NumericUpDown1.TabIndex = 38
-        Me.ToolTip1.SetToolTip(Me.NumericUpDown1, "Set song timeout in seconds. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "-1 is infinite" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PS: This parameter is valid only o" &
-        "n non force looped song and with wav export")
-        Me.NumericUpDown1.Value = New Decimal(New Integer() {512, 0, 0, 0})
+        Me.TrackBar1.AutoSize = False
+        Me.TrackBar1.BackColor = System.Drawing.Color.Black
+        Me.TrackBar1.Location = New System.Drawing.Point(465, 9)
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(80, 12)
+        Me.TrackBar1.TabIndex = 18
+        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.None
         '
         'Form1
         '
@@ -556,6 +613,7 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "gUiADE"
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
@@ -564,7 +622,7 @@ Partial Class Form1
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -608,4 +666,7 @@ Partial Class Form1
     Friend WithEvents CheckNtsc As CheckBox
     Friend WithEvents Label4 As Label
     Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents PeakMeterCtrl2 As Ernzo.WinForms.Controls.PeakMeterCtrl
+    Friend WithEvents PeakMeterCtrl1 As Ernzo.WinForms.Controls.PeakMeterCtrl
+    Friend WithEvents TrackBar1 As TrackBar
 End Class
