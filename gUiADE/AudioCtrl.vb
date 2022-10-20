@@ -4,6 +4,7 @@ Module AudioCtrl
     Dim NumLEDS As Integer = 20
     Dim devEnum
     Dim defaultDevice
+    Public oldVol As Integer
 
     Public Sub StartPeak()
 
@@ -14,11 +15,13 @@ Module AudioCtrl
         If Val(Environment.OSVersion.Version.Major) >= 6 Then
             devEnum = New CoreAudioApi.MMDeviceEnumerator
             defaultDevice = devEnum.GetDefaultAudioEndpoint(CoreAudioApi.EDataFlow.eRender, CoreAudioApi.ERole.eMultimedia)
+            oldVol = defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar * 100
             Form1.TrackBar1.Value = defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar * 100
             Form1.PeakMeterCtrl1.Start(1000 / 20)
             Form1.PeakMeterCtrl2.Start(1000 / 20)
         Else
             Form1.TrackBar1.Value = GetApplicationVolume()
+            oldVol = GetApplicationVolume()
         End If
         Form1.ToolTip1.SetToolTip(Form1.TrackBar1, "Volume " & Form1.TrackBar1.Value.ToString & "%")
     End Sub
@@ -67,6 +70,15 @@ Module AudioCtrl
         If Form1.TrackBar1.Value <> v Then
             Form1.TrackBar1.Value = v
             Form1.ToolTip1.SetToolTip(Form1.TrackBar1, "Volume " & Form1.TrackBar1.Value.ToString & "%")
+        End If
+    End Sub
+
+    Public Sub ResetVol()
+        If Val(Environment.OSVersion.Version.Major) >= 6 Then
+            defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar = oldVol / 100
+        Else
+            Dim vol As UInteger = CUInt((UShort.MaxValue / 100) * oldVol)
+            waveOutSetVolume(IntPtr.Zero, CUInt((vol And &HFFFF) Or (vol << 16)))
         End If
     End Sub
 

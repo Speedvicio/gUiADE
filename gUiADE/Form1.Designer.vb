@@ -39,6 +39,7 @@ Partial Class Form1
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.PeakMeterCtrl2 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
         Me.PeakMeterCtrl1 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -64,16 +65,15 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -250,6 +250,16 @@ Partial Class Form1
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(548, 145)
         Me.Panel2.TabIndex = 21
+        '
+        'TrackBar1
+        '
+        Me.TrackBar1.AutoSize = False
+        Me.TrackBar1.BackColor = System.Drawing.Color.Black
+        Me.TrackBar1.Location = New System.Drawing.Point(465, 9)
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(80, 12)
+        Me.TrackBar1.TabIndex = 18
+        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.None
         '
         'PeakMeterCtrl2
         '
@@ -584,16 +594,6 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 34
         Me.PictureBox1.TabStop = False
         '
-        'TrackBar1
-        '
-        Me.TrackBar1.AutoSize = False
-        Me.TrackBar1.BackColor = System.Drawing.Color.Black
-        Me.TrackBar1.Location = New System.Drawing.Point(465, 9)
-        Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(80, 12)
-        Me.TrackBar1.TabIndex = 18
-        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.None
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -616,13 +616,13 @@ Partial Class Form1
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

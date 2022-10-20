@@ -304,6 +304,7 @@ Public Class Form1
         Action_UADE("kill")
         UseThread("stop")
         DeleteTemp()
+        ResetVol()
     End Sub
 
     Private Sub MakeBat(testo As StreamWriter, nBat As String, bPar As String, dbName As String)
