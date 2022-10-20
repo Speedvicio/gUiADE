@@ -264,7 +264,7 @@ Partial Class Form1
         'PeakMeterCtrl2
         '
         Me.PeakMeterCtrl2.BackColor = System.Drawing.Color.Black
-        Me.PeakMeterCtrl2.BandsCount = 2
+        Me.PeakMeterCtrl2.BandsCount = 1
         Me.PeakMeterCtrl2.ColorHigh = System.Drawing.Color.Red
         Me.PeakMeterCtrl2.ColorHighBack = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PeakMeterCtrl2.ColorMedium = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -273,18 +273,18 @@ Partial Class Form1
         Me.PeakMeterCtrl2.ColorNormalBack = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PeakMeterCtrl2.FalloffColor = System.Drawing.Color.Gray
         Me.PeakMeterCtrl2.GridColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.PeakMeterCtrl2.LEDCount = 20
+        Me.PeakMeterCtrl2.LEDCount = 10
         Me.PeakMeterCtrl2.Location = New System.Drawing.Point(8, 27)
         Me.PeakMeterCtrl2.Name = "PeakMeterCtrl2"
         Me.PeakMeterCtrl2.ShowGrid = False
-        Me.PeakMeterCtrl2.Size = New System.Drawing.Size(20, 90)
+        Me.PeakMeterCtrl2.Size = New System.Drawing.Size(40, 90)
         Me.PeakMeterCtrl2.TabIndex = 17
         Me.PeakMeterCtrl2.Text = "PeakMeterCtrl2"
         '
         'PeakMeterCtrl1
         '
         Me.PeakMeterCtrl1.BackColor = System.Drawing.Color.Black
-        Me.PeakMeterCtrl1.BandsCount = 2
+        Me.PeakMeterCtrl1.BandsCount = 1
         Me.PeakMeterCtrl1.ColorHigh = System.Drawing.Color.Red
         Me.PeakMeterCtrl1.ColorHighBack = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PeakMeterCtrl1.ColorMedium = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -293,11 +293,11 @@ Partial Class Form1
         Me.PeakMeterCtrl1.ColorNormalBack = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PeakMeterCtrl1.FalloffColor = System.Drawing.Color.Gray
         Me.PeakMeterCtrl1.GridColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.PeakMeterCtrl1.LEDCount = 20
-        Me.PeakMeterCtrl1.Location = New System.Drawing.Point(521, 27)
+        Me.PeakMeterCtrl1.LEDCount = 10
+        Me.PeakMeterCtrl1.Location = New System.Drawing.Point(500, 27)
         Me.PeakMeterCtrl1.Name = "PeakMeterCtrl1"
         Me.PeakMeterCtrl1.ShowGrid = False
-        Me.PeakMeterCtrl1.Size = New System.Drawing.Size(20, 90)
+        Me.PeakMeterCtrl1.Size = New System.Drawing.Size(40, 90)
         Me.PeakMeterCtrl1.TabIndex = 16
         Me.PeakMeterCtrl1.Text = "PeakMeterCtrl1"
         '
