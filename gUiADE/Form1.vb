@@ -747,17 +747,25 @@ Public Class Form1
             saveFileDialog1.DefaultExt = ".wav"
 
             If TreeView1.Nodes.Count > 0 Then
-                Dim wfile As String = TreeView1.SelectedNode.FullPath & " - "
+                If TreeView1.SelectedNode IsNot Nothing Then
+                    Dim wfile As String = TreeView1.SelectedNode.FullPath
 
-                If wfile.Contains("\") Then
-                    Dim wsfile() As String = wfile.Split("\")
-                    wfile = ""
-                    For i = wsfile.Length - 2 To wsfile.Length - 1
-                        wfile += wsfile(i) & " - "
-                    Next i
+                    If wfile.Contains("\") Then
+                        Dim wsfile() As String = wfile.Split("\")
+                        wfile = ""
+                        For i = wsfile.Length - 2 To wsfile.Length - 1
+                            wfile += wsfile(i) & " - "
+                        Next i
+                    End If
+
+                    If wfile.Contains(Path.GetFileName(pModule)) Then
+                        saveFileDialog1.FileName = wfile & "subsong " & ListBox1.SelectedIndex.ToString
+                    Else
+                        saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(pModule)
+                    End If
+                Else
+                    saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(pModule)
                 End If
-
-                saveFileDialog1.FileName = wfile & "subsong " & ListBox1.SelectedIndex.ToString
             Else
                 saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(pModule)
             End If
