@@ -331,7 +331,7 @@ Public Class Form1
         SetCursor()
     End Sub
 
-    Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+    Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
         Action_UADE("kill")
         UseThread("stop")
         DeleteTemp()
@@ -719,22 +719,11 @@ Public Class Form1
         File.Delete(tempFilePath)
     End Sub
 
-    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
+    Private Sub Button5_Click_1(sender As Object, e As EventArgs)
 
-        Dim message, title, defaultValue As String
-        Dim myValue As Object
-        message = "Set Interval and Sleep Timer to run UADE" & vbCrLf & "Use value between 50 to 1000 - Def value is 100" &
-             vbCrLf & "On wave export the value will be divided by 10"
-        title = "Interval/Sleep Timer"
-        defaultValue = TSleep
-        myValue = InputBox(message, title, defaultValue)
-        If myValue = "" Then Exit Sub
-        If myValue > 1000 Or myValue < 50 Then
-            MsgBox("Use value between 50 to 1000", vbExclamation + vbOKOnly, "Wrong value...")
-            Exit Sub
-        End If
+    End Sub
 
-        If myValue IsNot "" Then TSleep = myValue : My.Settings.TSleep = myValue : Timer1.Interval = myValue
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
 
     End Sub
 

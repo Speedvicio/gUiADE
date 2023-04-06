@@ -23,7 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -36,6 +35,21 @@ Partial Class Form1
         Me.CheckQuad = New System.Windows.Forms.CheckBox()
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.CheckNtsc = New System.Windows.Forms.CheckBox()
+        Me.CheckLoop = New System.Windows.Forms.CheckBox()
+        Me.NumericGAIN = New System.Windows.Forms.NumericUpDown()
+        Me.NumericPANNING = New System.Windows.Forms.NumericUpDown()
+        Me.ComboFILTER = New System.Windows.Forms.ComboBox()
+        Me.ButtonHEAFSET = New System.Windows.Forms.Button()
+        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.CheckWAV = New System.Windows.Forms.CheckBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -47,36 +61,22 @@ Partial Class Form1
         Me.labelMin = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.CheckNtsc = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ComboSampler = New System.Windows.Forms.ComboBox()
-        Me.CheckLoop = New System.Windows.Forms.CheckBox()
-        Me.NumericGAIN = New System.Windows.Forms.NumericUpDown()
-        Me.NumericPANNING = New System.Windows.Forms.NumericUpDown()
-        Me.ComboFILTER = New System.Windows.Forms.ComboBox()
-        Me.ButtonHEAFSET = New System.Windows.Forms.Button()
-        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
         Me.CheckBox5 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.CheckWAV = New System.Windows.Forms.CheckBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TimerAudio = New System.Windows.Forms.Timer(Me.components)
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -210,14 +210,226 @@ Partial Class Form1
         Me.TextBox1.BackColor = System.Drawing.SystemColors.HotTrack
         Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.gUiADE.My.MySettings.Default, "CParameters", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(179, 416)
+        Me.TextBox1.Location = New System.Drawing.Point(189, 416)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(191, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(181, 20)
         Me.TextBox1.TabIndex = 19
         Me.TextBox1.Tag = ""
         Me.TextBox1.Text = Global.gUiADE.My.MySettings.Default.CParameters
         Me.ToolTip1.SetToolTip(Me.TextBox1, "Input any custom parameters described onto UADE readme." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Example:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "--filter=A1200" &
         " -G 10")
+        '
+        'CheckNtsc
+        '
+        Me.CheckNtsc.AutoSize = True
+        Me.CheckNtsc.ForeColor = System.Drawing.Color.White
+        Me.CheckNtsc.Location = New System.Drawing.Point(7, 230)
+        Me.CheckNtsc.Name = "CheckNtsc"
+        Me.CheckNtsc.Size = New System.Drawing.Size(48, 17)
+        Me.CheckNtsc.TabIndex = 35
+        Me.CheckNtsc.Text = "&Ntsc"
+        Me.ToolTip1.SetToolTip(Me.CheckNtsc, "Set NTSC mode for playing (can be buggy and work only in non console mode)")
+        Me.CheckNtsc.UseVisualStyleBackColor = True
+        '
+        'CheckLoop
+        '
+        Me.CheckLoop.AutoSize = True
+        Me.CheckLoop.Checked = Global.gUiADE.My.MySettings.Default.Loop_Song
+        Me.CheckLoop.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckLoop.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "Loop_Song", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckLoop.ForeColor = System.Drawing.Color.White
+        Me.CheckLoop.Location = New System.Drawing.Point(107, 65)
+        Me.CheckLoop.Name = "CheckLoop"
+        Me.CheckLoop.Size = New System.Drawing.Size(78, 17)
+        Me.CheckLoop.TabIndex = 32
+        Me.CheckLoop.Text = "&Loop Song"
+        Me.ToolTip1.SetToolTip(Me.CheckLoop, "Enable loop to selected song." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "It also enable timeout for looped song." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If you wa" &
+        "nt to play infinitely, set the value -1 on the ""Time"" box")
+        Me.CheckLoop.UseVisualStyleBackColor = True
+        '
+        'NumericGAIN
+        '
+        Me.NumericGAIN.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.NumericGAIN.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.gUiADE.My.MySettings.Default, "Gain", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericGAIN.DecimalPlaces = 1
+        Me.NumericGAIN.ForeColor = System.Drawing.Color.White
+        Me.NumericGAIN.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumericGAIN.Location = New System.Drawing.Point(132, 229)
+        Me.NumericGAIN.Maximum = New Decimal(New Integer() {128, 0, 0, 0})
+        Me.NumericGAIN.Name = "NumericGAIN"
+        Me.NumericGAIN.ReadOnly = True
+        Me.NumericGAIN.Size = New System.Drawing.Size(56, 20)
+        Me.NumericGAIN.TabIndex = 31
+        Me.ToolTip1.SetToolTip(Me.NumericGAIN, "Set volume gain to x in range [0, 128]. Default is 1,0")
+        Me.NumericGAIN.Value = Global.gUiADE.My.MySettings.Default.Gain
+        '
+        'NumericPANNING
+        '
+        Me.NumericPANNING.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.NumericPANNING.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.gUiADE.My.MySettings.Default, "Panning", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericPANNING.DecimalPlaces = 1
+        Me.NumericPANNING.ForeColor = System.Drawing.Color.White
+        Me.NumericPANNING.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumericPANNING.Location = New System.Drawing.Point(132, 206)
+        Me.NumericPANNING.Maximum = New Decimal(New Integer() {2, 0, 0, 0})
+        Me.NumericPANNING.Name = "NumericPANNING"
+        Me.NumericPANNING.ReadOnly = True
+        Me.NumericPANNING.Size = New System.Drawing.Size(56, 20)
+        Me.NumericPANNING.TabIndex = 30
+        Me.ToolTip1.SetToolTip(Me.NumericPANNING, "Set panning value in range [0, 2]. 0 is full stereo," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "1 is mono, and 2 is inverse" &
+        " stereo. The default is 0,7.")
+        Me.NumericPANNING.Value = Global.gUiADE.My.MySettings.Default.Panning
+        '
+        'ComboFILTER
+        '
+        Me.ComboFILTER.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.ComboFILTER.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.gUiADE.My.MySettings.Default, "Filter", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.ComboFILTER.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboFILTER.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ComboFILTER.FormattingEnabled = True
+        Me.ComboFILTER.Items.AddRange(New Object() {"NONE", "A500", "A1200"})
+        Me.ComboFILTER.Location = New System.Drawing.Point(70, 130)
+        Me.ComboFILTER.Name = "ComboFILTER"
+        Me.ComboFILTER.Size = New System.Drawing.Size(89, 21)
+        Me.ComboFILTER.TabIndex = 29
+        Me.ComboFILTER.Text = Global.gUiADE.My.MySettings.Default.Filter
+        Me.ToolTip1.SetToolTip(Me.ComboFILTER, "Set filter model to A500, A1200 or NONE. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "NONE means disabling the filter.")
+        '
+        'ButtonHEAFSET
+        '
+        Me.ButtonHEAFSET.BackColor = System.Drawing.Color.White
+        Me.ButtonHEAFSET.BackgroundImage = Global.gUiADE.My.Resources.Resources.headset
+        Me.ButtonHEAFSET.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonHEAFSET.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonHEAFSET.ForeColor = System.Drawing.Color.Black
+        Me.ButtonHEAFSET.Location = New System.Drawing.Point(165, 127)
+        Me.ButtonHEAFSET.Name = "ButtonHEAFSET"
+        Me.ButtonHEAFSET.Size = New System.Drawing.Size(25, 25)
+        Me.ButtonHEAFSET.TabIndex = 28
+        Me.ButtonHEAFSET.Tag = "menot"
+        Me.ButtonHEAFSET.Text = "0"
+        Me.ToolTip1.SetToolTip(Me.ButtonHEAFSET, "Enable headphones postprocessing effect")
+        Me.ButtonHEAFSET.UseVisualStyleBackColor = False
+        '
+        'CheckBox6
+        '
+        Me.CheckBox6.AutoSize = True
+        Me.CheckBox6.Checked = Global.gUiADE.My.MySettings.Default.PanningEnabled
+        Me.CheckBox6.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "PanningEnabled", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox6.ForeColor = System.Drawing.Color.White
+        Me.CheckBox6.Location = New System.Drawing.Point(7, 207)
+        Me.CheckBox6.Name = "CheckBox6"
+        Me.CheckBox6.Size = New System.Drawing.Size(99, 17)
+        Me.CheckBox6.TabIndex = 27
+        Me.CheckBox6.Text = "Panning &Effect:"
+        Me.ToolTip1.SetToolTip(Me.CheckBox6, "Enable/Disable panning")
+        Me.CheckBox6.UseVisualStyleBackColor = True
+        '
+        'CheckBox4
+        '
+        Me.CheckBox4.AutoSize = True
+        Me.CheckBox4.Checked = Global.gUiADE.My.MySettings.Default.Normalise
+        Me.CheckBox4.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "Normalise", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox4.ForeColor = System.Drawing.Color.White
+        Me.CheckBox4.Location = New System.Drawing.Point(7, 157)
+        Me.CheckBox4.Name = "CheckBox4"
+        Me.CheckBox4.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox4.TabIndex = 25
+        Me.CheckBox4.Text = "No&rmalise"
+        Me.ToolTip1.SetToolTip(Me.CheckBox4, "Enable/Disable normalise postprocessing effect")
+        Me.CheckBox4.UseVisualStyleBackColor = True
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Checked = Global.gUiADE.My.MySettings.Default.GainEnabled
+        Me.CheckBox3.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "GainEnabled", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox3.ForeColor = System.Drawing.Color.White
+        Me.CheckBox3.Location = New System.Drawing.Point(70, 230)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(51, 17)
+        Me.CheckBox3.TabIndex = 24
+        Me.CheckBox3.Text = "&Gain:"
+        Me.ToolTip1.SetToolTip(Me.CheckBox3, "Enable/Disable volume gain")
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = Global.gUiADE.My.MySettings.Default.FilterEnabled
+        Me.CheckBox2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "FilterEnabled", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox2.ForeColor = System.Drawing.Color.White
+        Me.CheckBox2.Location = New System.Drawing.Point(7, 132)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(51, 17)
+        Me.CheckBox2.TabIndex = 23
+        Me.CheckBox2.Text = "&Filter:"
+        Me.ToolTip1.SetToolTip(Me.CheckBox2, "Enable filter emulation" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If you want to disable Paula filters you need to enable " &
+        "it and select NONE")
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.White
+        Me.Button4.BackgroundImage = Global.gUiADE.My.Resources.Resources._next
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button4.Location = New System.Drawing.Point(3, 3)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(25, 25)
+        Me.Button4.TabIndex = 8
+        Me.ToolTip1.SetToolTip(Me.Button4, "Previous subsong (Console mode only)")
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.White
+        Me.Button3.BackgroundImage = Global.gUiADE.My.Resources.Resources._next
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Location = New System.Drawing.Point(65, 3)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(25, 25)
+        Me.Button3.TabIndex = 7
+        Me.ToolTip1.SetToolTip(Me.Button3, "Next subsong (Console mode only)")
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.White
+        Me.Button2.BackgroundImage = Global.gUiADE.My.Resources.Resources._stop
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(34, 3)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(25, 25)
+        Me.Button2.TabIndex = 6
+        Me.ToolTip1.SetToolTip(Me.Button2, "Play/Pause (Console mode only)")
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'CheckWAV
+        '
+        Me.CheckWAV.AutoSize = True
+        Me.CheckWAV.ForeColor = System.Drawing.Color.White
+        Me.CheckWAV.Location = New System.Drawing.Point(376, 418)
+        Me.CheckWAV.Name = "CheckWAV"
+        Me.CheckWAV.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CheckWAV.Size = New System.Drawing.Size(91, 17)
+        Me.CheckWAV.TabIndex = 28
+        Me.CheckWAV.Text = "Write to WAV"
+        Me.ToolTip1.SetToolTip(Me.CheckWAV, "Write Selected song in wave stereo format")
+        Me.CheckWAV.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Location = New System.Drawing.Point(42, 413)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(24, 24)
+        Me.PictureBox1.TabIndex = 34
+        Me.PictureBox1.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PictureBox1, "- Left click to open About" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "- Right click to open UADE parameters manual")
         '
         'Label2
         '
@@ -373,18 +585,6 @@ Partial Class Form1
         Me.Label4.TabIndex = 37
         Me.Label4.Text = "Time:"
         '
-        'CheckNtsc
-        '
-        Me.CheckNtsc.AutoSize = True
-        Me.CheckNtsc.ForeColor = System.Drawing.Color.White
-        Me.CheckNtsc.Location = New System.Drawing.Point(7, 230)
-        Me.CheckNtsc.Name = "CheckNtsc"
-        Me.CheckNtsc.Size = New System.Drawing.Size(48, 17)
-        Me.CheckNtsc.TabIndex = 35
-        Me.CheckNtsc.Text = "&Ntsc"
-        Me.ToolTip1.SetToolTip(Me.CheckNtsc, "Set NTSC mode for playing (can be buggy and work only in non console mode)")
-        Me.CheckNtsc.UseVisualStyleBackColor = True
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -409,100 +609,6 @@ Partial Class Form1
         Me.ComboSampler.TabIndex = 33
         Me.ComboSampler.Text = Global.gUiADE.My.MySettings.Default.Resampler
         '
-        'CheckLoop
-        '
-        Me.CheckLoop.AutoSize = True
-        Me.CheckLoop.Checked = Global.gUiADE.My.MySettings.Default.Loop_Song
-        Me.CheckLoop.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckLoop.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "Loop_Song", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckLoop.ForeColor = System.Drawing.Color.White
-        Me.CheckLoop.Location = New System.Drawing.Point(107, 65)
-        Me.CheckLoop.Name = "CheckLoop"
-        Me.CheckLoop.Size = New System.Drawing.Size(78, 17)
-        Me.CheckLoop.TabIndex = 32
-        Me.CheckLoop.Text = "&Loop Song"
-        Me.ToolTip1.SetToolTip(Me.CheckLoop, "Enable loop to selected song." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "It also enable timeout for looped song." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If you wa" &
-        "nt to play infinitely, set the value -1 on the ""Time"" box")
-        Me.CheckLoop.UseVisualStyleBackColor = True
-        '
-        'NumericGAIN
-        '
-        Me.NumericGAIN.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.NumericGAIN.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.gUiADE.My.MySettings.Default, "Gain", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericGAIN.DecimalPlaces = 1
-        Me.NumericGAIN.ForeColor = System.Drawing.Color.White
-        Me.NumericGAIN.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.NumericGAIN.Location = New System.Drawing.Point(132, 229)
-        Me.NumericGAIN.Maximum = New Decimal(New Integer() {128, 0, 0, 0})
-        Me.NumericGAIN.Name = "NumericGAIN"
-        Me.NumericGAIN.ReadOnly = True
-        Me.NumericGAIN.Size = New System.Drawing.Size(56, 20)
-        Me.NumericGAIN.TabIndex = 31
-        Me.ToolTip1.SetToolTip(Me.NumericGAIN, "Set volume gain to x in range [0, 128]. Default is 1,0")
-        Me.NumericGAIN.Value = Global.gUiADE.My.MySettings.Default.Gain
-        '
-        'NumericPANNING
-        '
-        Me.NumericPANNING.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.NumericPANNING.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.gUiADE.My.MySettings.Default, "Panning", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericPANNING.DecimalPlaces = 1
-        Me.NumericPANNING.ForeColor = System.Drawing.Color.White
-        Me.NumericPANNING.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.NumericPANNING.Location = New System.Drawing.Point(132, 206)
-        Me.NumericPANNING.Maximum = New Decimal(New Integer() {2, 0, 0, 0})
-        Me.NumericPANNING.Name = "NumericPANNING"
-        Me.NumericPANNING.ReadOnly = True
-        Me.NumericPANNING.Size = New System.Drawing.Size(56, 20)
-        Me.NumericPANNING.TabIndex = 30
-        Me.ToolTip1.SetToolTip(Me.NumericPANNING, "Set panning value in range [0, 2]. 0 is full stereo," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "1 is mono, and 2 is inverse" &
-        " stereo. The default is 0,7.")
-        Me.NumericPANNING.Value = Global.gUiADE.My.MySettings.Default.Panning
-        '
-        'ComboFILTER
-        '
-        Me.ComboFILTER.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.ComboFILTER.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.gUiADE.My.MySettings.Default, "Filter", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.ComboFILTER.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboFILTER.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ComboFILTER.FormattingEnabled = True
-        Me.ComboFILTER.Items.AddRange(New Object() {"NONE", "A500", "A1200"})
-        Me.ComboFILTER.Location = New System.Drawing.Point(70, 130)
-        Me.ComboFILTER.Name = "ComboFILTER"
-        Me.ComboFILTER.Size = New System.Drawing.Size(89, 21)
-        Me.ComboFILTER.TabIndex = 29
-        Me.ComboFILTER.Text = Global.gUiADE.My.MySettings.Default.Filter
-        Me.ToolTip1.SetToolTip(Me.ComboFILTER, "Set filter model to A500, A1200 or NONE. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "NONE means disabling the filter.")
-        '
-        'ButtonHEAFSET
-        '
-        Me.ButtonHEAFSET.BackColor = System.Drawing.Color.White
-        Me.ButtonHEAFSET.BackgroundImage = Global.gUiADE.My.Resources.Resources.headset
-        Me.ButtonHEAFSET.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ButtonHEAFSET.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonHEAFSET.ForeColor = System.Drawing.Color.Black
-        Me.ButtonHEAFSET.Location = New System.Drawing.Point(165, 127)
-        Me.ButtonHEAFSET.Name = "ButtonHEAFSET"
-        Me.ButtonHEAFSET.Size = New System.Drawing.Size(25, 25)
-        Me.ButtonHEAFSET.TabIndex = 28
-        Me.ButtonHEAFSET.Tag = "menot"
-        Me.ButtonHEAFSET.Text = "0"
-        Me.ToolTip1.SetToolTip(Me.ButtonHEAFSET, "Enable headphones postprocessing effect")
-        Me.ButtonHEAFSET.UseVisualStyleBackColor = False
-        '
-        'CheckBox6
-        '
-        Me.CheckBox6.AutoSize = True
-        Me.CheckBox6.Checked = Global.gUiADE.My.MySettings.Default.PanningEnabled
-        Me.CheckBox6.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "PanningEnabled", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox6.ForeColor = System.Drawing.Color.White
-        Me.CheckBox6.Location = New System.Drawing.Point(7, 207)
-        Me.CheckBox6.Name = "CheckBox6"
-        Me.CheckBox6.Size = New System.Drawing.Size(99, 17)
-        Me.CheckBox6.TabIndex = 27
-        Me.CheckBox6.Text = "Panning &Effect:"
-        Me.ToolTip1.SetToolTip(Me.CheckBox6, "Enable/Disable panning")
-        Me.CheckBox6.UseVisualStyleBackColor = True
-        '
         'CheckBox5
         '
         Me.CheckBox5.AutoSize = True
@@ -517,49 +623,6 @@ Partial Class Form1
         Me.CheckBox5.Text = "&Post-Process"
         Me.CheckBox5.UseVisualStyleBackColor = True
         '
-        'CheckBox4
-        '
-        Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Checked = Global.gUiADE.My.MySettings.Default.Normalise
-        Me.CheckBox4.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "Normalise", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox4.ForeColor = System.Drawing.Color.White
-        Me.CheckBox4.Location = New System.Drawing.Point(7, 157)
-        Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(72, 17)
-        Me.CheckBox4.TabIndex = 25
-        Me.CheckBox4.Text = "No&rmalise"
-        Me.ToolTip1.SetToolTip(Me.CheckBox4, "Enable/Disable normalise postprocessing effect")
-        Me.CheckBox4.UseVisualStyleBackColor = True
-        '
-        'CheckBox3
-        '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Checked = Global.gUiADE.My.MySettings.Default.GainEnabled
-        Me.CheckBox3.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "GainEnabled", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox3.ForeColor = System.Drawing.Color.White
-        Me.CheckBox3.Location = New System.Drawing.Point(70, 230)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(51, 17)
-        Me.CheckBox3.TabIndex = 24
-        Me.CheckBox3.Text = "&Gain:"
-        Me.ToolTip1.SetToolTip(Me.CheckBox3, "Enable/Disable volume gain")
-        Me.CheckBox3.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Checked = Global.gUiADE.My.MySettings.Default.FilterEnabled
-        Me.CheckBox2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "FilterEnabled", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox2.ForeColor = System.Drawing.Color.White
-        Me.CheckBox2.Location = New System.Drawing.Point(7, 132)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(51, 17)
-        Me.CheckBox2.TabIndex = 23
-        Me.CheckBox2.Text = "&Filter:"
-        Me.ToolTip1.SetToolTip(Me.CheckBox2, "Enable filter emulation" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If you want to disable Paula filters you need to enable " &
-        "it and select NONE")
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.Button4)
@@ -571,89 +634,21 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(92, 32)
         Me.Panel1.TabIndex = 22
         '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.White
-        Me.Button4.BackgroundImage = Global.gUiADE.My.Resources.Resources._next
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(3, 3)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(25, 25)
-        Me.Button4.TabIndex = 8
-        Me.ToolTip1.SetToolTip(Me.Button4, "Previous subsong (Console mode only)")
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.White
-        Me.Button3.BackgroundImage = Global.gUiADE.My.Resources.Resources._next
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(65, 3)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(25, 25)
-        Me.Button3.TabIndex = 7
-        Me.ToolTip1.SetToolTip(Me.Button3, "Next subsong (Console mode only)")
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.White
-        Me.Button2.BackgroundImage = Global.gUiADE.My.Resources.Resources._stop
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(34, 3)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(25, 25)
-        Me.Button2.TabIndex = 6
-        Me.ToolTip1.SetToolTip(Me.Button2, "Play/Pause (Console mode only)")
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'CheckWAV
-        '
-        Me.CheckWAV.AutoSize = True
-        Me.CheckWAV.ForeColor = System.Drawing.Color.White
-        Me.CheckWAV.Location = New System.Drawing.Point(376, 418)
-        Me.CheckWAV.Name = "CheckWAV"
-        Me.CheckWAV.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.CheckWAV.Size = New System.Drawing.Size(91, 17)
-        Me.CheckWAV.TabIndex = 28
-        Me.CheckWAV.Text = "Write to WAV"
-        Me.ToolTip1.SetToolTip(Me.CheckWAV, "Write Selected song in wave stereo format")
-        Me.CheckWAV.UseVisualStyleBackColor = True
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackgroundImage = Global.gUiADE.My.Resources.Resources.bounce
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(42, 413)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(24, 24)
-        Me.PictureBox1.TabIndex = 34
-        Me.PictureBox1.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PictureBox1, "- Left click to open About" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "- Right click to open UADE parameters manual")
-        '
         'TimerAudio
         '
         Me.TimerAudio.Interval = 10
         '
-        'Button5
+        'PictureBox2
         '
-        Me.Button5.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.Button5.BackgroundImage = CType(resources.GetObject("Button5.BackgroundImage"), System.Drawing.Image)
-        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(12, 413)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(24, 24)
-        Me.Button5.TabIndex = 35
-        Me.Button5.Tag = "menot"
-        Me.ToolTip1.SetToolTip(Me.Button5, "Set Sleep Time interval to run UADE (def value is 500)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Increase this value if y" &
+        Me.PictureBox2.BackgroundImage = Global.gUiADE.My.Resources.Resources.Clock
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox2.Location = New System.Drawing.Point(12, 413)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(24, 24)
+        Me.PictureBox2.TabIndex = 36
+        Me.PictureBox2.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PictureBox2, "Set Sleep Time interval to run UADE (def value is 500)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Increase this value if y" &
         "ou have problem to start UADE)")
-        Me.Button5.UseVisualStyleBackColor = False
         '
         'Form1
         '
@@ -661,7 +656,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
         Me.ClientSize = New System.Drawing.Size(584, 441)
-        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.CheckQuad)
         Me.Controls.Add(Me.CheckWAV)
@@ -676,15 +671,16 @@ Partial Class Form1
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "gUiADE"
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -732,5 +728,5 @@ Partial Class Form1
     Friend WithEvents PeakMeterCtrl1 As Ernzo.WinForms.Controls.PeakMeterCtrl
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents TimerAudio As Timer
-    Friend WithEvents Button5 As Button
+    Friend WithEvents PictureBox2 As PictureBox
 End Class
