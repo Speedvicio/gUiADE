@@ -646,10 +646,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-
-    End Sub
-
     Private Sub CheckWAV_CheckedChanged(sender As Object, e As EventArgs) Handles CheckWAV.CheckedChanged
         wavstate()
     End Sub
@@ -719,12 +715,19 @@ Public Class Form1
         File.Delete(tempFilePath)
     End Sub
 
-    Private Sub Button5_Click_1(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
-
+        Dim message, title, defaultValue As String
+        Dim myValue As Object
+        message = "Set Interval and Sleep Timer to run UADE" & vbCrLf & "Use value between 50 to 1000 - Def value is 100" &
+             vbCrLf & "On wave export the value will be divided by 10"
+        title = "Interval/Sleep Timer"
+        defaultValue = TSleep
+        myValue = InputBox(message, title, defaultValue)
+        If myValue = "" Then Exit Sub
+        If myValue > 1000 Or myValue < 50 Then
+            MsgBox("Use value between 50 to 1000", vbExclamation + vbOKOnly, "Wrong value...")
+            Exit Sub
+        End If
     End Sub
 
     Private Sub SetPar()
