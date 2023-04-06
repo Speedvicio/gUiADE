@@ -53,6 +53,174 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("512")>  _
+        Public Property Timeout() As Decimal
+            Get
+                Return CType(Me("Timeout"),Decimal)
+            End Get
+            Set
+                Me("Timeout") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property Loop_Song() As Boolean
+            Get
+                Return CType(Me("Loop_Song"),Boolean)
+            End Get
+            Set
+                Me("Loop_Song") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property FilterEnabled() As Boolean
+            Get
+                Return CType(Me("FilterEnabled"),Boolean)
+            End Get
+            Set
+                Me("FilterEnabled") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("NONE")>  _
+        Public Property Filter() As String
+            Get
+                Return CType(Me("Filter"),String)
+            End Get
+            Set
+                Me("Filter") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property Normalise() As Boolean
+            Get
+                Return CType(Me("Normalise"),Boolean)
+            End Get
+            Set
+                Me("Normalise") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PostProcess() As Boolean
+            Get
+                Return CType(Me("PostProcess"),Boolean)
+            End Get
+            Set
+                Me("PostProcess") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property PanningEnabled() As Boolean
+            Get
+                Return CType(Me("PanningEnabled"),Boolean)
+            End Get
+            Set
+                Me("PanningEnabled") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0.5")>  _
+        Public Property Panning() As Decimal
+            Get
+                Return CType(Me("Panning"),Decimal)
+            End Get
+            Set
+                Me("Panning") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property GainEnabled() As Boolean
+            Get
+                Return CType(Me("GainEnabled"),Boolean)
+            End Get
+            Set
+                Me("GainEnabled") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1.0")>  _
+        Public Property Gain() As Decimal
+            Get
+                Return CType(Me("Gain"),Decimal)
+            End Get
+            Set
+                Me("Gain") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SINC")>  _
+        Public Property Resampler() As String
+            Get
+                Return CType(Me("Resampler"),String)
+            End Get
+            Set
+                Me("Resampler") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property CParameters() As String
+            Get
+                Return CType(Me("CParameters"),String)
+            End Get
+            Set
+                Me("CParameters") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Volume() As Integer
+            Get
+                Return CType(Me("Volume"),Integer)
+            End Get
+            Set
+                Me("Volume") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property TSleep() As Decimal
+            Get
+                Return CType(Me("TSleep"),Decimal)
+            End Get
+            Set
+                Me("TSleep") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

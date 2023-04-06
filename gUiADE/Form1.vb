@@ -4,6 +4,7 @@ Imports System.Runtime.InteropServices
 
 Public Class Form1
     Dim IdUADE As Integer()
+    Dim TSleep As Decimal
     Dim pModule, arg, pList As String
     Dim pfc As New PrivateFontCollection()
 
@@ -12,6 +13,7 @@ Public Class Form1
 
     Dim uade As Boolean
 
+    Dim oProcess As New Process()
     Dim pUADE() As Process
     Private SW As New Stopwatch
 
@@ -36,14 +38,11 @@ Public Class Form1
 
     Private Sub PlayModule()
         uade = True
-        Dim txt As StreamWriter
+
         If pModule.Trim <> "" Then
             UseThread("stop")
             Action_UADE("kill")
-            MakeBat(txt, "info", "--detect-format-by-content -g ", "err")
             Retrieve_Info()
-            Threading.Thread.Sleep(1000)
-
             'arg = "-w -1 -y -1 "
             If uade = True Then UseThread("start")
 
@@ -51,7 +50,12 @@ Public Class Form1
     End Sub
 
     Private Sub Retrieve_Info()
+
+        Dim txt As StreamWriter
+        MakeBat(txt, "info", "--detect-format-by-content -g ", "err")
+        Threading.Thread.Sleep(1000)
         Label1.Text = ""
+
         Dim pfile = Path.Combine(Application.StartupPath, "err.txt")
         If FileNotUsed(pfile) = True Then
             Dim reader As New StreamReader(pfile)
@@ -107,9 +111,12 @@ Public Class Form1
         If Button2.BackgroundImage Is imgStop Then
             Button2.BackgroundImage = imgPlay
             Timer1.Start()
+            TimerAudio.Start()
         Else
             Button2.BackgroundImage = imgStop
             Timer1.Stop()
+            Threading.Thread.Sleep(TSleep)
+            TimerAudio.Stop()
         End If
     End Sub
 
@@ -120,7 +127,7 @@ Public Class Form1
         Dim mFile = Path.GetFileName(pModule)
 
         Dim wdir = Path.Combine(Application.StartupPath, Path.Combine("Player", "uade213"))
-        Dim oProcess As New Process()
+        'dim oProcess As New Process()
         Dim oStartInfo As New ProcessStartInfo
         oStartInfo.WorkingDirectory = wdir
         oStartInfo.FileName = Path.Combine(wdir, "uade123")
@@ -149,6 +156,8 @@ Public Class Form1
             UseThread("stop")
             SW.Reset()
             Timer1.Stop()
+            Threading.Thread.Sleep(TSleep)
+            TimerAudio.Stop()
             If CheckWAV.Checked = True Then MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
             Exit Sub
         End If
@@ -196,7 +205,7 @@ Public Class Form1
             Timer1.Start()
             SW.Start()
             Button2.BackgroundImage = imgPlay
-            'If Label1.Text = "" Then Retrieve_Info()
+            If Label1.Text = "" Then Retrieve_Info()
             CheckConsole.Enabled = False
             CheckWAV.Enabled = False
             CheckQuad.Enabled = False
@@ -207,7 +216,10 @@ Public Class Form1
             Threading.Thread.Sleep(500)
             SW.Reset()
             Timer1.Stop()
+            Threading.Thread.Sleep(TSleep)
+            TimerAudio.Stop()
             wavstate()
+            Label1.Text = ""
             labelMin.Text = "- A Crappy Frontend for UADE -"
             Button2.BackgroundImage = imgStop
             CheckConsole.Enabled = True
@@ -290,6 +302,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TSleep = My.Settings.TSleep
+        If TSleep = 0 Then TSleep = 500
         Action_UADE("kill")
         StartPeak()
         Me.Icon = My.Resources.uade
@@ -482,11 +496,20 @@ Public Class Form1
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
-        'IsProcessRunning("uade123")
-
-        If SW.IsRunning Then
-            UpdateStopwatch()
-            MovePeak()
+        If IsProcessRunning("uade123") = False Then
+            Label1.Text = ""
+            Label1.Image = My.Resources.guiade
+            Control_UADE("n")
+            UseThread("stop")
+            Action_UADE("kill")
+            If CheckWAV.Checked = True Then
+                CheckConsole.Enabled = True
+                MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
+            End If
+            Threading.Thread.Sleep(TSleep)
+            TimerAudio.Stop()
+        Else
+            TimerAudio.Start()
         End If
 
     End Sub
@@ -494,14 +517,15 @@ Public Class Form1
     Public Function IsProcessRunning(name As String) As Boolean
 
         For Each clsProcess As Process In Process.GetProcesses()
-            If clsProcess.ProcessName.StartsWith(name) Then
-                'process found so it's running so return true
+            If clsProcess.ProcessName = (name) Then
+                'Process found so it's running so return true
                 If CheckConsole.Checked = True Then
                     Dim hWnd As Long = clsProcess.MainWindowHandle
                     ShowWindow(hWnd, ShowWindowCommands.ForceMinimize)
                     clsProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
                 End If
-                Return True
+                IsProcessRunning = True
+                'Exit For
             End If
         Next
 
@@ -542,18 +566,6 @@ Public Class Form1
         Dim ts As TimeSpan = SW.Elapsed
         labelMin.Text = "Playing time " & String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10) &
                 " in subsong " & subsong
-
-        If IsProcessRunning("uade123") = False Then
-            Label1.Text = ""
-            Label1.Image = My.Resources.guiade
-            Control_UADE("n")
-            UseThread("stop")
-            Action_UADE("kill")
-            If CheckWAV.Checked = True Then
-                CheckConsole.Enabled = True
-                MsgBox("Tunes converted in wav format!", vbOKOnly + MsgBoxStyle.Information, "Conversion done...")
-            End If
-        End If
 
     End Sub
 
@@ -618,7 +630,7 @@ Public Class Form1
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        MsgBox("gUiADE by Speedvicio", vbOKOnly + vbInformation, "About")
+
     End Sub
 
     Private Sub CheckWAV_CheckedChanged(sender As Object, e As EventArgs) Handles CheckWAV.CheckedChanged
@@ -672,6 +684,13 @@ Public Class Form1
         VolumeScroll()
     End Sub
 
+    Private Sub TimerAudio_Tick(sender As Object, e As EventArgs) Handles TimerAudio.Tick
+        If SW.IsRunning Then
+            UpdateStopwatch()
+            MovePeak()
+        End If
+    End Sub
+
     Private Sub SetCursor()
         Dim tempFilePath = Path.GetTempFileName()
 
@@ -681,6 +700,24 @@ Public Class Form1
 
         'Delete file when done.
         File.Delete(tempFilePath)
+    End Sub
+
+    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
+
+        Dim message, title, defaultValue As String
+        Dim myValue As Object
+        message = "Set Sleep Time interval to run UADE" & vbCrLf & "Use value between 50 to 1000 - Def value is 500"
+        title = "Sleep Time interval"
+        defaultValue = TSleep
+        myValue = InputBox(message, title, defaultValue)
+        If myValue = "" Then Exit Sub
+        If myValue > 1000 Or myValue < 50 Then
+            MsgBox("Use value between 50 to 1000", vbExclamation + vbOKOnly, "Wrong value...")
+            Exit Sub
+        End If
+
+        If myValue IsNot "" Then TSleep = myValue : My.Settings.TSleep = myValue
+
     End Sub
 
     Private Sub SetPar()
@@ -765,6 +802,15 @@ Public Class Form1
 
         If CheckBox3.Checked Then
             arg += "-G " & NumericGAIN.Value & " "
+        End If
+
+    End Sub
+
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+        If e.Button = MouseButtons.Right Then
+            If File.Exists(Path.Combine(Application.StartupPath, "UADE readme.txt")) Then Process.Start(Path.Combine(Application.StartupPath, "UADE readme.txt"))
+        ElseIf e.Button = MouseButtons.Left Then
+            MsgBox("gUiADE by Speedvicio", vbOKOnly + vbInformation, "About")
         End If
 
     End Sub

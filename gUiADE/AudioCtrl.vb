@@ -37,7 +37,7 @@ Module AudioCtrl
     End Sub
 
     Public Sub MovePeak()
-
+        On Error Resume Next
         Dim meters1() As Integer = New Integer((NumLEDS) - 1) {}
         Dim meters2() As Integer = New Integer((NumLEDS) - 1) {}
         Dim rand As Random = New Random

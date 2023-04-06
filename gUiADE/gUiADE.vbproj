@@ -163,5 +163,8 @@
   <ItemGroup>
     <None Include="Resources\ff.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clock.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -2,8 +2,8 @@
 'https://stackoverflow.com/a/4306984
 
 Imports System.ComponentModel
-Imports System.Runtime.InteropServices
 Imports System.Reflection
+Imports System.Runtime.InteropServices
 
 Friend Module NativeMethods
 
