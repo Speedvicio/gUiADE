@@ -42,7 +42,7 @@ Public Class Form1
         If pModule.Trim <> "" Then
             UseThread("stop")
             Action_UADE("kill")
-            Retrieve_Info()
+            'Retrieve_Info()
             'arg = "-w -1 -y -1 "
             If uade = True Then UseThread("start")
 
@@ -132,6 +132,7 @@ Public Class Form1
         oStartInfo.WorkingDirectory = wdir
         oStartInfo.FileName = Path.Combine(wdir, "uade123")
         'oStartInfo.WindowStyle = ProcessWindowStyle.Minimized
+
         If CheckConsole.Checked = False Then
             oStartInfo.CreateNoWindow = True
             oStartInfo.UseShellExecute = False
@@ -152,6 +153,7 @@ Public Class Form1
         oProcess.StartInfo = oStartInfo
         oProcess.Start()
         IdUADE(0) = oProcess.Id
+
         If oProcess.HasExited Then
             UseThread("stop")
             SW.Reset()
@@ -179,6 +181,7 @@ Public Class Form1
             End If
         Catch
         End Try
+
     End Sub
 
     Private Delegate Sub DelegateAddText(ByVal str As String)
@@ -196,8 +199,16 @@ Public Class Form1
     End Sub
 
     Sub UseThread(action As String)
+
+        If CheckWAV.Checked = True Then
+            Timer1.Interval = TSleep / 10
+        Else
+            Timer1.Interval = TSleep
+        End If
+
         Dim t As New Threading.Thread(AddressOf UADE_start)
         If action = "start" Then
+            If Label1.Text = "" Then Retrieve_Info()
             SetPar()
             SW.Reset()
             t.Start()
@@ -205,7 +216,6 @@ Public Class Form1
             Timer1.Start()
             SW.Start()
             Button2.BackgroundImage = imgPlay
-            If Label1.Text = "" Then Retrieve_Info()
             CheckConsole.Enabled = False
             CheckWAV.Enabled = False
             CheckQuad.Enabled = False
@@ -228,7 +238,10 @@ Public Class Form1
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        SW.Reset()
         Control_UADE("b")
+        Threading.Thread.Sleep(TSleep)
+        SW.Start()
     End Sub
 
     Private Function Control_UADE(btn As String)
@@ -290,7 +303,10 @@ Public Class Form1
     End Function
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        SW.Reset()
         Control_UADE("z")
+        Threading.Thread.Sleep(TSleep)
+        SW.Start()
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
@@ -304,6 +320,7 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TSleep = My.Settings.TSleep
         If TSleep = 0 Then TSleep = 500
+        Timer1.Interval = TSleep
         Action_UADE("kill")
         StartPeak()
         Me.Icon = My.Resources.uade
@@ -517,14 +534,14 @@ Public Class Form1
     Public Function IsProcessRunning(name As String) As Boolean
 
         For Each clsProcess As Process In Process.GetProcesses()
-            If clsProcess.ProcessName = (name) Then
+            If clsProcess.ProcessName.StartsWith(name) Then
                 'Process found so it's running so return true
                 If CheckConsole.Checked = True Then
                     Dim hWnd As Long = clsProcess.MainWindowHandle
                     ShowWindow(hWnd, ShowWindowCommands.ForceMinimize)
                     clsProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
                 End If
-                IsProcessRunning = True
+                Return True
                 'Exit For
             End If
         Next
@@ -716,7 +733,7 @@ Public Class Form1
             Exit Sub
         End If
 
-        If myValue IsNot "" Then TSleep = myValue : My.Settings.TSleep = myValue
+        If myValue IsNot "" Then TSleep = myValue : My.Settings.TSleep = myValue : Timer1.Interval = myValue
 
     End Sub
 
