@@ -319,7 +319,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TSleep = My.Settings.TSleep
-        If TSleep = 0 Then TSleep = 500
+        If TSleep = 0 Then TSleep = 100
         Timer1.Interval = TSleep
         Action_UADE("kill")
         StartPeak()
@@ -723,8 +723,9 @@ Public Class Form1
 
         Dim message, title, defaultValue As String
         Dim myValue As Object
-        message = "Set Sleep Time interval to run UADE" & vbCrLf & "Use value between 50 to 1000 - Def value is 500"
-        title = "Sleep Time interval"
+        message = "Set Interval and Sleep Timer to run UADE" & vbCrLf & "Use value between 50 to 1000 - Def value is 100" &
+             vbCrLf & "On wave export the value will be divided by 10"
+        title = "Interval/Sleep Timer"
         defaultValue = TSleep
         myValue = InputBox(message, title, defaultValue)
         If myValue = "" Then Exit Sub
