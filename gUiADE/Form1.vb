@@ -724,10 +724,16 @@ Public Class Form1
         defaultValue = TSleep
         myValue = InputBox(message, title, defaultValue)
         If myValue = "" Then Exit Sub
+
         If myValue > 1000 Or myValue < 50 Then
             MsgBox("Use value between 50 to 1000", vbExclamation + vbOKOnly, "Wrong value...")
             Exit Sub
+        Else
+            TSleep = myValue
+            My.Settings.TSleep = TSleep
+            Timer1.Interval = TSleep
         End If
+
     End Sub
 
     Private Sub SetPar()
