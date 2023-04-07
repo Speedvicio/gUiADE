@@ -50,6 +50,7 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -66,17 +67,16 @@ Partial Class Form1
         Me.CheckBox5 = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TimerAudio = New System.Windows.Forms.Timer(Me.components)
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -431,6 +431,18 @@ Partial Class Form1
         Me.PictureBox1.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PictureBox1, "- Left click to open About" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "- Right click to open UADE parameters manual")
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackgroundImage = Global.gUiADE.My.Resources.Resources.Clock
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox2.Location = New System.Drawing.Point(12, 413)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(24, 24)
+        Me.PictureBox2.TabIndex = 36
+        Me.PictureBox2.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PictureBox2, "Set Sleep Time interval to run UADE (def value is 100)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Increase this value if y" &
+        "ou have problem to start UADE)")
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -500,6 +512,7 @@ Partial Class Form1
         Me.PeakMeterCtrl2.Size = New System.Drawing.Size(18, 108)
         Me.PeakMeterCtrl2.TabIndex = 17
         Me.PeakMeterCtrl2.Text = "PeakMeterCtrl2"
+        Me.ToolTip1.SetToolTip(Me.PeakMeterCtrl2, "Click to Enable/Disable VuMeter")
         '
         'PeakMeterCtrl1
         '
@@ -520,6 +533,7 @@ Partial Class Form1
         Me.PeakMeterCtrl1.Size = New System.Drawing.Size(18, 108)
         Me.PeakMeterCtrl1.TabIndex = 16
         Me.PeakMeterCtrl1.Text = "PeakMeterCtrl1"
+        Me.ToolTip1.SetToolTip(Me.PeakMeterCtrl1, "Click to Enable/Disable VuMeter")
         '
         'Label1
         '
@@ -638,18 +652,6 @@ Partial Class Form1
         '
         Me.TimerAudio.Interval = 10
         '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackgroundImage = Global.gUiADE.My.Resources.Resources.Clock
-        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox2.Location = New System.Drawing.Point(12, 413)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(24, 24)
-        Me.PictureBox2.TabIndex = 36
-        Me.PictureBox2.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PictureBox2, "Set Sleep Time interval to run UADE (def value is 500)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Increase this value if y" &
-        "ou have problem to start UADE)")
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -674,13 +676,13 @@ Partial Class Form1
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

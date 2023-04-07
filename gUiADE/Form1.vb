@@ -8,6 +8,8 @@ Public Class Form1
     Dim pModule, arg, pList As String
     Dim pfc As New PrivateFontCollection()
 
+    Dim VuMeter As Boolean = True
+
     Dim imgPlay As Image = My.Resources.play
     Dim imgStop As Image = My.Resources._stop
 
@@ -700,7 +702,7 @@ Public Class Form1
     Private Sub TimerAudio_Tick(sender As Object, e As EventArgs) Handles TimerAudio.Tick
         If SW.IsRunning Then
             UpdateStopwatch()
-            MovePeak()
+            If VuMeter = True Then MovePeak()
         End If
     End Sub
 
@@ -734,6 +736,22 @@ Public Class Form1
             Timer1.Interval = TSleep
         End If
 
+    End Sub
+
+    Private Sub PeakMeterCtrl1_Click(sender As Object, e As EventArgs) Handles PeakMeterCtrl1.Click
+        VMeterState()
+    End Sub
+
+    Private Sub VMeterState()
+        If VuMeter = True Then
+            VuMeter = False
+        Else
+            VuMeter = True
+        End If
+    End Sub
+
+    Private Sub PeakMeterCtrl2_Click(sender As Object, e As EventArgs) Handles PeakMeterCtrl2.Click
+        VMeterState()
     End Sub
 
     Private Sub SetPar()
