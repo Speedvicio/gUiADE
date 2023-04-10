@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class gUiADE
     Inherits System.Windows.Forms.Form
 
     'Form esegue l'override del metodo Dispose per pulire l'elenco dei componenti.
@@ -51,13 +51,15 @@ Partial Class Form1
         Me.CheckWAV = New System.Windows.Forms.CheckBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PeakMeterCtrl2 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
+        Me.PeakMeterCtrl1 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
-        Me.PeakMeterCtrl2 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
-        Me.PeakMeterCtrl1 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.labelMin = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -186,7 +188,7 @@ Partial Class Form1
         Me.CheckQuad.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckQuad.Size = New System.Drawing.Size(85, 17)
         Me.CheckQuad.TabIndex = 29
-        Me.CheckQuad.Text = "Quad Export"
+        Me.CheckQuad.Text = "&Quad Export"
         Me.ToolTip1.SetToolTip(Me.CheckQuad, "Export a wave in quad channells")
         Me.CheckQuad.UseVisualStyleBackColor = True
         '
@@ -416,7 +418,7 @@ Partial Class Form1
         Me.CheckWAV.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckWAV.Size = New System.Drawing.Size(91, 17)
         Me.CheckWAV.TabIndex = 28
-        Me.CheckWAV.Text = "Write to WAV"
+        Me.CheckWAV.Text = "Write to &WAV"
         Me.ToolTip1.SetToolTip(Me.CheckWAV, "Write Selected song in wave stereo format")
         Me.CheckWAV.UseVisualStyleBackColor = True
         '
@@ -442,56 +444,6 @@ Partial Class Form1
         Me.PictureBox2.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PictureBox2, "Set Sleep Time interval to run UADE (def value is 100)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Increase this value if y" &
         "ou have problem to start UADE)")
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(72, 419)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(101, 13)
-        Me.Label2.TabIndex = 18
-        Me.Label2.Text = "Custom Parameters:"
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 500
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.TreeView1)
-        Me.GroupBox2.Controls.Add(Me.ListBox1)
-        Me.GroupBox2.ForeColor = System.Drawing.Color.DarkOrange
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 154)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(358, 255)
-        Me.GroupBox2.TabIndex = 20
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Songs && Subsongs"
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.TrackBar1)
-        Me.Panel2.Controls.Add(Me.PeakMeterCtrl2)
-        Me.Panel2.Controls.Add(Me.PeakMeterCtrl1)
-        Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Controls.Add(Me.labelMin)
-        Me.Panel2.Location = New System.Drawing.Point(18, 3)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(548, 145)
-        Me.Panel2.TabIndex = 21
-        '
-        'TrackBar1
-        '
-        Me.TrackBar1.AutoSize = False
-        Me.TrackBar1.BackColor = System.Drawing.Color.Black
-        Me.TrackBar1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.gUiADE.My.MySettings.Default, "Volume", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TrackBar1.Location = New System.Drawing.Point(465, 9)
-        Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(80, 12)
-        Me.TrackBar1.TabIndex = 18
-        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.None
-        Me.TrackBar1.Value = Global.gUiADE.My.MySettings.Default.Volume
         '
         'PeakMeterCtrl2
         '
@@ -534,6 +486,87 @@ Partial Class Form1
         Me.PeakMeterCtrl1.TabIndex = 16
         Me.PeakMeterCtrl1.Text = "PeakMeterCtrl1"
         Me.ToolTip1.SetToolTip(Me.PeakMeterCtrl1, "Click to Enable/Disable VuMeter")
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.Black
+        Me.Button9.BackgroundImage = Global.gUiADE.My.Resources.Resources.informationG
+        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Location = New System.Drawing.Point(6, 9)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(15, 15)
+        Me.Button9.TabIndex = 19
+        Me.Button9.Tag = "InfoOff"
+        Me.ToolTip1.SetToolTip(Me.Button9, "Open Playlist")
+        Me.Button9.UseVisualStyleBackColor = False
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.Black
+        Me.Button5.BackgroundImage = Global.gUiADE.My.Resources.Resources.plus_
+        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button5.Enabled = False
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Location = New System.Drawing.Point(27, 9)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(15, 15)
+        Me.Button5.TabIndex = 20
+        Me.Button5.Tag = "InfoOff"
+        Me.ToolTip1.SetToolTip(Me.Button5, "Add current song to Playlist manager")
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(72, 419)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(101, 13)
+        Me.Label2.TabIndex = 18
+        Me.Label2.Text = "Custom Parameters:"
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 500
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.TreeView1)
+        Me.GroupBox2.Controls.Add(Me.ListBox1)
+        Me.GroupBox2.ForeColor = System.Drawing.Color.DarkOrange
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 154)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(358, 255)
+        Me.GroupBox2.TabIndex = 20
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Songs && Subsongs"
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.Button5)
+        Me.Panel2.Controls.Add(Me.Button9)
+        Me.Panel2.Controls.Add(Me.TrackBar1)
+        Me.Panel2.Controls.Add(Me.PeakMeterCtrl2)
+        Me.Panel2.Controls.Add(Me.PeakMeterCtrl1)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.labelMin)
+        Me.Panel2.Location = New System.Drawing.Point(18, 3)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(548, 145)
+        Me.Panel2.TabIndex = 21
+        '
+        'TrackBar1
+        '
+        Me.TrackBar1.AutoSize = False
+        Me.TrackBar1.BackColor = System.Drawing.Color.Black
+        Me.TrackBar1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.gUiADE.My.MySettings.Default, "Volume", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TrackBar1.Location = New System.Drawing.Point(465, 9)
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(80, 12)
+        Me.TrackBar1.TabIndex = 18
+        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.None
+        Me.TrackBar1.Value = Global.gUiADE.My.MySettings.Default.Volume
         '
         'Label1
         '
@@ -652,7 +685,7 @@ Partial Class Form1
         '
         Me.TimerAudio.Interval = 10
         '
-        'Form1
+        'gUiADE
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -669,7 +702,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "Form1"
+        Me.Name = "gUiADE"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "gUiADE"
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -731,4 +764,6 @@ Partial Class Form1
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents TimerAudio As Timer
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button5 As Button
 End Class

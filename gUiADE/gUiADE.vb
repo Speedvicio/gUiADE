@@ -2,13 +2,15 @@
 Imports System.IO
 Imports System.Runtime.InteropServices
 
-Public Class Form1
+Public Class gUiADE
     Dim IdUADE As Integer()
     Dim TSleep As Decimal
-    Dim pModule, arg, pList As String
+    Dim pList As String
     Dim pfc As New PrivateFontCollection()
-
+    Dim full_arg As String
     Dim VuMeter As Boolean = True
+
+    Public arg, pModule, plst As String
 
     Dim imgPlay As Image = My.Resources.play
     Dim imgStop As Image = My.Resources._stop
@@ -27,6 +29,10 @@ Public Class Form1
             DeleteTemp()
             pModule = OpenFileDialog1.FileName
             Select Case Path.GetExtension(pModule)
+                Case ".ade"
+                    If Playlist.Visible = False Then Playlist.Show() : Button9.BackgroundImage = My.Resources.informationR
+                    plst = pModule
+                    Playlist.LoadADE(plst)
                 Case ".lhz", ".lha", ".zip", ".7z", ".rar"
                     DecompressArchive(pModule)
                     pModule = Path.Combine(Application.StartupPath, "temp")
@@ -38,7 +44,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub PlayModule()
+    Public Sub PlayModule()
         uade = True
 
         If pModule.Trim <> "" Then
@@ -150,7 +156,8 @@ Public Class Form1
             If cPar.EndsWith(" ") = False Then cPar += " "
         End If
 
-        oStartInfo.Arguments = "--cygwin --speed-hack " & arg & cPar & Chr(34) & Replace(pModule, "\", "/") & Chr(34)
+        full_arg = "--cygwin --speed-hack " & arg & cPar & Chr(34) & Replace(pModule, "\", "/") & Chr(34)
+        oStartInfo.Arguments = full_arg
 
         oProcess.StartInfo = oStartInfo
         oProcess.Start()
@@ -200,7 +207,7 @@ Public Class Form1
 
     End Sub
 
-    Sub UseThread(action As String)
+    Public Sub UseThread(action As String)
 
         If CheckWAV.Checked = True Then
             Timer1.Interval = TSleep / 10
@@ -221,7 +228,8 @@ Public Class Form1
             CheckConsole.Enabled = False
             CheckWAV.Enabled = False
             CheckQuad.Enabled = False
-
+            Button5.Enabled = True
+            Button5.BackgroundImage = My.Resources.plus
         ElseIf action = "stop" Then
             arg = Nothing
             t.Abort()
@@ -236,6 +244,8 @@ Public Class Form1
             Button2.BackgroundImage = imgStop
             CheckConsole.Enabled = True
             CheckWAV.Enabled = True
+            Button5.Enabled = False
+            Button5.BackgroundImage = My.Resources.plus_
         End If
     End Sub
 
@@ -282,7 +292,7 @@ Public Class Form1
 
     End Function
 
-    Private Function Action_UADE(action As String) As Integer
+    Public Function Action_UADE(action As String) As Integer
         Dim prox() As Process
         prox = Process.GetProcesses()
         IdUADE = New Integer() {0, 0, 0}
@@ -329,8 +339,8 @@ Public Class Form1
         Label1.Image = My.Resources.guiade
         Button2.BackgroundImage = imgStop
         Button4.BackgroundImage.RotateFlip(RotateFlipType.Rotate180FlipY)
-        SetFont()
-        SetCursor()
+        SetFont(Me)
+        SetCursor(Me)
     End Sub
 
     Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
@@ -470,7 +480,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub SetFont()
+    Public Sub SetFont(box As Control)
         Try
 
             Dim tempFilePath = Path.GetTempFileName()
@@ -478,7 +488,7 @@ Public Class Form1
 
             pfc.AddFontFile(tempFilePath)
             Dim allCtrl As New List(Of Control)
-            For Each ctrl As Control In FindALLControlRecursive(allCtrl, Me)
+            For Each ctrl As Control In FindALLControlRecursive(allCtrl, box)
                 If TypeOf ctrl Is Label Or TypeOf ctrl Is TextBox Or TypeOf ctrl Is Button Or TypeOf ctrl Is CheckBox Or TypeOf ctrl Is RadioButton Or TypeOf ctrl Is ProgressBar _
                 Or TypeOf ctrl Is GroupBox Or TypeOf ctrl Is ListBox Or TypeOf ctrl Is TreeView Or TypeOf ctrl Is ComboBox Or TypeOf ctrl Is Label Or TypeOf ctrl Is Form Then
                     If ctrl.Tag = "menot" Then Continue For
@@ -493,7 +503,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Function FindALLControlRecursive(ByVal list As List(Of Control), ByVal parent As Control) As List(Of Control)
+    Public Function FindALLControlRecursive(ByVal list As List(Of Control), ByVal parent As Control) As List(Of Control)
         If parent Is Nothing Then
             Return list
         Else
@@ -706,12 +716,12 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub SetCursor()
+    Public Sub SetCursor(box As Control)
         Dim tempFilePath = Path.GetTempFileName()
 
         'scrivo la risorsa su un file temporaneo e ne prelievo il percorso
         File.WriteAllBytes(tempFilePath, My.Resources.amiga_arrow)
-        Me.Cursor = NativeMethods.LoadCustomCursor(tempFilePath)
+        box.Cursor = NativeMethods.LoadCustomCursor(tempFilePath)
 
         'Delete file when done.
         File.Delete(tempFilePath)
@@ -752,6 +762,46 @@ Public Class Form1
 
     Private Sub PeakMeterCtrl2_Click(sender As Object, e As EventArgs) Handles PeakMeterCtrl2.Click
         VMeterState()
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        If Button9.Tag = "InfoOff" Then
+            Button9.BackgroundImage = My.Resources.informationR
+            Button9.Tag = "InfoOn"
+            Playlist.Show()
+            If Path.GetExtension(plst) = ".ade" Then Playlist.LoadADE(plst)
+        Else
+            Button9.BackgroundImage = My.Resources.informationG
+            Button9.Tag = "InfoOff"
+            Playlist.Close()
+        End If
+    End Sub
+
+    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
+        If Playlist.Visible = False Then Playlist.Show()
+
+        Dim test() As String
+        Dim subsong As String
+        test = full_arg.Split("""")
+        Dim TunePath As String = test(1).ToString.Trim
+        If test(0).Contains(" -s ") Then
+            test = test(0).Split(" ")
+            subsong = test(3).Trim
+            'TunePath += "#" & subsong
+        End If
+
+        If TunePath.Trim <> "" Then
+            'TunePath = Replace(TunePath, "/", "\")
+            Dim Values() As String = {Path.GetFileName(TunePath), subsong, Path.GetDirectoryName(TunePath)}
+            If Playlist.DataGridView1.Rows.Count <= 0 Then
+                Playlist.DataGridView1.Rows.Add(Values)
+            Else
+                If Playlist.ControlRow(Values) = False Then
+                    Playlist.DataGridView1.Rows.Add(Values)
+                End If
+            End If
+        End If
+
     End Sub
 
     Private Sub SetPar()

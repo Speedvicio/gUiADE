@@ -8,32 +8,32 @@ Module AudioCtrl
 
     Public Sub StartPeak()
 
-        Form1.TrackBar1.Minimum = 0
-        Form1.TrackBar1.Maximum = 100
-        Form1.TrackBar1.TickFrequency = 5
+        gUiADE.TrackBar1.Minimum = 0
+        gUiADE.TrackBar1.Maximum = 100
+        gUiADE.TrackBar1.TickFrequency = 5
 
         If Val(Environment.OSVersion.Version.Major) >= 6 Then
             devEnum = New CoreAudioApi.MMDeviceEnumerator
             defaultDevice = devEnum.GetDefaultAudioEndpoint(CoreAudioApi.EDataFlow.eRender, CoreAudioApi.ERole.eMultimedia)
             oldVol = defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar * 100
-            Form1.TrackBar1.Value = defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar * 100
-            Form1.PeakMeterCtrl1.Start(1000 / 20)
-            Form1.PeakMeterCtrl2.Start(1000 / 20)
+            gUiADE.TrackBar1.Value = defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar * 100
+            gUiADE.PeakMeterCtrl1.Start(1000 / 20)
+            gUiADE.PeakMeterCtrl2.Start(1000 / 20)
         Else
-            Form1.TrackBar1.Value = GetApplicationVolume()
+            gUiADE.TrackBar1.Value = GetApplicationVolume()
             oldVol = GetApplicationVolume()
         End If
-        Form1.ToolTip1.SetToolTip(Form1.TrackBar1, "Volume " & Form1.TrackBar1.Value.ToString & "%")
+        gUiADE.ToolTip1.SetToolTip(gUiADE.TrackBar1, "Volume " & gUiADE.TrackBar1.Value.ToString & "%")
     End Sub
 
     Public Sub VolumeScroll()
         If Val(Environment.OSVersion.Version.Major) >= 6 Then
-            defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar = Form1.TrackBar1.Value / 100
+            defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar = gUiADE.TrackBar1.Value / 100
         Else
-            Dim vol As UInteger = CUInt((UShort.MaxValue / 100) * Form1.TrackBar1.Value)
+            Dim vol As UInteger = CUInt((UShort.MaxValue / 100) * gUiADE.TrackBar1.Value)
             waveOutSetVolume(IntPtr.Zero, CUInt((vol And &HFFFF) Or (vol << 16)))
         End If
-        Form1.ToolTip1.SetToolTip(Form1.TrackBar1, "Volume " & Form1.TrackBar1.Value.ToString & "%")
+        gUiADE.ToolTip1.SetToolTip(gUiADE.TrackBar1, "Volume " & gUiADE.TrackBar1.Value.ToString & "%")
     End Sub
 
     Public Sub MovePeak()
@@ -56,8 +56,8 @@ Module AudioCtrl
             i = (i + 1)
         Loop
 
-        Form1.PeakMeterCtrl2.SetData(meters1, 0, meters1.Length)
-        Form1.PeakMeterCtrl1.SetData(meters2, 0, meters2.Length)
+        gUiADE.PeakMeterCtrl2.SetData(meters1, 0, meters1.Length)
+        gUiADE.PeakMeterCtrl1.SetData(meters2, 0, meters2.Length)
 
         Dim v As Integer
         If Val(Environment.OSVersion.Version.Major) >= 6 Then
@@ -67,9 +67,9 @@ Module AudioCtrl
         Else
             v = GetApplicationVolume()
         End If
-        If Form1.TrackBar1.Value <> v Then
-            Form1.TrackBar1.Value = v
-            Form1.ToolTip1.SetToolTip(Form1.TrackBar1, "Volume " & Form1.TrackBar1.Value.ToString & "%")
+        If gUiADE.TrackBar1.Value <> v Then
+            gUiADE.TrackBar1.Value = v
+            gUiADE.ToolTip1.SetToolTip(gUiADE.TrackBar1, "Volume " & gUiADE.TrackBar1.Value.ToString & "%")
         End If
     End Sub
 
