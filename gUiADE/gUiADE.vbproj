@@ -59,7 +59,8 @@
     <Reference Include="PeakMeterCtrl">
       <HintPath>..\PeakMeterCtrl.dll</HintPath>
     </Reference>
-    <Reference Include="SevenZipSharp">
+    <Reference Include="SevenZipSharp, Version=0.65.7987.37335, Culture=neutral, PublicKeyToken=c8ff6ba0184838bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Risorse\SevenZipSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />

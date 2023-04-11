@@ -25,6 +25,7 @@ Public Class gUiADE
         OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|All Files|*.*"
         OpenFileDialog1.FilterIndex = 2
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+            arg = ""
             ListBox1.Items.Clear()
             DeleteTemp()
             pModule = OpenFileDialog1.FileName
@@ -228,10 +229,12 @@ Public Class gUiADE
             CheckConsole.Enabled = False
             CheckWAV.Enabled = False
             CheckQuad.Enabled = False
-            Button5.Enabled = True
-            Button5.BackgroundImage = My.Resources.plus
+            If pModule.Contains(Path.Combine(Application.StartupPath, "temp")) = False Then
+                Button5.Enabled = True
+                Button5.BackgroundImage = My.Resources.plus
+            End If
         ElseIf action = "stop" Then
-            arg = Nothing
+            'arg = Nothing
             t.Abort()
             Threading.Thread.Sleep(500)
             SW.Reset()
@@ -463,13 +466,14 @@ Public Class gUiADE
     Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
         If ListBox1.Items.Count < 1 Then Exit Sub
         Action_UADE("killMantain")
+        arg = ""
         arg = "-s " & ListBox1.SelectedIndex & " "
         UseThread("start")
     End Sub
 
     Private Sub TreeView1_NodeMouseDoubleClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles TreeView1.NodeMouseDoubleClick
         pModule = Path.Combine(TreeView1.Nodes(0).Tag, TreeView1.SelectedNode.FullPath)
-        If Path.GetExtension(pModule) <> "" Then PlayModule()
+        If Path.GetExtension(pModule) <> "" Then arg = "" : PlayModule()
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckConsole.CheckedChanged
@@ -519,7 +523,7 @@ Public Class gUiADE
         e.SuppressKeyPress = True
         If e.KeyCode = Keys.Return Or e.KeyCode = Keys.Enter Then
             pModule = Path.Combine(TreeView1.Nodes(0).Tag, TreeView1.SelectedNode.FullPath)
-            If Path.GetExtension(pModule) <> "" Then PlayModule()
+            If Path.GetExtension(pModule) <> "" Then arg = "" : PlayModule()
         End If
     End Sub
 
@@ -585,16 +589,22 @@ Public Class gUiADE
     End Enum
 
     Private Sub UpdateStopwatch()
-        Dim subsong As String
-        If ListBox1.Items.Count < 1 Then
-            subsong = "(0)"
-        Else
-            subsong = "(" & ListBox1.SelectedIndex & ")"
+        Dim subsong() As String
+        Dim ssng As String = ""
+
+        If arg.Contains("-s ") Then
+            subsong = arg.Split(" ")
+            ssng = " in subsong " & subsong(1)
         End If
 
+        'If ListBox1.Items.Count < 1 Then
+        'subsong = "(0)"
+        'Else
+        'subsong = "(" & ListBox1.SelectedIndex & ")"
+        'End If
+
         Dim ts As TimeSpan = SW.Elapsed
-        labelMin.Text = "Playing time " & String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10) &
-                " in subsong " & subsong
+        labelMin.Text = "Playing time " & String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10) & ssng
 
     End Sub
 
@@ -653,6 +663,7 @@ Public Class gUiADE
         If ListBox1.Items.Count < 1 Then Exit Sub
         If e.KeyCode = Keys.Return Or e.KeyCode = Keys.Enter Then
             Action_UADE("killMantain")
+            arg = ""
             arg = "-s " & ListBox1.SelectedIndex & " "
             UseThread("start")
         End If
@@ -787,12 +798,12 @@ Public Class gUiADE
         If test(0).Contains(" -s ") Then
             test = test(0).Split(" ")
             subsong = test(3).Trim
-            'TunePath += "#" & subsong
         End If
 
         If TunePath.Trim <> "" Then
-            'TunePath = Replace(TunePath, "/", "\")
-            Dim Values() As String = {Path.GetFileName(TunePath), subsong, Path.GetDirectoryName(TunePath)}
+            Dim PlsDirectory() As String = TunePath.Split("/")
+
+            Dim Values() As String = {Path.GetFileName(TunePath), subsong, Path.GetDirectoryName(TunePath), PlsDirectory(PlsDirectory.Length - 2)}
             If Playlist.DataGridView1.Rows.Count <= 0 Then
                 Playlist.DataGridView1.Rows.Add(Values)
             Else
