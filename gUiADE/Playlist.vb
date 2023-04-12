@@ -29,6 +29,7 @@ Public Class Playlist
         For Each row As DataGridViewRow In DataGridView1.SelectedRows
             DataGridView1.Rows.Remove(row)
         Next
+        ResizeADE()
     End Sub
 
     Private Sub ToolStripSave_Click(sender As Object, e As EventArgs) Handles ToolStripSave.Click
@@ -63,17 +64,24 @@ Public Class Playlist
                 DataGridView1.Rows.Add(Path.GetFileName(SplitAde(0)), subsong, Path.GetDirectoryName(SplitAde(0)), PlsDirectory(PlsDirectory.Length - 2))
             Loop
         End Using
-
-        Dim intWidth As Integer
-        For Each dgvcc As DataGridViewColumn In DataGridView1.Columns
-            intWidth += dgvcc.Width
-        Next
-        Me.Width = intWidth - 50
+        ResizeADE()
     End Function
 
     Private Sub DataGridView1_DoubleClick(sender As Object, e As EventArgs) Handles DataGridView1.DoubleClick
         If DataGridView1.Rows.Count < 1 Then Exit Sub
         PlayFromPls()
+    End Sub
+
+    Public Sub ResizeADE()
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        DataGridView1.AutoResizeRows()
+        DataGridView1.AutoResizeColumns()
+        Dim intWidth As Integer
+        For Each dgvcc As DataGridViewColumn In DataGridView1.Columns
+            If dgvcc.Index <> 2 Then intWidth += dgvcc.Width
+        Next
+
+        Me.Width = intWidth + 50
     End Sub
 
     Private Sub PlayFromPls()

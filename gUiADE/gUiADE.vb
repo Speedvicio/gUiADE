@@ -813,6 +813,7 @@ Public Class gUiADE
             End If
         End If
 
+        Playlist.ResizeADE()
     End Sub
 
     Private Sub SetPar()
