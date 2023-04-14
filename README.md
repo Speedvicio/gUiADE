@@ -1,5 +1,5 @@
 # gUiADE
-A Crappy Frontend for UADE
+A Crappy Frontend for UADE - Unix Amiga Delitracker Emulator.
 
 This is my second attemp (the first was AmicoX on linux) to make a crappy frontend for UADE.
 
