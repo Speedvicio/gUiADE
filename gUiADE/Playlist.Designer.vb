@@ -23,25 +23,25 @@ Partial Class Playlist
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripSave = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripRem = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSearch = New System.Windows.Forms.ToolStripTextBox()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.cName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cOrder = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cPath = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripSave = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripRem = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSearch = New System.Windows.Forms.ToolStripTextBox()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolStripPoint = New System.Windows.Forms.ToolStripButton()
         Me.GroupBox1.SuspendLayout()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -93,23 +93,23 @@ Partial Class Playlist
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.HotTrack
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("UniDreamLED", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.HotTrack
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("UniDreamLED", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HotTrack
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cName, Me.cOrder, Me.cPath, Me.pName})
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.HotTrack
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("UniDreamLED", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.DarkOrange
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.HotTrack
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("UniDreamLED", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.DarkOrange
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkOrange
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.GridColor = System.Drawing.Color.White
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
@@ -117,87 +117,32 @@ Partial Class Playlist
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.HotTrack
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("UniDreamLED", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.DarkOrange
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.HotTrack
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("UniDreamLED", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DarkOrange
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.RowHeadersVisible = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.HotTrack
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.DarkOrange
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.HotTrack
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkOrange
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridView1.RowTemplate.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(278, 347)
         Me.DataGridView1.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.DataGridView1, "Double left mouse click to load a song")
         '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSave, Me.ToolStripRem, Me.ToolStripLabel1, Me.ToolStripSearch})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(278, 55)
-        Me.ToolStrip1.TabIndex = 2
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'ToolStripSave
-        '
-        Me.ToolStripSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripSave.Image = Global.gUiADE.My.Resources.Resources.floppy_system_risultato
-        Me.ToolStripSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripSave.Name = "ToolStripSave"
-        Me.ToolStripSave.Size = New System.Drawing.Size(46, 52)
-        Me.ToolStripSave.Text = "ToolStripSave"
-        Me.ToolStripSave.ToolTipText = "Save List"
-        '
-        'ToolStripRem
-        '
-        Me.ToolStripRem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripRem.ForeColor = System.Drawing.Color.White
-        Me.ToolStripRem.Image = Global.gUiADE.My.Resources.Resources.trashcan_risultato
-        Me.ToolStripRem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripRem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripRem.Name = "ToolStripRem"
-        Me.ToolStripRem.Size = New System.Drawing.Size(46, 52)
-        Me.ToolStripRem.Text = "-"
-        Me.ToolStripRem.ToolTipText = "Remove From List"
-        '
-        'ToolStripLabel1
-        '
-        Me.ToolStripLabel1.Image = Global.gUiADE.My.Resources.Resources.zoom
-        Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(26, 52)
-        Me.ToolStripLabel1.Text = " "
-        '
-        'ToolStripSearch
-        '
-        Me.ToolStripSearch.BackColor = System.Drawing.Color.White
-        Me.ToolStripSearch.ForeColor = System.Drawing.Color.Black
-        Me.ToolStripSearch.Name = "ToolStripSearch"
-        Me.ToolStripSearch.Size = New System.Drawing.Size(170, 23)
-        Me.ToolStripSearch.ToolTipText = "Search on list"
-        '
-        'SaveFileDialog1
-        '
-        Me.SaveFileDialog1.DefaultExt = "ade"
-        Me.SaveFileDialog1.RestoreDirectory = True
-        '
         'cName
         '
         Me.cName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        Me.cName.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        Me.cName.DefaultCellStyle = DataGridViewCellStyle2
         Me.cName.HeaderText = "File Name"
         Me.cName.Name = "cName"
         Me.cName.ReadOnly = True
@@ -227,6 +172,62 @@ Partial Class Playlist
         Me.pName.Name = "pName"
         Me.pName.ReadOnly = True
         Me.pName.Width = 97
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSave, Me.ToolStripRem, Me.ToolStripPoint, Me.ToolStripSearch})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(278, 55)
+        Me.ToolStrip1.TabIndex = 2
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripSave
+        '
+        Me.ToolStripSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripSave.Image = Global.gUiADE.My.Resources.Resources.floppy_system_risultato
+        Me.ToolStripSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripSave.Name = "ToolStripSave"
+        Me.ToolStripSave.Size = New System.Drawing.Size(46, 52)
+        Me.ToolStripSave.Text = "ToolStripSave"
+        Me.ToolStripSave.ToolTipText = "Save List"
+        '
+        'ToolStripRem
+        '
+        Me.ToolStripRem.ForeColor = System.Drawing.Color.White
+        Me.ToolStripRem.Image = Global.gUiADE.My.Resources.Resources.trashcan_risultato
+        Me.ToolStripRem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripRem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripRem.Name = "ToolStripRem"
+        Me.ToolStripRem.Size = New System.Drawing.Size(59, 52)
+        Me.ToolStripRem.Text = "  "
+        Me.ToolStripRem.ToolTipText = "Remove From List"
+        '
+        'ToolStripSearch
+        '
+        Me.ToolStripSearch.BackColor = System.Drawing.Color.White
+        Me.ToolStripSearch.ForeColor = System.Drawing.Color.Black
+        Me.ToolStripSearch.Name = "ToolStripSearch"
+        Me.ToolStripSearch.Size = New System.Drawing.Size(170, 23)
+        Me.ToolStripSearch.ToolTipText = "Search on list"
+        '
+        'SaveFileDialog1
+        '
+        Me.SaveFileDialog1.DefaultExt = "ade"
+        Me.SaveFileDialog1.RestoreDirectory = True
+        '
+        'ToolStripPoint
+        '
+        Me.ToolStripPoint.Image = Global.gUiADE.My.Resources.Resources.zoom
+        Me.ToolStripPoint.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripPoint.Name = "ToolStripPoint"
+        Me.ToolStripPoint.Size = New System.Drawing.Size(33, 52)
+        Me.ToolStripPoint.Text = "  "
+        Me.ToolStripPoint.ToolTipText = " Explore Folder"
         '
         'Playlist
         '
@@ -260,10 +261,10 @@ Partial Class Playlist
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripSave As ToolStripButton
     Friend WithEvents ToolStripRem As ToolStripButton
-    Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ToolStripSearch As ToolStripTextBox
     Friend WithEvents cName As DataGridViewTextBoxColumn
     Friend WithEvents cOrder As DataGridViewTextBoxColumn
     Friend WithEvents cPath As DataGridViewTextBoxColumn
     Friend WithEvents pName As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripPoint As ToolStripButton
 End Class

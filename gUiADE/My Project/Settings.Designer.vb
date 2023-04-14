@@ -221,6 +221,18 @@ Namespace My
                 Me("TSleep") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property VMeter() As Boolean
+            Get
+                Return CType(Me("VMeter"),Boolean)
+            End Get
+            Set
+                Me("VMeter") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

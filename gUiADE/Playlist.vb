@@ -132,4 +132,13 @@ Public Class Playlist
         Next
     End Sub
 
+    Private Sub ToolStripPoint_Click(sender As Object, e As EventArgs) Handles ToolStripPoint.Click
+        Dim pFile As String = Path.Combine(DataGridView1.SelectedRows(0).Cells(2).Value.ToString(), DataGridView1.SelectedRows(0).Cells(0).Value.ToString())
+        If File.Exists(pFile) Then
+            Process.Start("explorer.exe", " /select ," & Chr(34) & pFile & Chr(34))
+        Else
+            MsgBox("This file not exist", MsgBoxStyle.Exclamation + vbOKOnly, "Unrecognized file")
+        End If
+    End Sub
+
 End Class

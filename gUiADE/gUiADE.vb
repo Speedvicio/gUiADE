@@ -344,6 +344,7 @@ Public Class gUiADE
         Button4.BackgroundImage.RotateFlip(RotateFlipType.Rotate180FlipY)
         SetFont(Me)
         SetCursor(Me)
+        VuMeter = My.Settings.VMeter
     End Sub
 
     Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
@@ -769,6 +770,7 @@ Public Class gUiADE
         Else
             VuMeter = True
         End If
+        My.Settings.VMeter = VuMeter
     End Sub
 
     Private Sub PeakMeterCtrl2_Click(sender As Object, e As EventArgs) Handles PeakMeterCtrl2.Click
