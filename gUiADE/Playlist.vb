@@ -43,7 +43,7 @@ Public Class Playlist
             Using sw As StreamWriter = File.CreateText(SaveFileDialog1.FileName)
                 For i = 0 To DataGridView1.Rows.Count - 1
                     Dim subs As String = DataGridView1.Rows(i).Cells(1).Value
-                    If subs IsNot Nothing Then subs = "#" & subs
+                    If subs IsNot Nothing Then subs = "|" & subs
                     sw.WriteLine(Path.Combine(DataGridView1.Rows(i).Cells(2).Value, DataGridView1.Rows(i).Cells(0).Value) & subs)
                 Next
             End Using
@@ -54,7 +54,7 @@ Public Class Playlist
         DataGridView1.Rows.Clear()
         Using sr As StreamReader = File.OpenText(ade)
             Do While sr.Peek() >= 0
-                Dim SplitAde() As String = Split(sr.ReadLine(), "#")
+                Dim SplitAde() As String = Split(sr.ReadLine(), "|")
                 Dim subsong As String = Nothing
                 If SplitAde.Length > 1 Then
                     subsong = SplitAde(1).ToString

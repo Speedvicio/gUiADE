@@ -22,7 +22,7 @@ Public Class gUiADE
     Private SW As New Stopwatch
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|All Files|*.*"
+        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Playlist|*.ade|All Files|*.*"
         OpenFileDialog1.FilterIndex = 2
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             arg = ""
