@@ -23,26 +23,30 @@ Public Class gUiADE
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Playlist|*.ade|All Files|*.*"
-        OpenFileDialog1.FilterIndex = 2
+        OpenFileDialog1.FilterIndex = 3
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-            arg = ""
-            ListBox1.Items.Clear()
-            DeleteTemp()
-            pModule = OpenFileDialog1.FileName
-            Select Case Path.GetExtension(pModule)
-                Case ".ade"
-                    If Playlist.Visible = False Then Playlist.Show() : Button9.BackgroundImage = My.Resources.informationR
-                    plst = pModule
-                    Playlist.LoadADE(plst)
-                Case ".lhz", ".lha", ".zip", ".7z", ".rar"
-                    DecompressArchive(pModule)
-                    pModule = Path.Combine(Application.StartupPath, "temp")
-                    PrepareList()
-                Case Else
-                    PlayModule()
-            End Select
-
+            LoadFile(OpenFileDialog1.FileName)
         End If
+    End Sub
+
+    Private Sub LoadFile(fileModule As String)
+        arg = ""
+        ListBox1.Items.Clear()
+        DeleteTemp()
+
+        pModule = fileModule
+        Select Case Path.GetExtension(pModule)
+            Case ".ade"
+                If Playlist.Visible = False Then Playlist.Show() : Button9.BackgroundImage = My.Resources.informationR
+                plst = pModule
+                Playlist.LoadADE(plst)
+            Case ".lhz", ".lha", ".zip", ".7z", ".rar"
+                DecompressArchive(pModule)
+                pModule = Path.Combine(Application.StartupPath, "temp")
+                PrepareList(pModule)
+            Case Else
+                PlayModule()
+        End Select
     End Sub
 
     Public Sub PlayModule()
@@ -345,6 +349,7 @@ Public Class gUiADE
         SetFont(Me)
         SetCursor(Me)
         VuMeter = My.Settings.VMeter
+        Me.AllowDrop = True
     End Sub
 
     Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
@@ -370,18 +375,18 @@ Public Class gUiADE
     End Sub
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        Dim txt As StreamWriter
+
         If FolderBrowserDialog1.ShowDialog = DialogResult.OK Then
-            ListBox1.Items.Clear()
-            DeleteTemp()
-            pModule = FolderBrowserDialog1.SelectedPath
             'Action_UADE("kill")
-            PrepareList()
+            pModule = FolderBrowserDialog1.SelectedPath
+            PrepareList(pModule)
         End If
     End Sub
 
-    Private Sub PrepareList()
+    Private Sub PrepareList(dirModule As String)
         Dim txt As StreamWriter
+        ListBox1.Items.Clear()
+        DeleteTemp()
 
         pList = pModule
         MakeBat(txt, "makelist", "--scan -r --stderr ", "modulelist_CgWin")
@@ -919,6 +924,26 @@ Public Class gUiADE
             MsgBox("gUiADE by Speedvicio", vbOKOnly + vbInformation, "About")
         End If
 
+    End Sub
+
+    Private Sub gUiADE_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
+        Dim files() As String = e.Data.GetData(DataFormats.FileDrop)
+        For Each path In files
+            Dim isDir As Boolean = (File.GetAttributes(path) And FileAttributes.Directory) = FileAttributes.Directory
+            If isDir = True Then
+                pModule = path
+                PrepareList(path)
+            Else
+                pModule = path
+                LoadFile(path)
+            End If
+        Next
+    End Sub
+
+    Private Sub gUiADE_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy
+        End If
     End Sub
 
 End Class
