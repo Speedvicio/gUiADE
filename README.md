@@ -9,6 +9,8 @@ gUiADE also has support for most common archive compressed file by 7z and sevenz
 
 gUiADE can export wav file in Quad mode  (4 channels mode) thx to <a href="https://blog.airmann.de/uade-multichannel-audio-support/">UADE 4IRMANN fork.</a>
 
+gUiADE can create custom playlist for your favourite music
+
 gUiADE use Topaz_a500_v1.0.ttf that should be load at startup, if you see the wrong visualized font, you can try to install it onto your os.
 
 gUiADE run on Win XP and above.
