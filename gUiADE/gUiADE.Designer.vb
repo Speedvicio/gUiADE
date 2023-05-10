@@ -44,41 +44,41 @@ Partial Class gUiADE
         Me.PeakMeterCtrl2 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.labelMin = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TimerAudio = New System.Windows.Forms.Timer(Me.components)
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.ComboSampler = New System.Windows.Forms.ComboBox()
         Me.CheckLoop = New System.Windows.Forms.CheckBox()
         Me.NumericGAIN = New System.Windows.Forms.NumericUpDown()
         Me.NumericPANNING = New System.Windows.Forms.NumericUpDown()
         Me.ComboFILTER = New System.Windows.Forms.ComboBox()
         Me.CheckBox6 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
         Me.CheckBox4 = New System.Windows.Forms.CheckBox()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.PeakMeterCtrl1 = New Ernzo.WinForms.Controls.PeakMeterCtrl()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.labelMin = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ComboSampler = New System.Windows.Forms.ComboBox()
+        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TimerAudio = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -345,135 +345,6 @@ Partial Class gUiADE
         Me.ToolTip1.SetToolTip(Me.Button5, "Add current song to Playlist manager")
         Me.Button5.UseVisualStyleBackColor = False
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(72, 419)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(101, 13)
-        Me.Label2.TabIndex = 18
-        Me.Label2.Text = "Custom Parameters:"
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 500
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.TreeView1)
-        Me.GroupBox2.Controls.Add(Me.ListBox1)
-        Me.GroupBox2.ForeColor = System.Drawing.Color.DarkOrange
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 154)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(358, 255)
-        Me.GroupBox2.TabIndex = 20
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Songs && Subsongs"
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.Button5)
-        Me.Panel2.Controls.Add(Me.Button9)
-        Me.Panel2.Controls.Add(Me.TrackBar1)
-        Me.Panel2.Controls.Add(Me.PeakMeterCtrl2)
-        Me.Panel2.Controls.Add(Me.PeakMeterCtrl1)
-        Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Controls.Add(Me.labelMin)
-        Me.Panel2.Location = New System.Drawing.Point(18, 3)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(548, 145)
-        Me.Panel2.TabIndex = 21
-        '
-        'Label1
-        '
-        Me.Label1.BackColor = System.Drawing.Color.Black
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Red
-        Me.Label1.Image = Global.gUiADE.My.Resources.Resources.guiade
-        Me.Label1.Location = New System.Drawing.Point(3, 8)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(542, 98)
-        Me.Label1.TabIndex = 15
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'labelMin
-        '
-        Me.labelMin.BackColor = System.Drawing.Color.Black
-        Me.labelMin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelMin.ForeColor = System.Drawing.Color.Red
-        Me.labelMin.Location = New System.Drawing.Point(3, 106)
-        Me.labelMin.Name = "labelMin"
-        Me.labelMin.Size = New System.Drawing.Size(542, 33)
-        Me.labelMin.TabIndex = 14
-        Me.labelMin.Text = "- A Crappy Frontend for UADE -"
-        Me.labelMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.CheckNtsc)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.ComboSampler)
-        Me.GroupBox1.Controls.Add(Me.CheckLoop)
-        Me.GroupBox1.Controls.Add(Me.NumericGAIN)
-        Me.GroupBox1.Controls.Add(Me.NumericPANNING)
-        Me.GroupBox1.Controls.Add(Me.ComboFILTER)
-        Me.GroupBox1.Controls.Add(Me.ButtonHEAFSET)
-        Me.GroupBox1.Controls.Add(Me.CheckBox6)
-        Me.GroupBox1.Controls.Add(Me.CheckBox5)
-        Me.GroupBox1.Controls.Add(Me.CheckBox4)
-        Me.GroupBox1.Controls.Add(Me.CheckBox3)
-        Me.GroupBox1.Controls.Add(Me.CheckBox2)
-        Me.GroupBox1.Controls.Add(Me.Panel1)
-        Me.GroupBox1.Controls.Add(Me.CheckConsole)
-        Me.GroupBox1.Controls.Add(Me.Button7)
-        Me.GroupBox1.Controls.Add(Me.Button6)
-        Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.ForeColor = System.Drawing.Color.DarkOrange
-        Me.GroupBox1.Location = New System.Drawing.Point(376, 154)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(196, 255)
-        Me.GroupBox1.TabIndex = 6
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Controls"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(6, 66)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 13)
-        Me.Label4.TabIndex = 37
-        Me.Label4.Text = "Time:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(6, 182)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(60, 13)
-        Me.Label3.TabIndex = 34
-        Me.Label3.Text = "Resampler:"
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.Button4)
-        Me.Panel1.Controls.Add(Me.Button3)
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Enabled = False
-        Me.Panel1.Location = New System.Drawing.Point(98, 92)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(92, 32)
-        Me.Panel1.TabIndex = 22
-        '
-        'TimerAudio
-        '
-        Me.TimerAudio.Interval = 10
-        '
         'NumericUpDown1
         '
         Me.NumericUpDown1.BackColor = System.Drawing.SystemColors.HotTrack
@@ -488,20 +359,6 @@ Partial Class gUiADE
         Me.ToolTip1.SetToolTip(Me.NumericUpDown1, "Set song timeout in seconds. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "-1 is infinite" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PS: This parameter is valid only o" &
         "n non forced looped song and with wav export")
         Me.NumericUpDown1.Value = Global.gUiADE.My.MySettings.Default.Timeout
-        '
-        'ComboSampler
-        '
-        Me.ComboSampler.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.ComboSampler.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.gUiADE.My.MySettings.Default, "Resampler", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.ComboSampler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboSampler.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ComboSampler.FormattingEnabled = True
-        Me.ComboSampler.Items.AddRange(New Object() {"NONE", "DEFAULT", "SINC"})
-        Me.ComboSampler.Location = New System.Drawing.Point(98, 179)
-        Me.ComboSampler.Name = "ComboSampler"
-        Me.ComboSampler.Size = New System.Drawing.Size(92, 21)
-        Me.ComboSampler.TabIndex = 33
-        Me.ComboSampler.Text = Global.gUiADE.My.MySettings.Default.Resampler
         '
         'CheckLoop
         '
@@ -581,20 +438,6 @@ Partial Class gUiADE
         Me.ToolTip1.SetToolTip(Me.CheckBox6, "Enable/Disable panning")
         Me.CheckBox6.UseVisualStyleBackColor = True
         '
-        'CheckBox5
-        '
-        Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Checked = Global.gUiADE.My.MySettings.Default.PostProcess
-        Me.CheckBox5.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox5.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "PostProcess", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox5.ForeColor = System.Drawing.Color.White
-        Me.CheckBox5.Location = New System.Drawing.Point(89, 157)
-        Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(88, 17)
-        Me.CheckBox5.TabIndex = 26
-        Me.CheckBox5.Text = "&Post-Process"
-        Me.CheckBox5.UseVisualStyleBackColor = True
-        '
         'CheckBox4
         '
         Me.CheckBox4.AutoSize = True
@@ -638,18 +481,6 @@ Partial Class gUiADE
         "it and select NONE")
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
-        'TrackBar1
-        '
-        Me.TrackBar1.AutoSize = False
-        Me.TrackBar1.BackColor = System.Drawing.Color.Black
-        Me.TrackBar1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.gUiADE.My.MySettings.Default, "Volume", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TrackBar1.Location = New System.Drawing.Point(465, 9)
-        Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(80, 12)
-        Me.TrackBar1.TabIndex = 18
-        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.None
-        Me.TrackBar1.Value = Global.gUiADE.My.MySettings.Default.Volume
-        '
         'PeakMeterCtrl1
         '
         Me.PeakMeterCtrl1.BackColor = System.Drawing.Color.Black
@@ -685,6 +516,173 @@ Partial Class gUiADE
         Me.ToolTip1.SetToolTip(Me.TextBox1, "Input any custom parameters described onto UADE readme." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Example:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "--filter=A1200" &
         " -G 10")
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(72, 419)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(101, 13)
+        Me.Label2.TabIndex = 18
+        Me.Label2.Text = "Custom Parameters:"
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 500
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.TreeView1)
+        Me.GroupBox2.Controls.Add(Me.ListBox1)
+        Me.GroupBox2.ForeColor = System.Drawing.Color.DarkOrange
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 154)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(358, 255)
+        Me.GroupBox2.TabIndex = 20
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Songs && Subsongs"
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.Button5)
+        Me.Panel2.Controls.Add(Me.Button9)
+        Me.Panel2.Controls.Add(Me.TrackBar1)
+        Me.Panel2.Controls.Add(Me.PeakMeterCtrl2)
+        Me.Panel2.Controls.Add(Me.PeakMeterCtrl1)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.labelMin)
+        Me.Panel2.Location = New System.Drawing.Point(18, 3)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(548, 145)
+        Me.Panel2.TabIndex = 21
+        '
+        'TrackBar1
+        '
+        Me.TrackBar1.AutoSize = False
+        Me.TrackBar1.BackColor = System.Drawing.Color.Black
+        Me.TrackBar1.Location = New System.Drawing.Point(465, 9)
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(80, 12)
+        Me.TrackBar1.TabIndex = 18
+        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.None
+        '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.Color.Black
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Red
+        Me.Label1.Image = Global.gUiADE.My.Resources.Resources.guiade
+        Me.Label1.Location = New System.Drawing.Point(3, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(542, 98)
+        Me.Label1.TabIndex = 15
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'labelMin
+        '
+        Me.labelMin.BackColor = System.Drawing.Color.Black
+        Me.labelMin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelMin.ForeColor = System.Drawing.Color.Red
+        Me.labelMin.Location = New System.Drawing.Point(3, 106)
+        Me.labelMin.Name = "labelMin"
+        Me.labelMin.Size = New System.Drawing.Size(542, 33)
+        Me.labelMin.TabIndex = 14
+        Me.labelMin.Text = "- A Crappy Frontend for UADE -"
+        Me.labelMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.CheckNtsc)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.ComboSampler)
+        Me.GroupBox1.Controls.Add(Me.CheckLoop)
+        Me.GroupBox1.Controls.Add(Me.NumericGAIN)
+        Me.GroupBox1.Controls.Add(Me.NumericPANNING)
+        Me.GroupBox1.Controls.Add(Me.ComboFILTER)
+        Me.GroupBox1.Controls.Add(Me.ButtonHEAFSET)
+        Me.GroupBox1.Controls.Add(Me.CheckBox6)
+        Me.GroupBox1.Controls.Add(Me.CheckBox5)
+        Me.GroupBox1.Controls.Add(Me.CheckBox4)
+        Me.GroupBox1.Controls.Add(Me.CheckBox3)
+        Me.GroupBox1.Controls.Add(Me.CheckBox2)
+        Me.GroupBox1.Controls.Add(Me.Panel1)
+        Me.GroupBox1.Controls.Add(Me.CheckConsole)
+        Me.GroupBox1.Controls.Add(Me.Button7)
+        Me.GroupBox1.Controls.Add(Me.Button6)
+        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.ForeColor = System.Drawing.Color.DarkOrange
+        Me.GroupBox1.Location = New System.Drawing.Point(376, 154)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(196, 255)
+        Me.GroupBox1.TabIndex = 6
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Controls"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(6, 66)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(33, 13)
+        Me.Label4.TabIndex = 37
+        Me.Label4.Text = "Time:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(6, 182)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(60, 13)
+        Me.Label3.TabIndex = 34
+        Me.Label3.Text = "Resampler:"
+        '
+        'ComboSampler
+        '
+        Me.ComboSampler.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.ComboSampler.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.gUiADE.My.MySettings.Default, "Resampler", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.ComboSampler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboSampler.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ComboSampler.FormattingEnabled = True
+        Me.ComboSampler.Items.AddRange(New Object() {"NONE", "DEFAULT", "SINC"})
+        Me.ComboSampler.Location = New System.Drawing.Point(98, 179)
+        Me.ComboSampler.Name = "ComboSampler"
+        Me.ComboSampler.Size = New System.Drawing.Size(92, 21)
+        Me.ComboSampler.TabIndex = 33
+        Me.ComboSampler.Text = Global.gUiADE.My.MySettings.Default.Resampler
+        '
+        'CheckBox5
+        '
+        Me.CheckBox5.AutoSize = True
+        Me.CheckBox5.Checked = Global.gUiADE.My.MySettings.Default.PostProcess
+        Me.CheckBox5.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox5.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.gUiADE.My.MySettings.Default, "PostProcess", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox5.ForeColor = System.Drawing.Color.White
+        Me.CheckBox5.Location = New System.Drawing.Point(89, 157)
+        Me.CheckBox5.Name = "CheckBox5"
+        Me.CheckBox5.Size = New System.Drawing.Size(88, 17)
+        Me.CheckBox5.TabIndex = 26
+        Me.CheckBox5.Text = "&Post-Process"
+        Me.CheckBox5.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Button4)
+        Me.Panel1.Controls.Add(Me.Button3)
+        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.Enabled = False
+        Me.Panel1.Location = New System.Drawing.Point(98, 92)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(92, 32)
+        Me.Panel1.TabIndex = 22
+        '
+        'TimerAudio
+        '
+        Me.TimerAudio.Interval = 10
+        '
         'gUiADE
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -707,15 +705,15 @@ Partial Class gUiADE
         Me.Text = "gUiADE"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericGAIN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericPANNING, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

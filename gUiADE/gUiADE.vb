@@ -350,13 +350,17 @@ Public Class gUiADE
         SetCursor(Me)
         VuMeter = My.Settings.VMeter
         Me.AllowDrop = True
+        TrackBar1.Value = My.Settings.Volume
+        VolumeScroll()
     End Sub
 
     Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
+        Dim Gvol As Decimal = TrackBar1.Value
         Action_UADE("kill")
         UseThread("stop")
         DeleteTemp()
         ResetVol()
+        My.Settings.Volume = Gvol
     End Sub
 
     Private Sub MakeBat(testo As StreamWriter, nBat As String, bPar As String, dbName As String)
