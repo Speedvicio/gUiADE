@@ -66,7 +66,7 @@ Public Class gUiADE
 
         Dim txt As StreamWriter
         MakeBat(txt, "info", "--detect-format-by-content -g ", "err")
-        Threading.Thread.Sleep(1000)
+        Threading.Thread.Sleep(1500)
         Label1.Text = ""
 
         Dim pfile = Path.Combine(Application.StartupPath, "err.txt")
