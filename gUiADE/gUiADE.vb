@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Text
 Imports System.IO
 Imports System.Runtime.InteropServices
+Imports Shell32
 
 Public Class gUiADE
     Dim IdUADE As Integer()
@@ -932,14 +933,19 @@ Public Class gUiADE
 
     Private Sub gUiADE_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
         Dim files() As String = e.Data.GetData(DataFormats.FileDrop)
-        For Each path In files
-            Dim isDir As Boolean = (File.GetAttributes(path) And FileAttributes.Directory) = FileAttributes.Directory
+        For Each _path In files
+
+            If LCase(Path.GetExtension(_path)) = ".lnk" Then
+                _path = GetShortcutTargetFile(_path)
+            End If
+
+            Dim isDir As Boolean = (File.GetAttributes(_path) And FileAttributes.Directory) = FileAttributes.Directory
             If isDir = True Then
-                pModule = path
-                PrepareList(path)
+                pModule = _path
+                PrepareList(_path)
             Else
-                pModule = path
-                LoadFile(path)
+                pModule = _path
+                LoadFile(_path)
             End If
         Next
     End Sub
@@ -949,5 +955,22 @@ Public Class gUiADE
             e.Effect = DragDropEffects.Copy
         End If
     End Sub
+
+    'Code to get target path from .lnk:
+    ''https://social.msdn.microsoft.com/Forums/en-US/fd6a0d4c-94ea-43b0-87d7-a706eeb04734/how-to-retrieve-the-target-of-a-shortcut-file-in-vb-code?forum=vbgeneral
+
+    Public Shared Function GetShortcutTargetFile(ByVal shortcutFilename As String) As String
+        Dim pathOnly As String = Path.GetDirectoryName(shortcutFilename)
+        Dim filenameOnly As String = Path.GetFileName(shortcutFilename)
+        Dim shell As Shell = New Shell()
+        Dim folder As Folder = shell.[NameSpace](pathOnly)
+        Dim folderItem As FolderItem = folder.ParseName(filenameOnly)
+        If folderItem IsNot Nothing Then
+            Dim link As ShellLinkObject = CType(folderItem.GetLink, ShellLinkObject)
+            Return link.Path
+        End If
+
+        Return String.Empty
+    End Function
 
 End Class
