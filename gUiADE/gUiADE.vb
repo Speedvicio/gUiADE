@@ -33,7 +33,6 @@ Public Class gUiADE
     Private Sub LoadFile(fileModule As String)
         arg = ""
         ListBox1.Items.Clear()
-        DeleteTemp()
 
         pModule = fileModule
         Select Case Path.GetExtension(pModule)
@@ -42,6 +41,7 @@ Public Class gUiADE
                 plst = pModule
                 Playlist.LoadADE(plst)
             Case ".lhz", ".lha", ".zip", ".7z", ".rar"
+                DeleteTemp()
                 DecompressArchive(pModule)
                 pModule = Path.Combine(Application.StartupPath, "temp")
                 PrepareList(pModule)
@@ -391,7 +391,8 @@ Public Class gUiADE
     Private Sub PrepareList(dirModule As String)
         Dim txt As StreamWriter
         ListBox1.Items.Clear()
-        DeleteTemp()
+
+        'DeleteTemp()
 
         pList = pModule
         MakeBat(txt, "makelist", "--scan -r --stderr ", "modulelist_CgWin")
