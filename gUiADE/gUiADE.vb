@@ -11,6 +11,8 @@ Public Class gUiADE
     Dim full_arg As String
     Dim VuMeter As Boolean = True
 
+    Dim audio As AudioFile
+
     Public arg, pModule, plst As String
 
     Dim imgPlay As Image = My.Resources.play
@@ -23,7 +25,7 @@ Public Class gUiADE
     Private SW As New Stopwatch
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Playlist|*.ade|All Files|*.*"
+        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Common Audio|*.mp3;*.wav|Playlist|*.ade|All Files|*.*"
         OpenFileDialog1.FilterIndex = 3
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             LoadFile(OpenFileDialog1.FileName)
@@ -35,6 +37,12 @@ Public Class gUiADE
         ListBox1.Items.Clear()
 
         pModule = fileModule
+
+        UseThread("stop")
+        Action_UADE("kill")
+        audio = New AudioFile(pModule)
+        audio.Close()
+
         Select Case Path.GetExtension(pModule)
             Case ".ade"
                 If Playlist.Visible = False Then Playlist.Show() : Button9.BackgroundImage = My.Resources.informationR
@@ -45,9 +53,18 @@ Public Class gUiADE
                 DecompressArchive(pModule)
                 pModule = Path.Combine(Application.StartupPath, "temp")
                 PrepareList(pModule)
+            Case ".mp3", ".wav"
+                PlayWavMp3()
             Case Else
                 PlayModule()
         End Select
+    End Sub
+
+    Public Sub PlayWavMp3()
+        audio.Play()
+        SW.Reset()
+        SW.Start()
+        Timer1.Start()
     End Sub
 
     Public Sub PlayModule()
@@ -334,6 +351,13 @@ Public Class gUiADE
         Control_UADE("n")
         UseThread("stop")
         Action_UADE("kill")
+
+        Select Case LCase(Path.GetExtension(pModule))
+            Case ".mp3", ".wav"
+                audio.Stop()
+                SW.Stop()
+        End Select
+
         Label1.Image = My.Resources.guiade
     End Sub
 
@@ -359,6 +383,7 @@ Public Class gUiADE
         Dim Gvol As Decimal = TrackBar1.Value
         Action_UADE("kill")
         UseThread("stop")
+        audio.Close()
         DeleteTemp()
         ResetVol()
         My.Settings.Volume = Gvol
@@ -540,6 +565,29 @@ Public Class gUiADE
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim ext = LCase(Path.GetExtension(pModule))
+        Select Case ext
+            Case ".mp3", ".wav"
+                TimerAudio.Start()
+                Dim Astat = audio.Status.Trim
+                If Astat = "playing" Then
+                    Label1.Image = Nothing
+                    Label1.Text = "Song Name: " & Path.GetFileNameWithoutExtension(audio.Filename).Trim
+                    Dim ftype As String
+                    If ext = ".mp3" Then
+                        ftype = "MPEG Audio Layer III "
+                    Else
+                        ftype = "Waveform Audio File Format"
+                    End If
+                    Label1.Text += vbCrLf & vbCrLf & "Format Type: " & ftype
+                Else
+                    SW.Stop()
+                    TimerAudio.Stop()
+                    Label1.Text = ""
+                    Label1.Image = My.Resources.guiade
+                End If
+                Exit Sub
+        End Select
 
         If IsProcessRunning("uade123") = False Then
             Label1.Text = ""
