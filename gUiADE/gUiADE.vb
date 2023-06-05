@@ -65,11 +65,12 @@ Public Class gUiADE
         SW.Reset()
         SW.Start()
         Timer1.Start()
+        Panel1.Enabled = True
     End Sub
 
     Public Sub PlayModule()
         uade = True
-
+        Pannel_()
         If pModule.Trim <> "" Then
             UseThread("stop")
             Action_UADE("kill")
@@ -138,14 +139,21 @@ Public Class gUiADE
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Control_UADE("c")
-
         If Button2.BackgroundImage Is imgStop Then
             Button2.BackgroundImage = imgPlay
+            If LCase(Path.GetExtension(pModule)) = ".mp3" Or LCase(Path.GetExtension(pModule)) = ".wav" Then
+                audio.Resume()
+            End If
             Timer1.Start()
+            SW.Start()
             TimerAudio.Start()
         Else
             Button2.BackgroundImage = imgStop
+            If LCase(Path.GetExtension(pModule)) = ".mp3" Or LCase(Path.GetExtension(pModule)) = ".wav" Then
+                audio.Pause()
+            End If
             Timer1.Stop()
+            SW.Stop()
             Threading.Thread.Sleep(TSleep)
             TimerAudio.Stop()
         End If
@@ -247,7 +255,7 @@ Public Class gUiADE
             Threading.Thread.Sleep(2000)
             Timer1.Start()
             SW.Start()
-            Button2.BackgroundImage = imgPlay
+            Button2.BackgroundImage = imgStop
             CheckConsole.Enabled = False
             CheckWAV.Enabled = False
             CheckQuad.Enabled = False
@@ -266,7 +274,7 @@ Public Class gUiADE
             wavstate()
             Label1.Text = ""
             labelMin.Text = "- A Crappy Frontend for UADE -"
-            Button2.BackgroundImage = imgStop
+            Button2.BackgroundImage = imgPlay
             CheckConsole.Enabled = True
             CheckWAV.Enabled = True
             Button5.Enabled = False
@@ -356,6 +364,7 @@ Public Class gUiADE
             Case ".mp3", ".wav"
                 audio.Stop()
                 SW.Stop()
+                Panel1.Enabled = False
         End Select
 
         Label1.Image = My.Resources.guiade
@@ -383,7 +392,7 @@ Public Class gUiADE
         Dim Gvol As Decimal = TrackBar1.Value
         Action_UADE("kill")
         UseThread("stop")
-        audio.Close()
+        If LCase(Path.GetExtension(pModule)) = ".mp3" Or LCase(Path.GetExtension(pModule)) = ".wav" Then audio.Close()
         DeleteTemp()
         ResetVol()
         My.Settings.Volume = Gvol
@@ -514,6 +523,10 @@ Public Class gUiADE
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckConsole.CheckedChanged
+        Pannel_()
+    End Sub
+
+    Private Sub Pannel_()
         If CheckConsole.Checked = True Then
             Panel1.Enabled = True
         Else
