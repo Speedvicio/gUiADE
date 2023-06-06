@@ -41,7 +41,7 @@ Public Class gUiADE
         UseThread("stop")
         Action_UADE("kill")
         audio = New AudioFile(pModule)
-        audio.Close()
+        If audio IsNot Nothing Then audio.Close()
 
         Select Case Path.GetExtension(pModule)
             Case ".ade"
@@ -265,6 +265,7 @@ Public Class gUiADE
             End If
         ElseIf action = "stop" Then
             'arg = Nothing
+            If audio IsNot Nothing Then audio.Close()
             t.Abort()
             Threading.Thread.Sleep(500)
             SW.Reset()
@@ -392,7 +393,7 @@ Public Class gUiADE
         Dim Gvol As Decimal = TrackBar1.Value
         Action_UADE("kill")
         UseThread("stop")
-        If LCase(Path.GetExtension(pModule)) = ".mp3" Or LCase(Path.GetExtension(pModule)) = ".wav" Then audio.Close()
+        If audio IsNot Nothing Then audio.Close()
         DeleteTemp()
         ResetVol()
         My.Settings.Volume = Gvol
