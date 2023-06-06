@@ -595,10 +595,18 @@ Public Class gUiADE
                     End If
                     Label1.Text += vbCrLf & vbCrLf & "Format Type: " & ftype
                 Else
-                    SW.Stop()
-                    TimerAudio.Stop()
-                    Label1.Text = ""
-                    Label1.Image = My.Resources.guiade
+                    If CheckLoop.Checked = True Then
+                        SW.Reset()
+                        audio.Play()
+                        SW.Start()
+                    Else
+                        SW.Stop()
+                        TimerAudio.Stop()
+                        Timer1.Stop()
+                        Label1.Text = ""
+                        Label1.Image = My.Resources.guiade
+                    End If
+
                 End If
                 Exit Sub
         End Select
