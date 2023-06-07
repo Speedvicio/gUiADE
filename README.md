@@ -9,7 +9,7 @@ Attached there is the UADE help command line manual (UADE readme.txt) , you can 
 
 - Can export wav file in Quad mode  (4 channels mode) thx to <a href="https://blog.airmann.de/uade-multichannel-audio-support/">UADE 4IRMANN fork.</a>
 
-- Can play Pretracker format thx to <a href="https://blog.airmann.de/uade-multichannel-audio-support/](https://github.com/arnaud-neny/rePlayer/commit/6f410a75f42204c12b073b592313190fa337a212)">UADE arnaud-neny fork.</a>
+- Can play Pretracker format thx to <a href="https://github.com/arnaud-neny/rePlayer/commit/6f410a75f42204c12b073b592313190fa337a212">UADE arnaud-neny fork.</a>
 
 - Can play common Mp3 and Wav file.
 
