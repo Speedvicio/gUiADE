@@ -5,11 +5,15 @@ This is my second attemp (the first was AmicoX on linux) to make a crappy fronte
 
 Attached there is the UADE help command line manual (UADE readme.txt) , you can input others parameters on "custom parameters" text.
 
-gUiADE also has support for most common archive compressed file by 7z and sevenzipsharp.
+- Has support for most common archive compressed file by 7z and sevenzipsharp.
 
-gUiADE can export wav file in Quad mode  (4 channels mode) thx to <a href="https://blog.airmann.de/uade-multichannel-audio-support/">UADE 4IRMANN fork.</a>
+- Can export wav file in Quad mode  (4 channels mode) thx to <a href="https://blog.airmann.de/uade-multichannel-audio-support/">UADE 4IRMANN fork.</a>
 
-gUiADE can create custom playlist for your favourite music
+- Can play Pretracker format thx to <a href="https://github.com/arnaud-neny/rePlayer/commit/6f410a75f42204c12b073b592313190fa337a212">UADE arnaud-neny fork.</a>
+
+- Can play common Mp3 and Wav file.
+
+- Can create custom playlist for your favourite music.
 
 gUiADE use Topaz_a500_v1.0.ttf that should be load at startup, if you see the wrong visualized font, you can try to install it onto your os.
 
