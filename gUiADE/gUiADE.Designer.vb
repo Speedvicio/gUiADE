@@ -256,7 +256,7 @@ Partial Class gUiADE
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(25, 25)
         Me.Button2.TabIndex = 6
-        Me.ToolTip1.SetToolTip(Me.Button2, "Play/Pause (Console mode only)")
+        Me.ToolTip1.SetToolTip(Me.Button2, "Play/Pause (Console mode, mp3 and wav only)")
         Me.Button2.UseVisualStyleBackColor = False
         '
         'CheckWAV

@@ -26,7 +26,7 @@ Public Class gUiADE
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Common Audio|*.mp3;*.wav|Playlist|*.ade|All Files|*.*"
-        OpenFileDialog1.FilterIndex = 3
+        OpenFileDialog1.FilterIndex = 4
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             LoadFile(OpenFileDialog1.FileName)
         End If
