@@ -10,8 +10,11 @@ Public Class gUiADE
     Dim pfc As New PrivateFontCollection()
     Dim full_arg As String
     Dim VuMeter As Boolean = True
+    Dim labelindex As Integer
+    Dim scrolltext As String
+    Dim SoundName As String
 
-    Dim audio As AudioFile
+    Dim audio
 
     Public arg, pModule, plst As String
 
@@ -40,8 +43,11 @@ Public Class gUiADE
 
         UseThread("stop")
         Action_UADE("kill")
-        audio = New AudioFile(pModule)
-        If audio IsNot Nothing Then audio.Close()
+
+        If Val(Environment.OSVersion.Version.Major) >= 6 Then
+            audio = New AudioFile(pModule)
+            If audio IsNot Nothing Then audio.Close()
+        End If
 
         Select Case Path.GetExtension(pModule)
             Case ".ade"
@@ -53,10 +59,13 @@ Public Class gUiADE
                 DecompressArchive(pModule)
                 pModule = Path.Combine(Application.StartupPath, "temp")
                 PrepareList(pModule)
+                SoundName = Path.GetFileNameWithoutExtension(pModule).Trim
             Case ".mp3", ".wav"
                 PlayWavMp3()
+                SoundName = Path.GetFileNameWithoutExtension(audio.filename).Trim
             Case Else
                 PlayModule()
+                SoundName = Path.GetFileNameWithoutExtension(pModule).Trim
         End Select
     End Sub
 
@@ -580,20 +589,23 @@ Public Class gUiADE
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim ext = LCase(Path.GetExtension(pModule))
+        ResizeTextLabel()
+
         Select Case ext
             Case ".mp3", ".wav"
                 TimerAudio.Start()
                 Dim Astat = audio.Status.Trim
                 If Astat = "playing" Then
                     Label1.Image = Nothing
-                    Label1.Text = "Song Name: " & Path.GetFileNameWithoutExtension(audio.Filename).Trim
+                    Label1.Text = "Song Name: " & scrolltext
                     Dim ftype As String
                     If ext = ".mp3" Then
                         ftype = "MPEG Audio Layer III "
                     Else
                         ftype = "Waveform Audio File Format"
                     End If
-                    Label1.Text += vbCrLf & vbCrLf & "Format Type: " & ftype
+                    Dim ts = TimeSpan.FromMilliseconds(audio.milleseconds)
+                    Label1.Text += vbCrLf & vbCrLf & "Format Type: " & ftype & vbCrLf & vbCrLf & "Song Length: " & String.Format("{0:00}:{1:00}:{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds)
                 Else
                     If CheckLoop.Checked = True Then
                         SW.Reset()
@@ -627,6 +639,21 @@ Public Class gUiADE
             TimerAudio.Start()
         End If
 
+    End Sub
+
+    Private Sub ResizeTextLabel()
+        Try
+            Dim StringSize As Size
+            StringSize = TextRenderer.MeasureText(SoundName.PadLeft(20, "-"c), Label1.Font)
+            If StringSize.Width > 500 Then
+                scrolltext = SoundName.Substring(0, SoundName.Length - 15) & "..."
+                'labelindex += 1
+                'If labelindex > SoundName.Length Then labelindex = 0
+            Else
+                scrolltext = SoundName.Trim
+            End If
+        Catch
+        End Try
     End Sub
 
     Public Function IsProcessRunning(name As String) As Boolean

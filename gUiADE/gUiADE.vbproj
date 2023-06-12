@@ -81,6 +81,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="AudioCtrl.vb" />
     <Compile Include="AudioFile.vb" />
     <Compile Include="NativeMethods.vb" />
