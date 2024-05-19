@@ -608,7 +608,7 @@ Public Class gUiADE
                         Case ".wav"
                             ftype = "Waveform Audio File Format "
                         Case ".ogg"
-                            ftype = "Ogg Vorbisftype "
+                            ftype = "Ogg Vorbis "
                         Case ".m4a", "aac"
                             ftype = "Advanced Audio Coding "
                         Case ".flac"
@@ -657,7 +657,8 @@ Public Class gUiADE
             Dim StringSize As Size
             StringSize = TextRenderer.MeasureText(SoundName.PadLeft(20, "-"c), Label1.Font)
             If StringSize.Width > 500 Then
-                scrolltext = SoundName.Substring(0, SoundName.Length - 15) & "..."
+                Dim removeS As Integer = (StringSize.Width - 500) / 10 * 2
+                scrolltext = SoundName.Substring(0, SoundName.Length - removeS) & "..."
                 'labelindex += 1
                 'If labelindex > SoundName.Length Then labelindex = 0
             Else
