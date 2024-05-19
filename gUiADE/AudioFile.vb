@@ -31,7 +31,7 @@
         If _filename = "" Or Filename.Length <= 4 Then Exit Sub
 
         Select Case Right(Filename, 3).ToLower
-            Case "mp3"
+            Case "mp3", "ogg", "m4a", "aac", "flac"
                 mciSendString("open """ & _filename & """ type mpegvideo alias audiofile", Nothing, 0, IntPtr.Zero)
 
                 Dim playCommand As String = "play audiofile from 0"

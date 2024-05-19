@@ -28,7 +28,7 @@ Public Class gUiADE
     Private SW As New Stopwatch
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Common Audio|*.mp3;*.wav|Playlist|*.ade|All Files|*.*"
+        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Common Audio|*.mp3;*.ogg;*.aac;*.m4a;*.flac;*.wav|Playlist|*.ade|All Files|*.*"
         OpenFileDialog1.FilterIndex = 4
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             LoadFile(OpenFileDialog1.FileName)
@@ -60,7 +60,7 @@ Public Class gUiADE
                 pModule = Path.Combine(Application.StartupPath, "temp")
                 PrepareList(pModule)
                 SoundName = Path.GetFileNameWithoutExtension(pModule).Trim
-            Case ".mp3", ".wav"
+            Case ".mp3", ".wav", ".ogg", ".aac", ".m4a", ".flac"
                 PlayWavMp3()
                 SoundName = Path.GetFileNameWithoutExtension(audio.filename).Trim
             Case Else
@@ -150,17 +150,19 @@ Public Class gUiADE
         Control_UADE("c")
         If Button2.BackgroundImage Is imgStop Then
             Button2.BackgroundImage = imgPlay
-            If LCase(Path.GetExtension(pModule)) = ".mp3" Or LCase(Path.GetExtension(pModule)) = ".wav" Then
-                audio.Resume()
-            End If
+            Select Case LCase(Path.GetExtension(pModule))
+                Case ".mp3", ".ogg", ".m4a", ".aac", ".flac", ".wav"
+                    audio.resume()
+            End Select
             Timer1.Start()
             SW.Start()
             TimerAudio.Start()
         Else
             Button2.BackgroundImage = imgStop
-            If LCase(Path.GetExtension(pModule)) = ".mp3" Or LCase(Path.GetExtension(pModule)) = ".wav" Then
-                audio.Pause()
-            End If
+            Select Case LCase(Path.GetExtension(pModule))
+                Case ".mp3", ".ogg", ".m4a", ".aac", ".flac", ".wav"
+                    audio.Pause()
+            End Select
             Timer1.Stop()
             SW.Stop()
             Threading.Thread.Sleep(TSleep)
@@ -371,7 +373,7 @@ Public Class gUiADE
         Action_UADE("kill")
 
         Select Case LCase(Path.GetExtension(pModule))
-            Case ".mp3", ".wav"
+            Case ".mp3", ".wav", ".ogg", ".aac", ".m4a", ".flac"
                 audio.Stop()
                 SW.Stop()
                 Panel1.Enabled = False
@@ -445,6 +447,7 @@ Public Class gUiADE
 
         If File.ReadAllText(modulelist).Length = 0 Then
             MsgBox("No supported module in this folder", MsgBoxStyle.Information + vbOKOnly, "No module...")
+            My.Computer.FileSystem.DeleteFile(modulelist)
             Exit Sub
         Else
             If File.Exists(Replace(modulelist, "_CgWin", "")) Then My.Computer.FileSystem.DeleteFile(Replace(modulelist, "_CgWin", ""))
@@ -592,18 +595,26 @@ Public Class gUiADE
         ResizeTextLabel()
 
         Select Case ext
-            Case ".mp3", ".wav"
+            Case ".mp3", ".wav", ".ogg", ".aac", ".m4a", ".flac"
                 TimerAudio.Start()
                 Dim Astat = audio.Status.Trim
                 If Astat = "playing" Then
                     Label1.Image = Nothing
                     Label1.Text = "Song Name: " & scrolltext
                     Dim ftype As String
-                    If ext = ".mp3" Then
-                        ftype = "MPEG Audio Layer III "
-                    Else
-                        ftype = "Waveform Audio File Format"
-                    End If
+                    Select Case ext
+                        Case ".mp3"
+                            ftype = "MPEG Audio Layer III "
+                        Case ".wav"
+                            ftype = "Waveform Audio File Format "
+                        Case ".ogg"
+                            ftype = "Ogg Vorbisftype "
+                        Case ".m4a", "aac"
+                            ftype = "Advanced Audio Coding "
+                        Case ".flac"
+                            ftype = "Free Lossless Audio Codec "
+                    End Select
+
                     Dim ts = TimeSpan.FromMilliseconds(audio.milleseconds)
                     Label1.Text += vbCrLf & vbCrLf & "Format Type: " & ftype & vbCrLf & vbCrLf & "Song Length: " & String.Format("{0:00}:{1:00}:{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds)
                 Else
