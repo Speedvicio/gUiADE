@@ -19,7 +19,7 @@ Attached there is the UADE help command line manual (UADE readme.txt) , you can 
 
 gUiADE use Topaz_a500_v1.0.ttf that should be load at startup, if you see the wrong visualized font, you can try to install it onto your os.
 
-From release 6°,  gUiADE run only on win Vista and upper the last release compatible on Win XP is <a href="https://github.com/Speedvicio/gUiADE/releases/tag/0.5">gUiADE 5°</a>.
+From release 6° gUiADE run only on win Vista and upper OS, the last release compatible with Win XP is <a href="https://github.com/Speedvicio/gUiADE/releases/tag/0.5">gUiADE 5°</a>.
 
 <a href="https://user-images.githubusercontent.com/13048199/80649588-9f324c80-8a72-11ea-88a1-8ddce8d23468.PNG"><img src="https://user-images.githubusercontent.com/13048199/80649588-9f324c80-8a72-11ea-88a1-8ddce8d23468.PNG" heigth="200" /></a><br><br>
 
