@@ -11,13 +11,15 @@ Attached there is the UADE help command line manual (UADE readme.txt) , you can 
 
 - Can play Pretracker format thx to <a href="https://github.com/arnaud-neny/rePlayer/commit/6f410a75f42204c12b073b592313190fa337a212">UADE arnaud-neny fork.</a>
 
-- Can play common Mp3 and Wav file.
+- From release 8° can play common Mp3 and Wav file.
 
 - Can create custom playlist for your favourite music.
 
+- From release 10° can play "ogg", "m4a", "aac", "flac" file format (needed codec installed on your OS, you can use [K-Lite Basic](https://www.codecguide.com/download_k-lite_codec_pack_basic.htm))
+
 gUiADE use Topaz_a500_v1.0.ttf that should be load at startup, if you see the wrong visualized font, you can try to install it onto your os.
 
-From release 6°,  gUiADE run only on win Vista and upper the last release compatible on Win XP is <a href="https://github.com/Speedvicio/gUiADE/releases/tag/0.5">gUiADE 5°</a>.
+From release 6° gUiADE run only on win Vista and upper OS, the last release compatible with Win XP is <a href="https://github.com/Speedvicio/gUiADE/releases/tag/0.5">gUiADE 5°</a>.
 
 <a href="https://user-images.githubusercontent.com/13048199/80649588-9f324c80-8a72-11ea-88a1-8ddce8d23468.PNG"><img src="https://user-images.githubusercontent.com/13048199/80649588-9f324c80-8a72-11ea-88a1-8ddce8d23468.PNG" heigth="200" /></a><br><br>
 
