@@ -15,8 +15,7 @@ Attached there is the UADE help command line manual (UADE readme.txt) , you can 
 
 - Can create custom playlist for your favourite music.
 
-- From release 10° can play "ogg", "m4a", "aac", "flac" file format
-You need codec installed on your OS, you can use [K-Lite Basic](https://www.codecguide.com/download_k-lite_codec_pack_basic.htm)
+- From release 10° can play "ogg", "m4a", "aac", "flac" file format (needed codec installed on your OS, you can use [K-Lite Basic](https://www.codecguide.com/download_k-lite_codec_pack_basic.htm))
 
 gUiADE use Topaz_a500_v1.0.ttf that should be load at startup, if you see the wrong visualized font, you can try to install it onto your os.
 
