@@ -443,12 +443,9 @@ Public Class gUiADE
         pList = pModule
         MakeBat(txt, "makelist", "--scan -r --stderr ", "modulelist_CgWin")
         Dim modulelist As String = Path.Combine(Application.StartupPath, "modulelist_CgWin.txt")
-        If File.Exists(modulelist) = False Then Exit Sub
-
-        If File.ReadAllText(modulelist).Length = 0 Then
+        If File.Exists(modulelist) = False Or File.ReadAllText(modulelist).Length = 0 Then
             MsgBox("No supported module in this folder", MsgBoxStyle.Information + vbOKOnly, "No module...")
             My.Computer.FileSystem.DeleteFile(modulelist)
-            Exit Sub
         Else
             If File.Exists(Replace(modulelist, "_CgWin", "")) Then My.Computer.FileSystem.DeleteFile(Replace(modulelist, "_CgWin", ""))
         End If
