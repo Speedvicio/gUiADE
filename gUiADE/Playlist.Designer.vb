@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Playlist
     Inherits System.Windows.Forms.Form
 
     'Form esegue l'override del metodo Dispose per pulire l'elenco dei componenti.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Playlist
     'NOTA: la procedura che segue è richiesta da Progettazione Windows Form
     'Può essere modificata in Progettazione Windows Form.  
     'Non modificarla mediante l'editor del codice.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -38,10 +38,10 @@ Partial Class Playlist
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripSave = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripRem = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripPoint = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSearch = New System.Windows.Forms.ToolStripTextBox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ToolStripPoint = New System.Windows.Forms.ToolStripButton()
         Me.GroupBox1.SuspendLayout()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -207,6 +207,15 @@ Partial Class Playlist
         Me.ToolStripRem.Text = "  "
         Me.ToolStripRem.ToolTipText = "Remove From List"
         '
+        'ToolStripPoint
+        '
+        Me.ToolStripPoint.Image = Global.gUiADE.My.Resources.Resources.zoom
+        Me.ToolStripPoint.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripPoint.Name = "ToolStripPoint"
+        Me.ToolStripPoint.Size = New System.Drawing.Size(33, 52)
+        Me.ToolStripPoint.Text = "  "
+        Me.ToolStripPoint.ToolTipText = " Explore Folder"
+        '
         'ToolStripSearch
         '
         Me.ToolStripSearch.BackColor = System.Drawing.Color.White
@@ -218,16 +227,8 @@ Partial Class Playlist
         'SaveFileDialog1
         '
         Me.SaveFileDialog1.DefaultExt = "ade"
+        Me.SaveFileDialog1.Filter = """Playlist|*.ade;*.m3u"""
         Me.SaveFileDialog1.RestoreDirectory = True
-        '
-        'ToolStripPoint
-        '
-        Me.ToolStripPoint.Image = Global.gUiADE.My.Resources.Resources.zoom
-        Me.ToolStripPoint.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripPoint.Name = "ToolStripPoint"
-        Me.ToolStripPoint.Size = New System.Drawing.Size(33, 52)
-        Me.ToolStripPoint.Text = "  "
-        Me.ToolStripPoint.ToolTipText = " Explore Folder"
         '
         'Playlist
         '

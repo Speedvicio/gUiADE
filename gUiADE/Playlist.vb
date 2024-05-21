@@ -52,6 +52,16 @@ Public Class Playlist
 
     Public Function LoadADE(ade As String)
         DataGridView1.Rows.Clear()
+
+        Select Case Path.GetExtension(ade)
+            Case ".m3u"
+                ToolStripSave.Enabled = False
+                ToolStripRem.Enabled = False
+            Case Else
+                ToolStripSave.Enabled = True
+                ToolStripRem.Enabled = True
+        End Select
+
         Using sr As StreamReader = File.OpenText(ade)
             Do While sr.Peek() >= 0
                 Dim SplitAde() As String = Split(sr.ReadLine(), "|")
@@ -61,7 +71,16 @@ Public Class Playlist
                 End If
                 Dim PlsDirectory() As String = SplitAde(0).Split("\")
 
-                DataGridView1.Rows.Add(Path.GetFileName(SplitAde(0)), subsong, Path.GetDirectoryName(SplitAde(0)), PlsDirectory(PlsDirectory.Length - 2))
+                Select Case Path.GetExtension(ade)
+                    Case ".m3u"
+                        Select Case Path.GetExtension(LCase(SplitAde(0)))
+                            Case ".mp3", ".ogg", ".m4a", ".aac", ".flac"
+                                DataGridView1.Rows.Add(Path.GetFileName(SplitAde(0)), subsong, Path.GetDirectoryName(SplitAde(0)), PlsDirectory(PlsDirectory.Length - 2))
+                        End Select
+                    Case ".ade"
+                        DataGridView1.Rows.Add(Path.GetFileName(SplitAde(0)), subsong, Path.GetDirectoryName(SplitAde(0)), PlsDirectory(PlsDirectory.Length - 2))
+                End Select
+
             Loop
         End Using
         ResizeADE()
@@ -92,7 +111,13 @@ Public Class Playlist
         If subm <> "" Then
             gUiADE.arg = "-s " & subm & " "
         End If
-        gUiADE.UseThread("start")
+        Select Case Path.GetExtension(LCase(DataGridView1.SelectedRows(0).Cells(0).Value.ToString()))
+            Case ".mp3", ".ogg", ".m4a", ".aac", ".flac"
+                gUiADE.LoadFile(gUiADE.pModule)
+            Case Else
+                gUiADE.UseThread("start")
+        End Select
+
         If subm <> "" Then gUiADE.ListBox1.Items.Clear()
         Me.Focus()
     End Sub
@@ -109,14 +134,14 @@ Public Class Playlist
 
         If ToolStripSearch.TextLength > 2 Then
             FilterText(ToolStripSearch.Text)
-            ToolStripRem.Enabled = False
-            ToolStripSave.Enabled = False
+            'ToolStripRem.Enabled = False
+            'ToolStripSave.Enabled = False
         Else
             For i = 0 To DataGridView1.Rows.Count - 1
                 DataGridView1.Rows(i).Visible = True
             Next
-            ToolStripRem.Enabled = True
-            ToolStripSave.Enabled = True
+            'ToolStripRem.Enabled = True
+            'ToolStripSave.Enabled = True
         End If
     End Sub
 

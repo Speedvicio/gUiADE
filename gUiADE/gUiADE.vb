@@ -28,14 +28,14 @@ Public Class gUiADE
     Private SW As New Stopwatch
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Common Audio|*.mp3;*.ogg;*.aac;*.m4a;*.flac;*.wav|Playlist|*.ade|All Files|*.*"
+        OpenFileDialog1.Filter = "Archive Files|*.lha;*.lhz;*.zip;*.7z;*.rar|Common Audio|*.mp3;*.ogg;*.aac;*.m4a;*.flac;*.wav|Playlist|*.ade;*.m3u|All Files|*.*"
         OpenFileDialog1.FilterIndex = 4
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             LoadFile(OpenFileDialog1.FileName)
         End If
     End Sub
 
-    Private Sub LoadFile(fileModule As String)
+    Public Sub LoadFile(fileModule As String)
         arg = ""
         ListBox1.Items.Clear()
 
@@ -50,7 +50,7 @@ Public Class gUiADE
         End If
 
         Select Case Path.GetExtension(pModule)
-            Case ".ade"
+            Case ".ade", ".m3u"
                 If Playlist.Visible = False Then Playlist.Show() : Button9.BackgroundImage = My.Resources.informationR
                 plst = pModule
                 Playlist.LoadADE(plst)
